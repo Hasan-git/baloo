@@ -1,0 +1,387 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Vehicle Repairs</h2>
+        <ol class="breadcrumb">
+            <li ui-sref="abstract.dashboard" class="pointer" ng-if="stateBack != 'abstract.cars'">
+                Dashboard
+            </li>
+            <li ui-sref="abstract.cars" class="pointer" ng-if="stateBack == 'abstract.cars'">
+                Cars
+            </li>
+            <li class="active">
+                <strong>Vehicle Repairs</strong>
+            </li>
+        </ol>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-12" >
+        <div class="wrapper wrapper-content">
+            <div class="text-center animated fadeInRightBig ">
+
+                <div class="text-left m-t-md m-b-xxs">
+                    <button class="btn btn-success" ng-click="openNewForm()"><i class="fa fa-plus"></i> New Record</button>
+                 </div>
+
+                <div class="ibox float-e-margins" style="margin:0;" ng-show="showForm" id="formContainer">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-files-o"></i>  {{ formTitle || "Form"}}</h5>
+                        <div></div>
+                    </div>
+                    <div class="ibox-content m-b-sm border-bottom text-left">
+                        <form name="form" id="form" novalidate>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="problem">Problem</label>
+                                        <input type="text" id="problem" name="problem" value="" placeholder="Problem..." class="form-control" ng-model="repair.problem" enter>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="garage">Garage</label>
+                                        <input type="text" id="garage" name="garage" value="" placeholder="Garage..." class="form-control" ng-model="repair.garage" enter>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="cost">Cost</label>
+                                        <input type="number" id="cost" name="cost" value="" placeholder="Cost..." class="form-control" ng-model="repair.cost" enter>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="date">Date</label>
+                                        <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="date" name="date" value="" placeholder="Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.date" enter>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="completionDate">Finish Date</label>
+                                        <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="completionDate" name="completionDate" value="" placeholder="Finish Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.completionDate" enter>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="company">Company</label>
+                                        <input type="text" id="company" name="company" value="" placeholder="Company..." class="form-control" ng-model="repair.company" enter>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="clientTotalCost">Client Total Cost</label>
+                                        <div class="controls">
+                                            <div class="input-group col-xs-12">
+                                               <input type="number" min="0" id="clientTotalCost" name="clientTotalCost" value="" placeholder="Total Cost On Client.." class="form-control" ng-model="repair.clientTotalCost" enter>
+                                                <span class="input-group-addon pointer"><i class="fa fa-dollar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="clientPayment">Client Payment</label>
+                                        <div class="controls">
+                                            <div class="input-group col-xs-12">
+                                               <input type="number" min="0" id="clientPayment" name="clientPayment" value="" placeholder="Client Paid.." class="form-control" ng-model="repair.clientPayment" ng-blur="blurClientPayment(repair.clientPayment)" enter>
+                                                <span class="input-group-addon pointer"><i class="fa fa-dollar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="clientDueAmount">Client Due Amount</label>
+                                        <div class="controls">
+                                            <div class="input-group col-xs-12">
+                                               <input type="number" min="0" id="clientDueAmount" name="clientDueAmount" value="" placeholder="Client Due Amount.." class="form-control" ng-model="repair.clientDueAmount" enter/>
+                                                <span class="input-group-addon pointer"><i class="fa fa-dollar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="control-label" for="client_id">Client</label>
+                                        <select
+                                                 chosen
+                                                 id="client_id"
+                                                 name="client_id"
+                                                 class="chosen-select form-control"
+                                                 style="width:200px;"
+                                                 ng-model="repair.client_id"
+                                                 ng-options="s.id as s.name+ ' /' + (s.mother || '') for s in clients "
+                                                 enter>
+                                                        <option value=""></option>
+                                                </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" >
+                                        <label class="">Is Finished?</label>
+                                        <div style="width:150px">
+                                            <div toggle-switch class="switch-success switch-bg switch-mini m-b-sm btn-block" html="true" knob-label="Finished" on-label='YES' off-label='NO' ng-model="repair.isFinished"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 image-uploader">
+                                    <div class="form-group">
+                                        <label class="control-label" for="image">Image</label>
+                                        <div class="btn-group col-xs-12 p-l-0">
+                                            <label type="button" class="btn btn-primary btn-w-m">
+                                                <i class="fa fa-upload"></i> &nbsp; Image
+                                                <input type="file" name="image" id="image" ng-model="repair.image" nv-file-select="" uploader="uploader" style="display:none;" filter="imageFilter" multiple>
+                                            </label>
+
+                                            <button type="button" ng-show="uploader.queue[0]" class="btn btn-primary" style="border-radius: 0px 3px 2px 0px;"
+                                                ng-click="uploader.clearQueue()" >
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                            <button type="button" ng-show="car.image" class="btn btn-primary" style="border-radius: 0px 3px 2px 0px;"
+                                                ng-click="repair.image=''" >
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                            <div ng-repeat="item in uploader.queue" class="pointer pull-right">
+                                                <span ng-thumb="{ file: item._file, height: 100 }"></span>
+                                            </div>
+                                            <img src="" ng-show="repair.imageUrl && repair.image" ng-src="{{repair.imageUrl}}" style="height: 34px;" class="pull-right" />
+                                        </div>
+                                    </div>
+                                    <div class="progress col-xs-12 p-sides-0" ng-show="uploader.queue[0]" style="margin-bottom: 0;margin-bottom: 0;margin-top: 3px;height: 8px;">
+                                          <div class="progress-bar"  role="progressbar" ng-style="{ 'width': uploader.queue[0].progress + '%' }">
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <button class="btn btn-primary btn-w-m" type="submit" ng-click="save()"><i class="fa fa-floppy-o"></i> SAVE</button>
+                                <button class="btn btn-white" ng-click="cancelForm()">Cancel</button>
+                        </div>
+                        </form>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top: 0px;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Repairs</h5>
+                                <span class="label label-primary col-sm-offset-5">
+                                            <i class="fa fa-wrench fa-1x"></i>&nbsp; {{repairs.length}}
+                                        </span>
+                                <!-- <div ibox-tools></div> -->
+                                <div ibox-tools></div>
+                            </div>
+                            <div class="ibox-content ibox-table">
+                                <div class="text-capitalize">
+                                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtIntanceCallback" class="table table-striped  table-hover dataTables-example names-table" style="width:100%;"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="deletePatient.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Confirmation!</h3>
+    </div>
+    <div class="modal-body">
+        <div>Are you sure to delete this Repair record ?</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="yes()">Yes</button>
+        <button class="btn btn-warning" type="button" ng-click="no()">No</button>
+    </div>
+</script>
+
+<!-- Client Modal view-->
+<script type="text/ng-template" id="repairModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Repair Details!</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+        <div class="contact-box text-capitalize" style="border: 0;" >
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img alt="image" class=" m-t-md img-responsive pointer" ng-src="{{viewRepair.imageUrl || 'img/repair-default.jpg' }}" onclick="window.open(this.src)" />
+
+                    <div class="m-t-xxs" style="">{{viewRepair.date | date :  "mediumDate"}}</div>
+                </div>
+            </div>
+            <div class="col-sm-8" style="font-size: 15px;font-family: serif;">
+                <h3><strong class="text-capitalize">{{viewRepair.problem}}</strong></h3>
+
+                <p class="" ng-show="viewRepair.client && viewRepair.client.name">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Client : </strong>
+                    <span >{{viewRepair.client.name}}</span>
+                </p>
+                <p class="" ng-show="viewRepair.clientTotalCost">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Client Total Cost : </strong>
+                    <span >{{viewRepair.clientTotalCost}} <i class="fa fa-dollar"></i></span>
+                </p>
+                <p class="" ng-show="viewRepair.clientPayment">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Client Paid : </strong>
+                    <span >{{viewRepair.clientPayment}} <i class="fa fa-dollar"></i> </span>
+                </p>
+                <p class="" ng-show="viewRepair.clientDueAmount">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Client Should pay : </strong>
+                    <span >{{viewRepair.clientDueAmount}} <i class="fa fa-dollar"></i></span>
+                </p>
+                <p class="" ng-show="viewRepair.completionDate">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Finish Date : </strong>
+                    <span >{{viewRepair.completionDate}}</span>
+                </p>
+                <p class="" ng-show="viewRepair.company">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Company : </strong>
+                    <span >{{viewRepair.company}}</span>
+                </p>
+                <p class="" ng-show="viewRepair.garage">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Garage : </strong>
+                    <span >{{viewRepair.garage}}</span>
+                </p>
+                <p class="" ng-show="viewRepair.cost">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Cost : </strong>
+                    <span >{{viewRepair.cost}} <i class="fa fa-dollar"></i></span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+     <button class="btn btn-primary" type="button" ng-click="dismissRepairModal()">Dissmis</button>
+    </div>
+</script>
+
+<!-- Client Modal view-->
+<script type="text/ng-template" id="clientModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Client Details!</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+        <div class="contact-box text-capitalize" style="border: 0;" >
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img alt="image" class=" m-t-md img-responsive pointer" ng-src="{{viewClient.imageUrl || 'img/user-default.jpg' }}" onclick="window.open(this.src)" />
+
+                    <div class="m-t-xxs" style="">{{viewClient.dob | date :  "mediumDate"}}</div>
+                </div>
+            </div>
+            <div class="col-sm-8" style="font-size: 15px;font-family: serif;">
+                <h3><strong class="text-capitalize">{{viewClient.name}}</strong></h3>
+                <p class="" ng-show="viewClient.father">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Father : </strong>
+                    <span >{{viewClient.father}}</span>
+                </p>
+                <p class="" ng-show="viewClient.mother">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Mother : </strong>
+                    <span >{{viewClient.mother}}</span>
+                </p>
+                <p class="" ng-show="viewClient.birthPlace">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Birth Place : </strong>
+                    <span >{{viewClient.birthPlace}}</span>
+                </p>
+                <p class="" ng-show="viewClient.sejel">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Identity File Number(Sejel) : </strong>
+                    <span >{{viewClient.sejel}}</span>
+                </p>
+                <p class="" ng-show="viewClient.licenseId">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>License ID : </strong>
+                    <span >{{viewClient.licenseId}}</span>
+                </p>
+                <p class="" ng-show="viewClient.address">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Adress : </strong>
+                    <span >{{viewClient.address}}</span>
+                </p>
+                <p class="" ng-show="viewClient.contactNumber">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Contact : </strong>
+                    <span >{{viewClient.contactNumber}}</span>
+                </p>
+                <p class="" ng-show="viewClient.emergencyContact">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Emergency Contact : </strong>
+                    <span >{{viewClient.emergencyContact}}</span>
+                </p>
+                <p class="" ng-show="viewClient.totalDueAmount" >
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Due Amount : </strong>
+                    <span ng-class="{'badge-danger badge':viewClient.totalDueAmount}">
+                    {{viewClient.totalDueAmount}}
+                        <i class="fa fa-dollar"></i></span>
+                </p>
+                <p class="" ng-show="viewClient.licenseType">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>License Type : </strong>
+                    <span >{{viewClient.licenseType}}</span>
+                </p>
+                <p class="" ng-show="viewClient.licenseIssueDate">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>License Issue Date : </strong>
+                    <span >{{viewClient.licenseIssueDate}}</span>
+                </p>
+                <p class="" ng-show="viewClient.licenseExpiryDate">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>License Expiry Date : </strong>
+                    <span >{{viewClient.licenseExpiryDate}}</span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+     <button class="btn btn-primary" type="button" ng-click="dismissClientModal()">Dissmis</button>
+    </div>
+</script>
+
+<style>
+/*th {
+    text-align: center;
+}*/
+ canvas {
+    background-color: #f3f3f3;
+    -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    box-shadow: 3px 3px 3px 0 #e3e3e3;
+    border: 1px solid #c3c3c3;
+    height: 34px;
+    margin: 0px 0 0 0px;
+}
+</style>
+
+
+
+

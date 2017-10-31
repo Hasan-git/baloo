@@ -1,0 +1,366 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Cars</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Cars</strong>
+            </li>
+        </ol>
+    </div>
+
+</div>
+<div class="row" >
+    <div class="col-lg-12" >
+        <div class="wrapper wrapper-content">
+            <div class="text-center animated fadeInRightBig ">
+
+                <div class="text-left m-t-md m-b-xxs">
+                    <button class="btn btn-success" ng-click="openNewForm()"><i class="fa fa-plus"></i> New Car</button>
+                 </div>
+
+                <div class="ibox float-e-margins" style="margin:0;" ng-show="showForm" id="formContainer">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-files-o"></i>  {{ formTitle || "Car"}}</h5>
+                        <div></div>
+                    </div>
+                    <div class="ibox-content m-b-sm border-bottom text-left">
+                        <form name="form" id="form" novalidate>
+                            <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
+                                            <label class="control-label" for="name">Car name</label>
+                                            <!-- <input type="text" id="name" name="name" value="" placeholder="Car name.." required class="form-control" ng-model="car.name" > -->
+                                            <select
+                                             chosen
+                                             id="name"
+                                             name="name"
+                                             class="chosen-select form-control"
+                                             style="width:200px;"
+                                             ng-model="car.name_id"
+                                             ng-options="s.id as s.name for s in names "
+                                             required>
+                                                    <option value=""></option>
+                                                </select>
+                                            <span ng-show="form.name.$dirty && form.name.$invalid"
+                                                      class="color-red">
+                                                <span class="message" ng-show="form.name.$error.required">This field is required.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group" ng-class="{'has-error':form.model.$invalid && form.model.$dirty}">
+                                            <label class="control-label" for="model">Model</label>
+                                            <input type="text" id="model" name="model" value="" placeholder="Model.." class="form-control" ng-model="car.model" required>
+                                            <span ng-show="form.model.$dirty && form.model.$invalid"
+                                                      class="color-red">
+                                                <span class="message" ng-show="form.model.$error.required">This field is required.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group" ng-class="{'has-error':form.plateNumber.$invalid && form.plateNumber.$dirty}">
+                                            <label class="control-label" for="plateNumber">Plate Number</label>
+                                            <input type="text" id="plateNumber" name="plateNumber" value="" placeholder="Plate Number.." class="form-control" ng-model="car.plateNumber">
+                                            <span ng-show="form.plateNumber.$dirty && form.plateNumber.$invalid"
+                                                      class="color-red">
+                                                <span class="message" ng-show="form.plateNumber.$error.required">This field is required.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="amount">Type</label>
+                                        <!-- <input type="text" id="type" name="type" class="form-control" placeholder="Type" ng-model="car.type"> -->
+                                        <select type="text" id="type" name="type" class="form-control" placeholder="Type" ng-model="car.type">
+                                            <option value="sport" >Sport</option>
+                                            <option value="commerce">Commerce</option>
+                                            <option value="wedding">Wedding</option>
+                                            <option value="range">Range</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="chassisNumber">Chassis Number</label>
+                                        <input type="text" id="chassisNumber" name="chassisNumber" value="" placeholder="Chassis Number.." class="form-control" ng-model="car.chassisNumber">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="status">Current status</label>
+                                        <!-- <input type="text" id="status" name="status" class="form-control" placeholder="status" ng-model="car.status"> -->
+                                        <select type="text" id="status" name="status" class="form-control" placeholder="Type" ng-model="car.status">
+                                            <option value="available" selected="selected">Available</option>
+                                            <option value="notavailable">Not Available</option>
+                                            <option value="reserved">Reserved</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="officialMechanic">Official Mechanic</label>
+                                        <div class="controls">
+                                            <div class="input-group col-xs-12">
+                                               <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="officialMechanic" name="officialMechanic" value="" placeholder="First Official Mechanic Date..." class="form-control" ng-model="car.officialMechanic" data-mask="9999-99-99">
+                                                <span class="input-group-addon pointer" ng-click="car.officialMechanic=''" >x</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="color">Color</label>
+                                        <input type="text" id="color" name="color" value="" placeholder="Color.." class="form-control" ng-model="car.color">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="notes">Notes</label>
+                                        <textarea id="notes" name="notes" value="" placeholder="Notes.." rows="1" class="form-control" ng-model="car.notes">
+                                        </textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="purchasingDate">Purchasing Date</label>
+                                        <div class="controls">
+                                            <div class="input-group col-xs-12">
+                                               <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="purchasingDate" name="purchasingDate" value="" placeholder="Purchasing Date..." class="form-control" ng-model="car.purchasingDate" data-mask="9999-99-99">
+                                                <span class="input-group-addon pointer" ng-click="car.purchasingDate=''" >x</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="purchasingPrice">Purchasing Price</label>
+                                        <div class="controls">
+                                            <div class="input-group col-xs-12">
+                                               <input type="number" id="purchasingPrice" min="0" name="purchasingPrice" value="" placeholder="Purchasing Price..." class="form-control" ng-model="car.purchasingPrice" >
+                                                <span class="input-group-addon pointer" ><i class="fa fa-dollar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 image-uploader">
+                                    <div class="form-group">
+                                        <label class="control-label" for="image">Image</label>
+                                        <!-- <input type="text" id="notes" name="image" value="" placeholder="image.." class="form-control" ng-model="car.image"> -->
+                                       <!--  <input type="file" name="image" id="image" nv-file-select="" uploader="uploader" /> -->
+
+                                    <div class="btn-group col-xs-12 p-l-0">
+                                        <label type="button" class="btn btn-primary btn-w-m">
+                                            <i class="fa fa-upload"></i> &nbsp; Image
+                                            <input type="file" name="image" id="image" ng-model="image" nv-file-select="" uploader="uploader" style="display:none;" filter="imageFilter" multiple>
+                                        </label>
+
+                                        <button type="button" ng-show="uploader.queue[0]" class="btn btn-primary" style="border-radius: 0px 3px 2px 0px;"
+                                            ng-click="uploader.clearQueue()" >
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <button type="button" ng-show="car.image" class="btn btn-primary" style="border-radius: 0px 3px 2px 0px;"
+                                            ng-click="car.image=''" >
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <div ng-repeat="item in uploader.queue" class="pointer pull-right">
+                                            <span ng-thumb="{ file: item._file, height: 100 }"></span>
+                                        </div>
+                                        <img src="" ng-show="car.imageUrl && car.image" ng-src="{{car.imageUrl}}" style="height: 34px;" class="pull-right" />
+                                      </div>
+                                    </div>
+                                    <div class="progress col-xs-12 p-sides-0" ng-show="uploader.queue[0]" style="margin-bottom: 0;margin-bottom: 0;margin-top: 3px;height: 8px;">
+                                          <div class="progress-bar"  role="progressbar" ng-style="{ 'width': uploader.queue[0].progress + '%' }">
+                                          </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                        <button class="btn btn-primary btn-w-m" type="button" ng-click="save(form)"><i class="fa fa-floppy-o"></i> SAVE</button>
+                                        <button class="btn btn-white" ng-click="cancelForm(form)">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                        <div class="clearfix"></div>
+                        <div class="row">
+                    <div class="col-lg-12" style="margin-top: 0px;">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5 ng-click="log()">Cars</h5>
+                                <span class="label label-primary col-sm-offset-5">
+                                            <i class="fa fa-car fa-1x"></i>&nbsp;{{cars.length}}
+                                        </span>
+                                <!-- <div ibox-tools></div> -->
+                                <div ibox-tools></div>
+                            </div>
+                            <div class="ibox-content ibox-table">
+                                <div class="">
+                                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtIntanceCallback" class="table table-striped table-hover dataTables-example names-table text-capitalize"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+<!--     </div>
+</div> -->
+
+<style>
+
+ canvas {
+    background-color: #f3f3f3;
+    -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    box-shadow: 3px 3px 3px 0 #e3e3e3;
+    border: 1px solid #c3c3c3;
+    height: 34px;
+    margin: 0px 0 0 0px;
+}
+
+</style>
+
+<!-- Delete Car  Modal -->
+<script type="text/ng-template" id="deleteCar.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Delete Confirmation!</h3>
+    </div>
+    <div class="modal-body">
+        <div>Are you sure to delete this Car Name ?</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="yes()">Yes</button>
+        <button class="btn btn-warning" type="button" ng-click="no()">No</button>
+    </div>
+</script>
+
+<!-- Car Sold Modal -->
+<script type="text/ng-template" id="carSoldModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Car Sold Confirmation!</h3>
+    </div>
+    <div class="modal-body">
+        <h3>Attention ! Please, consider that this car when it's sold it's not going to be available in the active cars list  ?</h3>
+         <form name="carSold" id="carSold" novalidate>
+             <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="sellingDate">Selling Date</label>
+                        <div class="controls">
+                            <div class="input-group col-xs-12">
+                               <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="sellingDate" name="sellingDate" value="" placeholder="Selling Date..." class="form-control" ng-model="soldCar.sellingDate" data-mask="9999-99-99"/>
+                                <span class="input-group-addon pointer" ng-click="soldCar.sellingDate=''" >x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="sellingPrice">Selling Price</label>
+                        <div class="controls">
+                            <div class="input-group col-xs-12">
+                               <input type="number" min="0" id="sellingPrice" name="sellingPrice" value="" placeholder="Selling Price..." class="form-control" ng-model="soldCar.sellingPrice" />
+                                <span class="input-group-addon pointer" ><i class="fa fa-dollar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="yesSold()">Yes</button>
+        <button class="btn btn-warning" type="button" ng-click="noSold()">No</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="carDetails.html">
+    <div class="modal-header">
+        <h3 class="modal-title text-uppercase">
+        <span>Car Specifications</span>
+        </h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="col-xs-12">
+            <div class="contact-box" style="border:0;margin-bottom: 1px;padding-bottom: 1px;">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img alt="image" class="img-circle m-t-xs img-responsive" ng-src="{{viewCar.imageUrl || 'img/default.jpg' }}" />
+                        <div class="m-t-xs font-bold">
+                            <div ng-switch="viewCar.status">
+                              <div ng-switch-when="available" class="label-primary border-50">Available</div>
+                              <div ng-switch-when="notavailable" class="label-danger border-50">Not Available</div>
+                              <div ng-switch-when="reserved" class="label-warning border-50">Reserved</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8" style="font-size: 15px;font-family: serif;">
+                    <h3><strong>{{viewCar.name}}</strong></h3>
+
+                    <p class="text-capitalize">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i> {{viewCar.type}}
+                        <span ng-show="viewCar.model">/ {{viewCar.model}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.color">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >{{viewCar.color}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.plateNumber">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >Plate Number{{viewCar.plateNumber}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.chassisNumber">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >Chassis Number{{viewCar.chassisNumber}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.km">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >Distance {{viewCar.km}} Km</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.purchasingDate">
+                    <i  class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >Purchased at {{viewCar.purchasingDate}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.purchasingPrice">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >Price on purchase was {{viewCar.purchasingPrice}} <i class="fa fa-dollar"></i></span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.purchasingPrice">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >Official Mechanic Every {{viewCar.officialMechanic | date: 'dd MMMM'}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.notes">
+                    <i class="fa fa-info-circle text-info" style="font-size:14px;"></i>
+                        <span > {{viewCar.notes}}</span>
+                    </p>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+            <div class="clearfix"></div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="dissmis()">Dissmis</button>
+    </div>
+</script>
+
+

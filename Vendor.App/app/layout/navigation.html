@@ -1,0 +1,69 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav" id="side-menu" >
+
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <img alt="image" class="img-circle" src="img/profile_small.jpg"/>
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="clear">
+                                <span class="block m-t-xs text-capitalize">
+                                    <strong class="font-bold">{{session.getUser().fullName}}</strong>
+                             </span>
+                                <span class="text-muted text-xs block text-capitalize">{{auth.getUserRoles()[0]}} <b class="caret"></b></span>
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a ui-sref="profile">Profile</a></li>
+                        <li><a ui-sref="contacts">Contacts</a></li>
+                        <li><a ui-sref="inbox">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a ng-click="logout()">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    BALOO
+                </div>
+            </li>
+
+
+
+            <li ng-class="{active: $state.includes('abstract.dashboard') || $state.includes('abstract.repairs') }" ui-sref="abstract.dashboard" ng-if="auth.getUserRoles().diff(types.dashboard).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-sitemap"></i> <span class="nav-label">dashboard</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.rents')}" ui-sref="abstract.rents" ng-if="auth.getUserRoles().diff(types.rents).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-files-o"></i> <span class="nav-label">Rents</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.cars')}" ui-sref="abstract.cars" ng-if="auth.getUserRoles().diff(types.cars).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-car"></i> <span class="nav-label">Cars</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.clients')}" ui-sref="abstract.clients" ng-if="auth.getUserRoles().diff(types.clients).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-users"></i> <span class="nav-label">Clients</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.names')}" ui-sref="abstract.names" ng-if="auth.getUserRoles().diff(types.names).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-list-alt"></i> <span class="nav-label">Names</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.spendings')}" ui-sref="abstract.spendings" ng-if="auth.getUserRoles().diff(types.spendings).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-money"></i> <span class="nav-label">Spendings</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.reports')}" ui-sref="abstract.reports" ng-if="auth.getUserRoles().diff(types.reports).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-envelope"></i> <span class="nav-label">Reports</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.alerts')}" ui-sref="abstract.alerts" ng-if="auth.getUserRoles().diff(types.alerts).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-bell"></i> <span class="nav-label">Alerts</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('abstract.settings')}" ui-sref="abstract.settings" ng-if="auth.getUserRoles().diff(types.settings).length > 0">
+                <a ui-sref="widgets"><i class="fa fa-wrench"></i> <span class="nav-label">Settings</span></a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

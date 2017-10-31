@@ -1,0 +1,159 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Dashboard</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Dashboard</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<script type="text/javascript">
+</script>
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content">
+            <div class="text-center animated fadeInRightBig">
+                <div class="border-bottom ibox-content m-b-sm dashboard-filter ">
+                    <span class="pull-left">
+                         <button class="btn btn-white btn-sm" ng-click="status=''">
+                                <i class="fa fa-search"></i>
+                                &nbsp; All
+                        </button>
+                        <div class="btn-group">
+                            <label class="btn btn-primary btn-sm" ng-click="status='available'">
+                                <!-- <i class="fa fa-search"></i> -->
+                                Available
+                            </label>
+                           <!--  <label class="btn btn-danger btn-sm" ng-click="status='notavailable'">
+                                Not Available
+                            </label> -->
+                            <label class="btn btn-info btn-sm" ng-click="status='repair'">
+                                <!-- <i class="fa fa-search"></i> -->
+                                Repair
+                            </label>
+                             <label class="btn btn-danger btn-sm" ng-click="status='rented'">
+                                <!-- <i class="fa fa-search"></i> -->
+                                Rented
+                            </label>
+                            <label class="btn btn-warning btn-sm" ng-click="status='reserved'" >
+                                <!-- <i class="fa fa-search"></i> -->
+                                Reserved
+                            </label>
+                        </div>
+                    </span>
+                    <div class="dropdown open pull-left m-l-md">
+                        <div class="btn-group">
+                            <label class="btn btn-white btn-sm" ng-click="a=''; b=''" style="min-height: 30px;">
+                                 <i ng-show="!!a" class="fa fa-times-circle"></i>&nbsp;
+                                {{a|date }}
+                                <span ng-show="!a">From</span>
+                            </label>
+                            <label class="btn btn-success btn-sm" ng-click="range =! range" >
+                                <i class="fa fa-date"></i>
+                               <span >Select range</span>
+                            </label>
+                            <label class="btn btn-white btn-sm" ng-click="a=''; b=''" style="min-height: 30px;">
+                                <i ng-show="!!b" class="fa fa-times-circle"></i>&nbsp;
+                                {{b|date}}
+                                <span ng-show="!b">&nbsp;&nbsp;To&nbsp;&nbsp;</span>
+                            </label>
+                        </div>
+                        <div class="dropdown-menu" ng-show="range==true" ng-init="range=false" ng-click="$event.preventDefault();$event.stopPropagation();">
+                            <div date-range start="a" end="b" minView='hours'></div>
+                        </div>
+                    </div>
+                    <div class="has-feedback search-box">
+                        <input type="text" class="form-control" placeholder="Search..." ng-model="search" />
+                        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-xs-12" ng-show="a && b">
+                    <div class="col-xs-12 alert alert-info p-xxs">
+                        <i class="fa fa-exclamation-circle m-r-xs"></i>
+                        <span > DATE RANGE FILTER ACTIVATED</span>
+                    </div>
+                </div>
+              <div class="col-md-3" ng-repeat="car in cars | filter:search:strict | filter:status:startsWith | filter: filterRange">
+                    <div class="ibox">
+                        <div class="ibox-content product-box">
+
+                            <div class="product-imitation links" id="links" ng-click="gallery($event)" >
+                                <a  href="{{car.imageUrl}}" data-gallery="" title="{{car.name}}" >
+                                       <img ng-src="{{car.imageUrl || 'img/default.jpg'}}" class="img-responsive car-img" />
+                                </a>
+                            </div>
+                            <div class="product-desc">
+                                <span class="product-price"
+                                 ng-class="{'btn-danger': car.status == 'notavailable' ||  car.status == 'rented',
+                                 'btn-warning': car.status == 'reserved '  ,
+                                 'btn-primary': car.status == 'available'  ,
+                                 'btn-info': car.status == 'repair'
+                                 }">
+                                    <span class="text-capitalize" >
+                                        {{car.status}}
+                                    </span>
+
+                                </span>
+                                <small class="text-muted">
+                                 <span class="text-capitalize"> {{car.type}} <span ng-show="car.model"> ({{car.model}}) </span> </span>
+                                 <span ng-show="car.plateNumber"> /
+                                 </span> {{car.plateNumber}}</small>
+                                <a href="#" class="product-name"> {{car.name}}</a>
+                                <div class="note">
+
+                                    <div class="col-xs-12 small m-b-xs label label-danger" ng-show="car.currentRent">
+                                        {{car.currentRent.dateOut | date : "mediumDate"}}
+                                        <i class="fa fa-arrow-right"></i>
+                                        {{car.currentRent.dateIn | date : "mediumDate"}}
+                                    </div>
+
+                                    <div class="col-xs-12 small m-t-xs label label-warning" ng-show="car.closestReserve">
+                                        {{car.closestReserve.dateOut | date : "mediumDate"}}
+                                        <i class="fa fa-arrow-right"></i>
+                                        {{car.closestReserve.dateIn | date : "mediumDate"}}
+                                    </div>
+                                    <!-- <div class="small m-b-sm m-t-xxs ">
+                                        {{car.notes}}
+                                    </div> -->
+                                </div>
+
+                                <hr style="margin-bottom: 5px;" />
+                                <div class="m-t text-righ">
+
+                                    <button class="btn btn-xs btn-warning" ui-sref="abstract.repairs({car_id:car.id})"><i class="fa fa-wrench"></i>  &nbsp;Repair </button>
+                                    <button class="btn btn-xs btn-primary pull-right" ui-sref="abstract.carRents"> <i class="fa fa-file-text-o"></i> &nbsp;Rent </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<style>
+.note{
+    max-height: 30px;
+    min-height: 30px;
+}
+.car-img{
+    max-height: 185px;
+    max-width: 237px;
+}
+</style>

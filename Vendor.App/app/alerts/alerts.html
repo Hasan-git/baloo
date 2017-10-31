@@ -1,0 +1,429 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Alerts</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Alerts</strong>
+            </li>
+        </ol>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content">
+            <div class="text-center animated fadeInRightBig">
+                <div class="ibox-content">
+
+                <span ng-show="endedRents.length">
+                    <h3 class="text-left" style="font-size: 18px;" >
+                        Rents Ends Tomorrow
+                        <span class="badge badge-danger" style="vertical-align: 3px;">{{endedRents.length}}</span>
+                    </h3>
+                    <ul class="todo-list m-t m-b-xl small-list">
+                        <li ng-repeat="alert in endedRents">
+                            <button type="button" class="btn btn-white ng-isolate-scope btn-sm ng-valid" ng-click="alert.isCompleted = !alert.isCompleted;isCompleted(alert.id,alert.isCompleted,$index)" ng-model="alert.isCompleted">
+                                <span class="fa" ng-class="{'fa-check': alert.isCompleted == true}" style="width: 10px;"></span>
+                            </button>
+                            <span class="m-l-xs " ng-class="{'todo-completed': alert.isCompleted == true}">{{alert.content}}</span>
+                        </li>
+                    </ul>
+                </span>
+                <span ng-show="startedRents.length">
+                    <h3 class="text-left" style="font-size: 18px;"  >
+                        Rents Starts Tomorrow
+                        <span class="badge badge-danger" style="vertical-align: 3px;">{{startedRents.length}}</span>
+                    </h3>
+                    <ul class="todo-list m-t m-b-xl small-list">
+                        <li ng-repeat="alert in startedRents">
+                            <button type="button" class="btn btn-white ng-isolate-scope btn-sm ng-valid" ng-click="alert.isCompleted = !alert.isCompleted;isCompleted(alert.id,alert.isCompleted,$index)" ng-model="alert.isCompleted">
+                                <span class="fa" ng-class="{'fa-check': alert.isCompleted == true}" style="width: 10px;"></span>
+                            </button>
+                            <span class="m-l-xs " ng-class="{'todo-completed': alert.isCompleted == true}">{{alert.content}}</span>
+                        </li>
+                    </ul>
+                </span>
+                <span  ng-show="officialMechanic.length">
+                    <h3 class="text-left"  style="font-size: 18px;"  >
+                        Official Mechanic Starts Tomorrow
+                        <span class="badge badge-danger" style="vertical-align: 3px;">{{officialMechanic.length}}</span>
+                    </h3>
+                    <ul class="todo-list m-t m-b-xl small-list">
+                        <li ng-repeat="alert in officialMechanic">
+                            <button type="button" class="btn btn-white ng-isolate-scope btn-sm ng-valid" ng-click="alert.isCompleted = !alert.isCompleted;isCompleted(alert.id,alert.isCompleted,$index)" ng-model="alert.isCompleted">
+                                <span class="fa" ng-class="{'fa-check': alert.isCompleted == true}" style="width: 10px;"></span>
+                            </button>
+                            <span class="m-l-xs " ng-class="{'todo-completed': alert.isCompleted == true}">{{alert.content}}</span>
+                        </li>
+                    </ul>
+                </span>
+
+            </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Client Modal view-->
+<script type="text/ng-template" id="clientModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Client Details!</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+        <div class="contact-box text-capitalize" style="border: 0;" >
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img alt="image" class=" m-t-md img-responsive pointer" ng-src="{{viewClient.imageUrl || 'img/user-default.jpg' }}" onclick="window.open(this.src)" />
+
+                    <div class="m-t-xxs" style="">{{viewClient.dob | date :  "mediumDate"}}</div>
+                </div>
+            </div>
+            <div class="col-sm-8" style="font-size: 15px;font-family: serif;">
+                <h3><strong class="text-capitalize">{{viewClient.name}}</strong></h3>
+                <p class="" ng-show="viewClient.father">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Father : </strong>
+                    <span >{{viewClient.father}}</span>
+                </p>
+                <p class="" ng-show="viewClient.mother">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Mother : </strong>
+                    <span >{{viewClient.mother}}</span>
+                </p>
+                <p class="" ng-show="viewClient.birthPlace">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Birth Place : </strong>
+                    <span >{{viewClient.birthPlace}}</span>
+                </p>
+                <p class="" ng-show="viewClient.sejel">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Identity File Number(Sejel) : </strong>
+                    <span >{{viewClient.sejel}}</span>
+                </p>
+                <p class="" ng-show="viewClient.licenseId">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>License ID : </strong>
+                    <span >{{viewClient.licenseId}}</span>
+                </p>
+                <p class="" ng-show="viewClient.address">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Adress : </strong>
+                    <span >{{viewClient.address}}</span>
+                </p>
+                <p class="" ng-show="viewClient.contactNumber">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Contact : </strong>
+                    <span >{{viewClient.contactNumber}}</span>
+                </p>
+                <p class="" ng-show="viewClient.emergencyContact">
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Emergency Contact : </strong>
+                    <span >{{viewClient.emergencyContact}}</span>
+                </p>
+                <p class="" ng-show="viewClient.totalDueAmount" >
+                <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                    <strong>Due Amount : </strong>
+                    <span ng-class="{'badge-danger badge':viewClient.totalDueAmount}">
+                    {{viewClient.totalDueAmount}}
+                        <i class="fa fa-dollar"></i></span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+     <button class="btn btn-primary" type="button" ng-click="dismissClientModal()">Dissmis</button>
+    </div>
+</script>
+
+<!-- Car Modal view-->
+<script type="text/ng-template" id="carModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Car !</h3>
+    </div>
+    <div class="modal-body">
+        <div class="col-xs-12">
+            <div class="contact-box" style="border:0;">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img alt="image" class="img-circle m-t-xs img-responsive" ng-src="{{viewCar.imageUrl || 'img/default.jpg' }}" />
+                        <div class="m-t-xs font-bold">
+                            <div ng-switch="viewCar.status">
+                              <div ng-switch-when="available" class="label-primary border-50">Available</div>
+                              <div ng-switch-when="notavailable" class="label-danger border-50">Not Available</div>
+                              <div ng-switch-when="reserved" class="label-warning border-50">Reserved</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8" style="font-size: 15px;font-family: serif;">
+                    <h3><strong>{{viewCar.name}}</strong></h3>
+
+                    <p class="text-capitalize">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i> {{viewCar.type}}
+                        <span ng-show="viewCar.model">/ {{viewCar.model}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.color">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span >{{viewCar.color}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.plateNumber">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span > {{viewCar.plateNumber}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.chassisNumber">
+                    <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:11px;"></i>
+                        <span > {{viewCar.chassisNumber}}</span>
+                    </p>
+                    <p class="text-capitalize" ng-show="viewCar.notes">
+                    <i class="fa fa-info-circle text-info" style="font-size:14px;"></i>
+                        <span > {{viewCar.notes}}</span>
+                    </p>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+         <button class="btn btn-primary" type="button" ng-click="dismissCarModal()">Dissmis</button>
+    </div>
+</script>
+
+<!-- Rent Modal View-->
+<script type="text/ng-template" id="rentModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Rent !</h3>
+    </div>
+    <div class="modal-body">
+        <div class="viewRent">
+            <div class="row m-b-md">
+                <div class="col-sm-4" ng-show="!!viewRent.car">
+                    <div class="contact-box text-capitalize" style="padding: 5px;min-height: 107px;" >
+                        <div class="col-sm-4 p-xxs ">
+                            <div class="text-center">
+                                <img alt="image" class="img-rounded m-t-xs img-responsive pointer" ng-src="{{viewRent.car.imageUrl || 'img/default.jpg' }}" onclick="window.open(this.src)"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="font-size: 11px;font-family: serif;">
+                            <h3><strong class=" pointer" >{{viewRent.car.name}}</strong></h3>
+
+                            <p class="text-capitalize" ng-show="viewRent.car.plateNumber">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <span >{{viewRent.car.plateNumber}}</span>
+                            </p>
+                            <p class="text-capitalize">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i> {{viewRent.car.type}}
+                                <span ng-show="viewRent.car.model">/ {{viewRent.car.model}}</span>
+                                <span ng-show="viewRent.car.color">/ {{viewRent.car.color}}</span>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4" ng-show="!!viewRent.client">
+                    <div class="contact-box text-capitalize" style="padding: 5px;min-height: 107px;" >
+                        <div class="col-sm-4 p-xxs ">
+                            <div class="text-center">
+                                <img alt="image" class="m-t-xs img-rounded img-responsive pointer" ng-src="{{viewRent.client.imageUrl || 'img/user-default.jpg' }}" onclick="window.open(this.src)" />
+
+                                <div class="m-t-xxs" style="font-size:11px;">{{viewRent.client.dob | date :  "mediumDate"}}</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="font-size: 11px;font-family: serif;">
+                            <h3><strong class=" pointer" >{{viewRent.client.name}}</strong></h3>
+
+                            <p class="" ng-show="viewRent.client.father">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Father : </strong>
+                                <span >{{viewRent.client.father}}</span>
+                            </p>
+
+                            <p class="" ng-show="viewRent.client.contactNumber">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Contact : </strong>
+                                <span >{{viewRent.client.contactNumber}}</span>
+                            </p>
+                            <p class="" ng-show="viewRent.client.totalDueAmount" >
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Due Amount : </strong>
+                                <span ng-class="{'badge-danger badge':viewRent.client.totalDueAmount}">
+                                {{viewRent.client.totalDueAmount}}
+                                    <i class="fa fa-dollar"></i></span>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4" ng-show="!!viewRent.secondaryClient">
+                    <div class="contact-box text-capitalize" style="padding: 5px;min-height: 107px;" >
+                        <div class="col-sm-4 p-xxs ">
+                            <div class="text-center">
+                                <img alt="image" class="m-t-xs img-rounded img-responsive pointer" ng-src="{{viewRent.secondaryClient.imageUrl || 'img/user-default.jpg' }}" onclick="window.open(this.src)" />
+
+                                <div class="m-t-xxs" style="font-size:11px;">{{viewRent.secondaryClient.dob | date :  "mediumDate"}}</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="font-size: 11px;font-family: serif;">
+                            <h3><strong class=" pointer" >{{viewRent.secondaryClient.name}}</strong></h3>
+
+                            <p class="" ng-show="viewRent.secondaryClient.father">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Father : </strong>
+                                <span >{{viewRent.secondaryClient.father}}</span>
+                            </p>
+
+                            <p class="" ng-show="viewRent.secondaryClient.contactNumber">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Contact : </strong>
+                                <span >{{viewRent.secondaryClient.contactNumber}}</span>
+                            </p>
+                            <p class="" ng-show="viewRent.secondaryClient.totalDueAmount" >
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Due Amount : </strong>
+                                <span ng-class="{'badge-danger badge':viewRent.secondaryClient.totalDueAmount}">
+                                {{viewRent.secondaryClient.totalDueAmount}}
+                                    <i class="fa fa-dollar"></i></span>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-b-md">
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Date Out</label>
+                        <div>{{viewRent.dateOut | date: 'MMM d, y - h a' }}</div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Days</label>
+                        <div>{{viewRent.days}}</div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Date In</label>
+                        <div>{{viewRent.dateOut | date: 'MMM d, y - h a'}}</div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Deposit</label>
+                        <div>
+                            <span ng-show="viewRent.deposit"><i class="fa fa-dollar"></i> </span>
+                            {{viewRent.deposit}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-b-md">
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Cost Per Day</label>
+                        <div>
+                            <span ng-show="viewRent.costPerDay"><i class="fa fa-dollar"></i> </span>
+                            {{viewRent.costPerDay}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Total</label>
+                        <div>
+                            <span ng-show="viewRent.total"><i class="fa fa-dollar"></i> </span>
+                            {{viewRent.total}}
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Cash</label>
+                        <div>
+                            <span ng-show="viewRent.cash"><i class="fa fa-dollar"></i> </span>
+                            {{viewRent.cash}}
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Due Amount</label>
+                        <div>
+                            <span ng-show="viewRent.dueAmount"><i class="fa fa-dollar"></i> </span>
+                            {{viewRent.dueAmount}}
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="row m-b-md">
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Km Out</label>
+                        <div>
+                            <span ng-show="viewRent.kmOut"><i class="fa fa-road"></i> </span>
+                            {{viewRent.kmOut}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Km In</label>
+                        <div>
+                            <span ng-show="viewRent.kmIn"><i class="fa fa-road"></i> </span>
+                            {{viewRent.kmIn}}
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Km Total</label>
+                        <div>
+                            <span ng-show="viewRent.kmTotal"><i class="fa fa-road"></i> </span>
+                            {{viewRent.kmTotal}}
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Employee</label>
+                        <div>
+                            {{viewRent.employee}}
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="row m-b-md" ng-show="viewRent.note">
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Note</label>
+                        <div>
+                            {{viewRent.note}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+     <button class="btn btn-primary" type="button" ng-click="dismissRentModal()">Dissmis</button>
+    </div>
+</script>
+
+
+
+<style>
+li{
+    text-align: left;
+}
+ul{
+    margin-bottom: 25px;
+}
+</style>
