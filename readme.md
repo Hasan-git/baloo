@@ -31,8 +31,18 @@
 
 #create and fix database name & credentials in .env
 
+#php artisan migrate
+
+# init passport + keys
+#php artisan passport:install
+
+# php artisan key:generate
+
+#php artisan config:cache
+
+
 php artisan config:clear //optional
-php artisan cache:clear
+php artisan cache:clear //optional
 php artisan migrate
 php artisan key:generate
 
