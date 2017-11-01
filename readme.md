@@ -38,8 +38,9 @@
 
 # php artisan key:generate
 
-#php artisan config:cache
+#php artisan storage:link
 
+#php artisan config:cache
 
 php artisan config:clear //optional
 php artisan cache:clear //optional
