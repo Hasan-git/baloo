@@ -17,7 +17,7 @@ class RentsTableSeeder extends Seeder
 
           $rent1 = new Rent();
           $rent1->dateOut = "2017-10-02 12:49:42";
-          $rent1->dateIn = "2017-10-02 12:49:42";
+          $rent1->dateIn = "2017-10-04 12:49:42";
           $rent1->days = "10";
           $rent1->costPerDay = "50";
           $rent1->total = "500";
