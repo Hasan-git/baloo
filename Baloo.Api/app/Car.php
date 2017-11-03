@@ -70,11 +70,24 @@ class Car extends Model
     return $this->rents()->where([ ['status', 'out'], ['dateIn', '>=', Carbon::now() ] , ['dateOut', '<=', Carbon::now() ]])->first() ;
   }
 
+  //Setters
+  public function setPurchasingDateAttribute($value)
+  {
+      $this->attributes['purchasingDate'] =  Carbon::parse($value);
+  }
+
+  public function setOfficialMechanicAttribute($value)
+  {
+      $this->attributes['officialMechanic'] =  Carbon::parse($value);
+  }
+
   protected $fillable = ['name_id','type','plateNumber','model','color','chassisNumber','notes','status','officialMechanic','km','purchasingDate','purchasingPrice'];
   protected $guarded = ['id',"created_at",'updated_at','deleted_at'];
 
   protected $dates = ['deleted_at'];
 
-
+  protected $casts = [
+        'purchasingPrice' => 'integer',
+    ];
 
 }
