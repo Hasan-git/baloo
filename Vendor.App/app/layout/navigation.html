@@ -53,7 +53,7 @@
             </li>
 
             <li ng-class="{active: $state.includes('abstract.reports')}" ui-sref="abstract.reports" ng-if="auth.getUserRoles().diff(types.reports).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-envelope"></i> <span class="nav-label">Reports</span></a>
+                <a ui-sref="widgets"><i class="fa fa-pie-chart"></i> <span class="nav-label">Reports</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.alerts')}" ui-sref="abstract.alerts" ng-if="auth.getUserRoles().diff(types.alerts).length > 0">

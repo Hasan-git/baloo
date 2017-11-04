@@ -68,6 +68,7 @@ function MainCtrl($scope, __env, USER_ROLES, $rootScope, logger, auth, config, $
         rents: ['admin','employee'],
         alerts: ['admin','employee'],
         spendings: ['admin'],
+        reports: ['admin'],
     };
 
     ////////////////////////////////////////
