@@ -153,7 +153,7 @@
             .state('abstract.reports', {
                 url: "/reports",
                 templateUrl: "app/reports/reports.html",
-                controller: reports,
+                //controller: reportsSoldCars,
                 data: {
                     pageTitle: 'Reports',
                     requiresLogin: true,

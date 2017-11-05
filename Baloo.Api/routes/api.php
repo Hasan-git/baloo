@@ -81,3 +81,11 @@ Route::group(['prefix' => 'alerts'], function() {
   Route::post('/statusChanged', 'AlertsController@updateAlertStatus');
 
 });
+
+Route::group(['prefix' => 'reports'], function() {
+
+  Route::get('/soldCars', 'ReportsController@soldCars');
+  Route::get('/cars', 'ReportsController@cars');
+  Route::get('/carsStituations', 'ReportsController@carsSituations');
+
+});
