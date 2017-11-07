@@ -18,6 +18,10 @@
             <div class="text-center animated fadeInRightBig">
                 <div class="border-bottom ibox-content m-b-sm dashboard-filter ">
                     <span class="pull-left">
+                        <button ng-click="print()" class="btn btn-sm btn-white" id="print">
+                            <i class="fa fa-print"></i>
+                            Print
+                         </button>
                          <button class="btn btn-white btn-sm" ng-click="status=''">
                                 <i class="fa fa-search"></i>
                                 &nbsp; All
@@ -77,8 +81,8 @@
                         <span > DATE RANGE FILTER ACTIVATED</span>
                     </div>
                 </div>
-              <div class="col-md-3" ng-repeat="car in cars | filter:search:strict | filter:status:startsWith | filter: filterRange">
-                    <div class="ibox">
+              <div class="col-md-3" ng-repeat="car in (filteredCars = (cars | filter:search:strict | filter:status:startsWith | filter: filterRange))">
+                    <div class="ibox" >
                         <div class="ibox-content product-box">
 
                             <div class="product-imitation links" id="links" ng-click="gallery($event)" >
