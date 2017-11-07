@@ -185,7 +185,6 @@
                   '</button>'+
                   '<ul class="dropdown-menu">'+
                     '<li class="dropdown-item" ><a href="" ng-click="openEditForm('+ full.id +')" >Edit</a></li>'+
-                    '<li class="dropdown-item" ><a href="" ng-click="openEditForm('+ full.id +')" >Edit</a></li>'+
                    ' <li class="dropdown-item" ><a href="" ng-click="openModal('+ full.id +')">Delete</a></li>'+
                   '</ul>'+
                 '</div>';

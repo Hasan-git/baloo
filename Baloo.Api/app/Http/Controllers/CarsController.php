@@ -179,7 +179,7 @@ class CarsController extends Controller
         if(!$car)
           return response()->json([],404);
 
-        $car->delete();
+        $car->forceDelete();
 
       return ok();
 

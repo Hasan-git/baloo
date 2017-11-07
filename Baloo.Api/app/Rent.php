@@ -16,21 +16,14 @@ class Rent extends Model
 
   public function car()
   {
-    //return $this->hasOne(Car::class,'id','car_id');
     return $this->belongsTo(Car::class);
   }
 
   public function client()
   {
-    //return $this->hasOne(Client::class,'id','client_id');
     return $this->belongsTo(Client::class);
   }
 
-  // public function secondaryClient()
-  // {
-  //   //return $this->hasOne(Client::class,'id','secondary_client_id');
-  //   return $this->belongsTo(Client::class,'secondary_client_id');
-  // }
 
   // Setters
   public function setDateInAttribute($value)

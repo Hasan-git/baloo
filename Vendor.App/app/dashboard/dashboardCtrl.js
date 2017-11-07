@@ -12,6 +12,19 @@
         $scope.rangeVar;
         $scope.cars = [];
 
+        $scope.print = function(){
+          var tr;
+         var table =  angular.element('<table class="table table-striped  table-hover dataTables-example"><thead><tr><th>Car</th><th>Plate Number</th><th>Status</th></tr></thead></table>')
+        for (var i = 0; i < $scope.filteredCars.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + $scope.filteredCars[i].name + "</td>");
+            tr.append("<td>" + $scope.filteredCars[i].plateNumber + "</td>");
+            tr.append("<td>" + $scope.filteredCars[i].status + "</td>");
+            $(table).append(tr);
+        }
+          $(table).print();
+        }
+
       carsResource.cars.get().$promise.then(function (data) {
                 var response = JSON.parse(angular.toJson(data)).data;
 
@@ -39,14 +52,30 @@
     }
 
     $scope.filterRange = function (actual) {
-      if(!actual.reservations.length){
-          return actual;
-        }else if($scope.a && $scope.b ){
-          var res;
+      if($scope.a && $scope.b ){
+          var res= actual;
+          var from = angular.copy($scope.a);
+          var to = angular.copy($scope.b);
+
+          if( !!actual.currentRent ){
+            var checkRented =  moment(actual.currentRent.dateIn).isBetween(moment(from), moment(to), null, '[]')
+                              || moment(actual.currentRent.dateOut).isBetween(moment(from), moment(to), null, '[]')
+                              || moment(from).isBetween(moment(actual.currentRent.dateOut), moment(actual.currentRent.dateIn), null, '[]')
+                              || moment(to).isBetween(moment(actual.currentRent.dateOut), moment(actual.currentRent.dateIn), null, '[]')
+
+            if(checkRented){
+              res = !res;
+              return res;
+            }
+          }
+
           angular.forEach(actual.reservations, function(reservation, key) {
-             res = moment($scope.a).isBetween(moment(reservation.dateOut), moment(reservation.dateIn), null, '[]')  || moment($scope.b).isBetween(moment(reservation.dateOut), moment(reservation.dateIn), null, '[]')
-              || moment(reservation.dateOut).isBetween(moment($scope.a), moment($scope.b), null, '[]')
-              || moment(reservation.dateIn).isBetween(moment($scope.a), moment($scope.b), null, '[]')
+
+            res = moment(from).isBetween(moment(reservation.dateOut), moment(reservation.dateIn), null, '[]')
+              || moment(to).isBetween(moment(reservation.dateOut), moment(reservation.dateIn), null, '[]')
+              || moment(reservation.dateOut).isBetween(moment(from), moment(to), null, '[]')
+              || moment(reservation.dateIn).isBetween(moment(from), moment(to), null, '[]')
+              // || moment(actual.currentRent.dateIn).isBetween(moment(from), moment(to), null, '[]')
              ;
              res = !res;
           });

@@ -10,7 +10,7 @@ Route::group(['prefix' => 'users','middleware' => ['auth:api']], function() {
   // Route::get('users/user/{email}', 'UsersController@GetUserByEmail');
 
 //Route::group(['prefix' => 'names','middleware' => ['auth:api',"role:admin"]], function() {
-Route::group(['prefix' => 'names'], function() {
+Route::group(['prefix' => 'names','middleware' => ['auth:api']], function() {
 
   Route::get('/get', 'CarsNamesController@get');
   Route::get('/get/{name}', 'CarsNamesController@getByName');
@@ -20,7 +20,7 @@ Route::group(['prefix' => 'names'], function() {
 
 });
 
-Route::group(['prefix' => 'cars'], function() {
+Route::group(['prefix' => 'cars','middleware' => ['auth:api']], function() {
 
   Route::get('/get', 'CarsController@get');
   Route::get('/get/{id}', 'CarsController@getById');
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'cars'], function() {
 
 });
 
-Route::group(['prefix' => 'clients'], function() {
+Route::group(['prefix' => 'clients','middleware' => ['auth:api']], function() {
 
   Route::get('/get', 'ClientsController@get');
   Route::get('/get/{id}', 'ClientsController@getById');
@@ -42,7 +42,7 @@ Route::group(['prefix' => 'clients'], function() {
 });
 
 
-Route::group(['prefix' => 'repairs'], function() {
+Route::group(['prefix' => 'repairs','middleware' => ['auth:api']], function() {
 
   Route::get('/get', 'RepairsController@get');
   Route::get('/get/{id}', 'RepairsController@getById');
@@ -54,7 +54,7 @@ Route::group(['prefix' => 'repairs'], function() {
 });
 
 
-Route::group(['prefix' => 'rents'], function() {
+Route::group(['prefix' => 'rents','middleware' => ['auth:api']], function() {
 
   Route::get('/get', 'RentsController@get');
   Route::get('/get/{id}', 'RentsController@getById');
@@ -64,7 +64,7 @@ Route::group(['prefix' => 'rents'], function() {
 
 });
 
-Route::group(['prefix' => 'spendings'], function() {
+Route::group(['prefix' => 'spendings','middleware' => ['auth:api']], function() {
 
   Route::get('/get', 'SpendingsController@get');
   Route::get('/get/{id}', 'SpendingsController@getById');
@@ -75,9 +75,17 @@ Route::group(['prefix' => 'spendings'], function() {
 
 });
 
-Route::group(['prefix' => 'alerts'], function() {
+Route::group(['prefix' => 'alerts','middleware' => ['auth:api']], function() {
 
   Route::get('/get', 'AlertsController@get');
   Route::post('/statusChanged', 'AlertsController@updateAlertStatus');
+
+});
+
+Route::group(['prefix' => 'reports','middleware' => ['auth:api']], function() {
+
+  Route::get('/soldCars', 'ReportsController@soldCars');
+  Route::get('/cars', 'ReportsController@cars');
+  Route::get('/carsStituations', 'ReportsController@carsSituations');
 
 });

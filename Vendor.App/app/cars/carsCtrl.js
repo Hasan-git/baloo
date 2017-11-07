@@ -181,7 +181,7 @@
                     '<li class="dropdown-item" ><a href="" ui-sref="abstract.repairs({car_id:'+ full.id +'})" >Repairs</a></li>'+
                     '<li class="dropdown-item" ><a href="" ng-click="openEditForm('+ full.id +')" >Edit</a></li>'+
                     '<li class="dropdown-item" ><a href="" ng-click="carSoldModal('+ full.id +')" >Car Sold</a></li>'+
-                    '<li class="dropdown-item" ><a href="" ng-click="openModal('+ full.id +')">Delete</a></li>'+
+                    '<li class="dropdown-item" ><a href="" ng-click="deleteModal('+ full.id +')">Delete</a></li>'+
                   '</ul>'+
                 '</div>';
         }
@@ -384,7 +384,7 @@
             size: 'lg',
         });
 
-        $scope.dismiss = function () {
+        $scope.dissmisViewCar = function () {
           $scope.viewCar = {};
           modalInstance.dismiss('cancel');
         };

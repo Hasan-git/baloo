@@ -11,7 +11,7 @@
     $scope.name = {};
 
 
-      $scope.getData = function () {
+    $scope.getData = function () {
         var defer = $q.defer();
         if (!$scope.names.length) {
               namesResource.names.get().$promise.then(function (data) {

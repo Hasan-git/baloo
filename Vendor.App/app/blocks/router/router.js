@@ -96,16 +96,7 @@
                 },
             })
 
-            .state('abstract.settings', {
-                url: "/settings",
-                templateUrl: "app/settings/settings.html",
-                controller: Settings,
-                data: {
-                    pageTitle: 'Vendor settings',
-                    requiresLogin: true,
-                    roles: [USER_ROLES.admin],
-                },
-            })
+
 
             .state('abstract.alerts', {
                 url: "/alerts",
@@ -157,6 +148,27 @@
                           });
                     }
                 }
+            })
+
+            .state('abstract.reports', {
+                url: "/reports",
+                templateUrl: "app/reports/reports.html",
+                //controller: reportsSoldCars,
+                data: {
+                    pageTitle: 'Reports',
+                    requiresLogin: true,
+                    roles: [USER_ROLES.admin],
+                },
+            })
+            .state('abstract.settings', {
+                url: "/settings",
+                templateUrl: "app/settings/settings.html",
+                controller: Settings,
+                data: {
+                    pageTitle: 'Vendor settings',
+                    requiresLogin: true,
+                    roles: [USER_ROLES.admin],
+                },
             })
 
         ;

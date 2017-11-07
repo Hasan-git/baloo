@@ -255,9 +255,7 @@
               return ;
             }
           })
-         }
-
-
+        }
       }
     }
 
@@ -390,10 +388,11 @@
      }
 
     $scope.save = function(form){
-
       if(!form.$valid){
+          toaster.pop('error', "Notification", "Please, re-checking fields  ", 2000);
           angular.forEach($scope.form.$error, function (field) {
               angular.forEach(field, function(errorField){
+                console.log(errorField)
                 errorField.$setDirty();
               })
             });
