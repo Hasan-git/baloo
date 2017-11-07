@@ -1,0 +1,102 @@
+body{
+  font-size: 14px;
+}
+.container div{
+  position: absolute;
+}
+.client-name{
+  top: 4.8cm;
+  left: 12.5cm;
+}
+.nationality{
+  top: 6.7cm;
+  left: 17.2cm;
+}
+.mother-name{
+  top: 6.7cm;
+  left: 14cm;
+}
+.sejel{
+  top: 6.7cm;
+  left: 11.8cm;
+}
+.dob{
+  top: 8.2cm;
+  left: 11cm;
+}
+.license-id{
+  top: 9.7cm;
+  left: 17.2cm;
+}
+.license-type{
+  top: 9.7cm;
+  left: 10.8cm;
+}
+.address{
+  top: 11.4cm;
+  left: 11cm;
+}
+.mobile{
+  top: 12.3cm;
+  left: 11.5cm;
+}
+.car-name{
+  top: 4.8cm;
+  left: 5.7cm;
+}
+.plate-number{
+  top: 4.8cm;
+  left: 1cm;
+}
+.color{
+  top: 6.7cm;
+  left: 8cm;
+}
+.model{
+  top: 6.7cm;
+  left: 5.7cm;
+}
+.chassis{
+  top: 6.7cm;
+  left: 1cm;
+}
+.date-out{
+  top: 8.2cm;
+  left: 5.7cm;
+}
+.time-out{
+  top: 8.2cm;
+  left: 1cm;
+}
+.date-in{
+  top: 9.7cm;
+  left: 5.7cm;
+}
+.time-in{
+  top: 9.7cm;
+  left: 1cm;
+}
+.km-out{
+  top: 17.2cm;
+  left: 7.5cm;
+}
+.km-in{
+  top: 17.2cm;
+  left: 4.5cm;
+}
+.km-total{
+  top: 17.2cm;
+  left: 1cm;
+}
+.employee{
+  top: 18.4cm;
+  left: 6cm;
+}
+.days{
+  top: 20cm;
+  left: 7.5cm;
+}
+._client-name{
+  top: 28.5cm;
+  left: 1.5cm;
+}

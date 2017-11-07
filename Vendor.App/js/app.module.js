@@ -16,5 +16,6 @@
         'app.repairs',
         'app.rents',
         'app.alerts',
+        'app.reports',
     ])
 })();

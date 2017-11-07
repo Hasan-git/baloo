@@ -6350,9 +6350,9 @@ body.fullscreen-ibox-mode {
 }
 
 .dashboard-filter .search-box{
-    max-width: 320px;
+    max-width: 175px;
     float: right;
-    width: 310px;
+    width: 175px;
 }
 
 .border-50{

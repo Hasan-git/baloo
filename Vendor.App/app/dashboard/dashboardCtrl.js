@@ -12,6 +12,19 @@
         $scope.rangeVar;
         $scope.cars = [];
 
+        $scope.print = function(){
+          var tr;
+         var table =  angular.element('<table class="table table-striped  table-hover dataTables-example"><thead><tr><th>Car</th><th>Plate Number</th><th>Status</th></tr></thead></table>')
+        for (var i = 0; i < $scope.filteredCars.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + $scope.filteredCars[i].name + "</td>");
+            tr.append("<td>" + $scope.filteredCars[i].plateNumber + "</td>");
+            tr.append("<td>" + $scope.filteredCars[i].status + "</td>");
+            $(table).append(tr);
+        }
+          $(table).print();
+        }
+
       carsResource.cars.get().$promise.then(function (data) {
                 var response = JSON.parse(angular.toJson(data)).data;
 

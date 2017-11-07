@@ -34,6 +34,11 @@ class Car extends Model
     return $this->hasMany(Rent::class);
   }
 
+  public function inActiveRents()
+  {
+    return $this->hasMany(Rent::class)->where('status','in');
+  }
+
   public function setStatusAttribute()
   {
     $repairs = $this->repairs()->where('isFinished',0)->count();

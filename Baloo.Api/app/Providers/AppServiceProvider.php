@@ -18,7 +18,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        function GetMAC(){
+            ob_start();
+            system('getmac');
+            $Content = ob_get_contents();
+            ob_clean();
+            return substr($Content, strpos($Content,'\\')-20, 17);
+        }
+
         Schema::defaultStringLength(191);
 
         Validator::extend('rentDates', function ($attribute, $value, $parameters, $validator) {

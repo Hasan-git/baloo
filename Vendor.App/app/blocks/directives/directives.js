@@ -47,8 +47,8 @@ angular
 ;
 
 
-print.$inject = ["rentsResource", "$compile","$window", "$timeout"];
- function printRent(rentsResource, $compile, $window, $timeout) {
+print.$inject = ["rentsResource", "$compile","$window", "$timeout", "$templateRequest"];
+ function printRent(rentsResource, $compile, $window, $timeout, $templateRequest) {
     return {
        scope: {
           rentId: '@rentId'
@@ -58,25 +58,37 @@ print.$inject = ["rentsResource", "$compile","$window", "$timeout"];
             rentsResource.rents.getById({id:scope.rentId}).$promise.then(function (data) {
                 var response = JSON.parse(angular.toJson(data));
                 console.log(response)
-                scope.response = response
+                scope.rent = angular.copy(response)
+                scope.rent.dateOut = new Date(response.dateOut)
+                scope.rent.dateIn = new Date(response.dateIn)
+                var _elm;
 
-                var template = "<div>{{response.dateIn}}</div>";
-                var linkFn = $compile(template);
-                var content = linkFn(scope);
-                console.log(content)
+                $templateRequest("app/common/templates/printRent.html")
+                .then(function(html) {
+                     _elm = $compile(html)(scope);
+                     print(_elm);
+                });
+
+                // var template = "<div>{{response.dateIn}}</div>";
+                // var linkFn = $compile(template);
+                // var content = linkFn(scope);
+                //  console.log(content)
                 // element.append(content)
 
+                function print(_elm){
 
                  $timeout(function () {
-                        var popupWinindow = $window.open('', '_blank', '');
+                    var popupWinindow = $window.open('', '_blank', '');
 
-                    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body ><div></div></html>');
-                    popupWinindow.document.body.appendChild(content[0])
+                    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/printStyle.css" /></head><body style="width:21cm;height:29.7cm;" ></html>');
+                    popupWinindow.document.body.appendChild(_elm[0])
 
                     theScript = document.createElement('script');
                     function injectThis() {
 
-                        var onPrintFinished = function(printed){window.close();}
+                        var onPrintFinished = function(printed){
+                            //window.close();
+                        }
                         onPrintFinished(window.print());
                     }
 
@@ -87,13 +99,7 @@ print.$inject = ["rentsResource", "$compile","$window", "$timeout"];
 
                     popupWinindow.document.close();
                     }, 0);
-
-                // window.open('', '_blank','width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
-                // console.log(window.document.open('', '_blank',))
-                // var popupWinindow = $window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
-                //     popupWinindow.document.open();
-                //     popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + content + '</html>');
-                //     popupWinindow.document.close();
+                }
 
             });
           });
