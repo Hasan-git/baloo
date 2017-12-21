@@ -9,7 +9,9 @@ Route::group(['prefix' => 'users','middleware' => ['auth:api']], function() {
 
 });
   // Route::get('users/user/{email}', 'UsersController@GetUserByEmail');
-// // ,AppRunner::class
+ 
+
+ // append this in middleware beside auth:api --> ,AppRunner::class 
 
 //Route::group(['prefix' => 'names','middleware' => ['auth:api',"role:admin"]], function() {
 Route::group(['prefix' => 'names','middleware' => ['auth:api']], function() {
