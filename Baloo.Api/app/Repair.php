@@ -45,7 +45,8 @@ class Repair extends Model
   protected $dates = ['deleted_at'];
 
     protected $casts = [
-         'clientDueAmount'=>'integer'
+         'clientDueAmount'=>'integer',
+         'cost'=>'integer'
     ];
 
 }

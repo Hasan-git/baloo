@@ -4,7 +4,6 @@
  * Define directives for used plugin
  *
  */
-
 /**
  *
  * Pass all functions into module
@@ -68,12 +67,6 @@ print.$inject = ["rentsResource", "$compile","$window", "$timeout", "$templateRe
                      _elm = $compile(html)(scope);
                      print(_elm);
                 });
-
-                // var template = "<div>{{response.dateIn}}</div>";
-                // var linkFn = $compile(template);
-                // var content = linkFn(scope);
-                //  console.log(content)
-                // element.append(content)
 
                 function print(_elm){
 
