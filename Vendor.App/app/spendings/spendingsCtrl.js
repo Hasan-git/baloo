@@ -9,6 +9,7 @@
       $scope.spendings = [];
       $scope.dtInstance = {};
       $scope.spending = {};
+      $scope.totalSpendings = 0;
       $scope.selectedMonth = ( moment().month()+1 ).toString();
       var dateChanged = false;
 
@@ -20,6 +21,13 @@
                 console.log(JSON.parse(angular.toJson(data)))
                 $scope.spendings = JSON.parse(angular.toJson(data)).data;
                 dateChanged = false;
+                
+                $scope.totalSpendings = 0;
+                $scope.spendings.map(function(value,key){
+                  $scope.totalSpendings +=value.payment;
+                });
+
+                console.log($scope.spendings)
                 defer.resolve($scope.spendings);
              });
         } else {

@@ -4,13 +4,13 @@
     // API url
     //window.__env.BackendUrl = "https://o2o-vendor-api-demo.azurewebsites.net/api/v1.0";
     // window.__env.BackendUrl = "http://127.0.0.1:8080/api";
-    window.__env.BackendUrl = "http://baloo-api.dev/api";
+    window.__env.BackendUrl = "http://baloo-api.ax/api";
 
     // Security API url
     //window.__env.SecurityUrl = "http://o2o-login-demo.azurewebsites.net/";
     // window.__env.SecurityUrl = "http://127.0.0.1:8080/api/";
-    window.__env.SecurityUrl = "http://baloo-api.dev";
-    window.__env.baseUrl = "http://baloo-api.dev/";
+    window.__env.SecurityUrl = "http://baloo-api.ax";
+    window.__env.baseUrl = "http://baloo-api.ax/";
 
     //window.__env.SignalrUrl = "https://localhost:44395/signalr";
 
