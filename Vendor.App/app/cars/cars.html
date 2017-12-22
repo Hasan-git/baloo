@@ -34,10 +34,10 @@
                                              chosen
                                              id="name"
                                              name="name"
-                                             class="chosen-select form-control"
+                                             class="chosen-select form-control text-capitalize"
                                              style="width:200px;"
                                              ng-model="car.name_id"
-                                             ng-options="s.id as s.name for s in names "
+                                             ng-options="s.id as s.fullName for s in names"
                                              required>
                                                     <option value=""></option>
                                                 </select>

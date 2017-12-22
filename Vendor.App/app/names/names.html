@@ -27,6 +27,26 @@
                         <form name="form" id="form" novalidate>
                             <div class="row">
                                 <div class="col-sm-4">
+                                    <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
+                                        <label class="control-label" for="brand">Brand</label>
+                                        <select
+                                         chosen
+                                         id="brand"
+                                         name="brand"
+                                         class="chosen-select form-control"
+                                         style="width:200px;"
+                                         ng-model="name.brand"
+                                          ng-options="s for s in brands"
+                                         required>
+                                                <option value=""></option>
+                                            </select>
+                                        <span ng-show="form.brand.$dirty && form.brand.$invalid"
+                                                  class="color-red">
+                                            <span class="message" ng-show="form.brand.$error.required">This field is required.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="control-label" for="status">Car Name</label>
                                         <input type="text" id="name" name="name" value="" placeholder="Car Name..." class="form-control" ng-model="name.name">
@@ -87,4 +107,7 @@
 /*th {
     text-align: center;
 }*/
+table{
+    text-transform: capitalize;
+}
 </style>

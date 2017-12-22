@@ -10,6 +10,36 @@
     $scope.dtInstance = {};
     $scope.name = {};
 
+      $scope.brands = [
+                'mercedes',
+                'audi',
+                'volkswagen',
+                'bmw',
+                'opel',
+                'porsche',
+                'fiat',
+                'alfa romeo',
+                'maserati',
+                'citroen',
+                'renault',
+                'peugeot',
+                'land rover',
+                'jeep',
+                'chevrolet',
+                'gmc',
+                'ford',
+                'honda',
+                'toyota',
+                'suzuki',
+                'infiniti',
+                'mazda',
+                'nissan',
+                'hyundai',
+                'kia',
+                'geely',
+                'chery'
+          ];
+
 
     $scope.getData = function () {
         var defer = $q.defer();
@@ -70,6 +100,7 @@
             ]);
 
     $scope.dtColumns = [
+         DTColumnBuilder.newColumn('brand').withTitle('Brand'),
          DTColumnBuilder.newColumn('name').withTitle('Name'),
          DTColumnBuilder.newColumn('name').renderWith(actionRender).withTitle('').notSortable()
          ];

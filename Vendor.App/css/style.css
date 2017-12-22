@@ -6358,3 +6358,7 @@ body.fullscreen-ibox-mode {
 .border-50{
   border-radius: 50px;
 }
+
+.chosen-drop{
+  text-transform: capitalize;
+}

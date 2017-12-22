@@ -13,9 +13,39 @@ class CreateCarsNamesTable extends Migration
      */
     public function up()
     {
+
         Schema::create('cars_names', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
+            $table->enum('brand', [
+                                    'mercedes',
+                                    'audi',
+                                    'volkswagen',
+                                    'bmw',
+                                    'opel',
+                                    'porsche',
+                                    'fiat',
+                                    'alfa romeo',
+                                    'maserati',
+                                    'citroen',
+                                    'renault',
+                                    'peugeot',
+                                    'land rover',
+                                    'jeep',
+                                    'chevrolet',
+                                    'gmc',
+                                    'ford',
+                                    'honda',
+                                    'toyota',
+                                    'suzuki',
+                                    'infiniti',
+                                    'mazda',
+                                    'nissan',
+                                    'hyundai',
+                                    'kia',
+                                    'geely',
+                                    'chery'
+                                ])->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
