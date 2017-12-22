@@ -236,6 +236,7 @@
           return
         }
 
+
         if($scope.car.id){
             //Updating Record
             if (uploader.queue[0]) {
@@ -291,6 +292,7 @@
             }else{
               carsResource.cars.post(angular.toJson($scope.car)).$promise.then(function (data) {
                 var response = JSON.parse(angular.toJson(data));
+                console.log(response)
                 $scope.cars.push(response);
                 toaster.pop('success', "Notification", "New Car Created !", 2000);
                 $scope.dtInstance.reloadData()

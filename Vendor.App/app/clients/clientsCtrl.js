@@ -13,6 +13,16 @@
     $scope.basUrl = __env.baseUrl;
     $scope.image;
 
+    $scope.dateFixer = function(){
+
+        if( !!$scope.form.dob.$viewvalue && moment($scope.form.dob.$viewvalue).isvalid ){
+
+          $scope.client.dob = new date();
+        }
+       //$scope.client.dob = !!$scope.form.dob.$viewValue ? moment(new Date($scope.form.dob.$viewValue)).format('YYYY-MM-DD') : '' ;
+
+    }
+
     var uploader = $scope.uploader = new FileUploader({
             url: __env.BackendUrl + '/clients/post',
             queueLimit: 1,
@@ -253,6 +263,7 @@
                   };
 
             }else{
+
               clientsResource.clients.post(angular.toJson($scope.client)).$promise.then(function (data) {
                 var response = JSON.parse(angular.toJson(data));
 

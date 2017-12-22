@@ -5,6 +5,7 @@ namespace App\Http\Transformers\Car;
 use League\Fractal\TransformerAbstract;
 use App\Car as Model;
 use Storage;
+use Carbon;
 
 class CarViewModel extends TransformerAbstract
 {
@@ -38,8 +39,8 @@ class CarViewModel extends TransformerAbstract
             'imageUrl' => $imageUrl,
             'status' => $model->status,
             'repairs' => $model->activeRepairs,
-            'officialMechanic' => $model->officialMechanic,
-            'purchasingDate' => $model->purchasingDate,
+            'officialMechanic' => Carbon::parse($model->officialMechanic)->format('Y/m/d')  ,
+            'purchasingDate' =>  Carbon::parse($model->purchasingDate)->format('Y/m/d') ,
             'purchasingPrice' => $model->purchasingPrice,
             'closestReserve' => $model->closestReserve,
             'reservations' => $model->reservations,

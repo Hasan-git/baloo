@@ -73,8 +73,9 @@
                                         <label class="control-label" for="dob">Birth Date</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
-                                               <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="dob" name="dob" value="" placeholder="Date..." class="form-control" ng-model="client.dob" data-mask="9999-99-99">
-                                                <span class="input-group-addon pointer" ng-click="client.dob=''" >x</span>
+                                               <!-- <input date-time format="yyyy-MM-dd" min-view="date" type="date" id="dob" name="dob" value="" placeholder="Date..." class="form-control" ng-model="client.dob"  /> -->
+                                               <input type="date" id="dob" name="dob" value="" placeholder="Date..." class="form-control" ng-model="client.dob"/>
+                                                <!-- <span class="input-group-addon pointer" ng-click="client.dob=''" >x</span> -->
                                             </div>
                                         </div>
                                     </div>
@@ -117,8 +118,9 @@
                                         <label class="control-label" for="licenseIssueDate">License Issue Date</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
-                                               <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="licenseIssueDate" name="licenseIssueDate" value="" placeholder="License Issue Date..." class="form-control" ng-model="client.licenseIssueDate" data-mask="9999-99-99">
-                                                <span class="input-group-addon pointer" ng-click="client.licenseIssueDate=''" >x</span>
+                                            <input type="date" id="licenseIssueDate" name="licenseIssueDate"class="form-control" ng-model="client.licenseIssueDate">
+                                              <!--  <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="licenseIssueDate" name="licenseIssueDate" value="" placeholder="License Issue Date..." class="form-control" ng-model="client.licenseIssueDate" data-mask="9999-99-99"> -->
+                                                <!-- <span class="input-group-addon pointer" ng-click="client.licenseIssueDate=''" >x</span> -->
                                             </div>
                                         </div>
                                     </div>
@@ -128,8 +130,9 @@
                                         <label class="control-label" for="licenseExpiryDate">License Expiry Date</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
-                                               <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="licenseExpiryDate" name="licenseExpiryDate" value="" placeholder="License Expiry Date..." class="form-control" ng-model="client.licenseExpiryDate" data-mask="9999-99-99">
-                                                <span class="input-group-addon pointer" ng-click="client.licenseExpiryDate=''" >x</span>
+                                                <input type="date" id="licenseExpiryDate" name="licenseExpiryDate" class="form-control" ng-model="client.licenseExpiryDate">
+                                               <!-- <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="licenseExpiryDate" name="licenseExpiryDate" value="" placeholder="License Expiry Date..." class="form-control" ng-model="client.licenseExpiryDate" data-mask="9999-99-99">
+                                                <span class="input-group-addon pointer" ng-click="client.licenseExpiryDate=''" >x</span> -->
                                             </div>
                                         </div>
 

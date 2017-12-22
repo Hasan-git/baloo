@@ -55,13 +55,15 @@
                                 <div class="col-sm-4">
                                     <div class="form-group" >
                                         <label class="control-label" for="date">Date</label>
-                                        <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="date" name="date" value="" placeholder="Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.date" enter>
+                                        <input type="date" id="date" name="date" class="form-control" ng-model="repair.date" enter>
+                                        <!-- <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="date" name="date" value="" placeholder="Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.date" enter> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
                                         <label class="control-label" for="completionDate">Finish Date</label>
-                                        <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="completionDate" name="completionDate" value="" placeholder="Finish Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.completionDate" enter>
+                                        <input type="date" id="completionDate" name="completionDate" class="form-control" ng-model="repair.completionDate" enter>
+                                        <!-- <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="completionDate" name="completionDate" value="" placeholder="Finish Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.completionDate" enter> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -137,7 +139,7 @@
                                         <div class="btn-group col-xs-12 p-l-0">
                                             <label type="button" class="btn btn-primary btn-w-m">
                                                 <i class="fa fa-upload"></i> &nbsp; Image
-                                                <input type="file" name="image" id="image" ng-model="repair.image" nv-file-select="" uploader="uploader" style="display:none;" filter="imageFilter" multiple>
+                                                <input type="file" name="image" id="image" ng-model="repair.image" nv-file-select="" uploader="uploader" style="display:none;" filter="imageFilter" multiple ng-click="uploader.clearQueue();repair.imageUrl=''" />
                                             </label>
 
                                             <button type="button" ng-show="uploader.queue[0]" class="btn btn-primary" style="border-radius: 0px 3px 2px 0px;"

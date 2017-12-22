@@ -1,26 +1,132 @@
 <div class="container">
-  <div class="client-name"> {{rent.client.name}} </div>
-  <div class="nationality"> {{rent.client.nationality}} </div>
-  <div class="mother-name"> {{rent.client.mother}} </div>
-  <div class="sejel"> {{rent.client.sejel}} </div>
-  <div class="dob"> {{ rent.client.dob }} - {{ rent.client.birthPlace }} </div>
-  <div class="license-id"> {{rent.client.licenseId}} </div>
-  <div class="license-type"> {{rent.client.licenseType}} </div>
-  <div class="address"> {{rent.client.address}}  </div>
-  <div class="mobile">  {{rent.client.contactNumber}} </div>
-  <div class="car-name"> {{rent.car.name}} </div>
-  <div class="plate-number"> {{rent.car.plateNumber}} </div>
-  <div class="color"> {{rent.car.color}} </div>
-  <div class="model"> {{rent.car.model}} </div>
-  <div class="chassis"> {{rent.car.chassisNumber}} </div>
-  <div class="date-out"> {{rent.dateOut | date: 'EEE dd/MM/yyyy'}} </div>
-  <div class="time-out"> {{rent.dateOut | date: "hh:mm a"}} </div>
-  <div class="date-in"> {{rent.dateIn | date: 'EEE dd/MM/yyyy'}} </div>
-  <div class="time-in"> {{rent.dateIn | date: "hh:mm a"}} </div>
-  <div class="km-out"> {{rent.kmOut}} </div>
-  <div class="km-in"> {{rent.kmIn}} </div>
-  <div class="km-total"> {{rent.kmTotal}} </div>
-  <div class="employee"> {{rent.employee}} </div>
-  <div class="days"> {{rent.days}} </div>
-  <div class="_client-name"> {{rent.client.name}} </div>
+  <div class="client-name"> {{_rent.client.name}} </div>
+  <div class="nationality"> {{_rent.client.nationality}} </div>
+  <div class="mother-name"> {{_rent.client.mother}} </div>
+  <div class="sejel"> {{_rent.client.sejel}} </div>
+  <div class="dob"> {{ _rent.client.dob }} - {{ _rent.client.birthPlace }} </div>
+  <div class="license-id"> {{_rent.client.licenseId}} </div>
+  <div class="license-type"> {{_rent.client.licenseType}} </div>
+  <div class="address"> {{_rent.client.address}}  </div>
+  <div class="mobile">  {{_rent.client.contactNumber}} </div>
+  <div class="car-name"> {{_rent.car.name}} </div>
+  <div class="plate-number"> {{_rent.car.plateNumber}} </div>
+  <div class="color"> {{_rent.car.color}} </div>
+  <div class="model"> {{_rent.car.model}} </div>
+  <div class="chassis"> {{_rent.car.chassisNumber}} </div>
+  <div class="date-out"> {{_rent.dateOut | date: 'EEE dd/MM/yyyy'}} </div>
+  <div class="time-out"> {{_rent.dateOut | date: "hh:mm a"}} </div>
+  <div class="date-in"> {{_rent.dateIn | date: 'EEE dd/MM/yyyy'}} </div>
+  <div class="time-in"> {{_rent.dateIn | date: "hh:mm a"}} </div>
+  <div class="km-out"> {{_rent.kmOut}} </div>
+  <div class="km-in"> {{_rent.kmIn}} </div>
+  <div class="km-total"> {{_rent.kmTotal}} </div>
+  <div class="employee"> {{_rent.employee}} </div>
+  <div class="days"> {{_rent.days}} </div>
+  <div class="_client-name"> {{_rent.client.name}} </div>
 </div>
+
+<style type="text/css">
+  body{
+  font-size: 14px;
+}
+.container div{
+  position: absolute;
+}
+.client-name{
+  top: 4.8cm;
+  left: 12.5cm;
+}
+.nationality{
+  top: 6.7cm;
+  left: 17.2cm;
+}
+.mother-name{
+  top: 6.7cm;
+  left: 14cm;
+}
+.sejel{
+  top: 6.7cm;
+  left: 11.8cm;
+}
+.dob{
+  top: 8.2cm;
+  left: 11cm;
+}
+.license-id{
+  top: 9.7cm;
+  left: 17.2cm;
+}
+.license-type{
+  top: 9.7cm;
+  left: 10.8cm;
+}
+.address{
+  top: 11.4cm;
+  left: 11cm;
+}
+.mobile{
+  top: 12.3cm;
+  left: 11.5cm;
+}
+.car-name{
+  top: 4.8cm;
+  left: 5.7cm;
+}
+.plate-number{
+  top: 4.8cm;
+  left: 1cm;
+}
+.color{
+  top: 6.7cm;
+  left: 8cm;
+}
+.model{
+  top: 6.7cm;
+  left: 5.7cm;
+}
+.chassis{
+  top: 6.7cm;
+  left: 1cm;
+}
+.date-out{
+  top: 8.2cm;
+  left: 5.7cm;
+}
+.time-out{
+  top: 8.2cm;
+  left: 1cm;
+}
+.date-in{
+  top: 9.7cm;
+  left: 5.7cm;
+}
+.time-in{
+  top: 9.7cm;
+  left: 1cm;
+}
+.km-out{
+  top: 17.2cm;
+  left: 7.5cm;
+}
+.km-in{
+  top: 17.2cm;
+  left: 4.5cm;
+}
+.km-total{
+  top: 17.2cm;
+  left: 1cm;
+}
+.employee{
+  top: 18.4cm;
+  left: 6cm;
+}
+.days{
+  top: 20cm;
+  left: 7.5cm;
+}
+._client-name{
+  top: 28.5cm;
+  left: 1.5cm;
+}
+
+</style>

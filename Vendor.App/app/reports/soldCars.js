@@ -100,6 +100,7 @@
                         i : 0;
           };
 
+            //Applied to all records 
             _totalNetProfit = api
                 .column( 4,{search:'applied'}) //apply to the filtered arrays
                 .data()

@@ -3,14 +3,13 @@
         .module('app.rents')
         .controller('rents', rents);
 
-    rents.$inject = ["$scope","rentsResource","carsResource","clientsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile","toaster","$uibModal","notify","__env", "session"];
-    function rents($scope, rentsResource, carsResource, clientsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile, toaster, $uibModal, notify, __env, session) {
+    rents.$inject = ["$scope","rentsResource","carsResource","clientsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile","toaster","$uibModal","notify","__env", "session", "$templateRequest", "$timeout"];
+    function rents($scope, rentsResource, carsResource, clientsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile, toaster, $uibModal, notify, __env, session, $templateRequest, $timeout) {
 
       $scope.rents = [];
       $scope.dtInstance = {};
       $scope.rent = {};
       $scope.names = [];
-      $scope.rents = [];
       $scope.cars = [];
       $scope.clients = [];
       $scope.viewCar = {};
@@ -20,8 +19,32 @@
       $scope.clientCard = {};
       $scope.secondClientCard = {};
       $scope.basUrl = __env.baseUrl;
+      $scope._rent = {};
 
       $scope.label = "directive";
+
+      $scope.print = function(id){
+        rentsResource.rents.getById({id:id}).$promise.then(function (data) {
+          var response = JSON.parse(angular.toJson(data));
+
+          $scope._rent = angular.copy(response)
+          $scope._rent.dateOut = new Date(response.dateOut)
+          $scope._rent.dateIn = new Date(response.dateIn)
+
+          $templateRequest("app/common/templates/printRent.html")
+                .then(function(html) {
+                  
+                var elem = $compile(html)($scope);
+                var parent = angular.element("<div></div>")
+                parent.append(elem);
+
+                  $timeout(function() {
+                    parent.print()
+                  }, 400); 
+
+                });
+        })
+      }
 
 
       var getCars = function(){
@@ -178,6 +201,7 @@
 
     function actionRender(data, type, full, meta) {
 
+      //print-rent  -> directive for prenting
         return '<div class="btn-group">'+
                   '<button type="button" class="btn btn-primary btn-xs" ng-click="rentModal('+ full.id +')" >View</button>'+
                   '<button type="button" class="btn btn-primary btn-xs dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
@@ -185,7 +209,7 @@
                   '</button>'+
                   '<ul class="dropdown-menu">'+
                     '<li class="dropdown-item" ><a href=""  ng-click="openEditForm('+ full.id +')" >Edit</a></li>'+
-                    '<li class="dropdown-item" ><a href="" print-rent rent-id="'+full.id+'" ng-click="print('+ full.id +')" >Print</a></li>'+
+                    '<li class="dropdown-item" ><a href=""  rent-id="'+full.id+'" ng-click="print('+ full.id +')" >Print</a></li>'+
                     '<li class="dropdown-item" ><a href="" ng-click="deleteModal('+ full.id +')">Delete</a></li>'+
                   '</ul>'+
                 '</div>';
@@ -387,7 +411,7 @@
         form.$setPristine();
      }
 
-    $scope.save = function(form){
+    $scope.save = function(form,print){
       if(!form.$valid){
           toaster.pop('error', "Notification", "Please, re-checking fields  ", 2000);
           angular.forEach($scope.form.$error, function (field) {
@@ -416,6 +440,11 @@
                 getCars().then(function(data){
                   $scope.cars = data;
                  })
+
+                if(!!print){
+                  $scope.print(response.id)
+                }
+
              },
              function(err){
                     toaster.pop('error', "Notification", "Unable to Update !", 2000);
@@ -433,6 +462,10 @@
                 getCars().then(function(data){
                   $scope.cars = data;
                  })
+
+                if(!!print){
+                  $scope.print(response.id)
+                }
            },
            function(err){
               if(err.data.errors)

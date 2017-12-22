@@ -91,7 +91,8 @@
                                         </div>
                                         <div class="ibox-content">
                                             <h1 class="no-margins">{{sc.totalNetProfit | currency}}</h1>
-                                            <small>Net Revenue</small>
+                                            <small>Net Revenue <i class="fa fa-question-circle" uib-tooltip='الربح الصافي : الفارق بين تكاليف الاعطال و سعر شراء السيارات من اصل 
+مجموع الارباح + سعر مبيع السيارت '></i> </small>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +104,7 @@
                                         </div>
                                         <div class="ibox-content">
                                             <h1 class="no-margins">{{sc.totalRentsRevenue | currency}}</h1>
-                                            <small>Rents Revenue</small>
+                                            <small>Rents Revenue <i class="fa fa-question-circle" uib-tooltip='محموع الارباح : الارباح الواردة من تاجير السيارات'></i> </small>
                                         </div>
                                     </div>
                                 </div>
@@ -172,5 +173,8 @@ td.child {
 }
 .html5buttons {
     padding-bottom: 10px;
+}
+th {
+    text-align: center;
 }
 </style>
