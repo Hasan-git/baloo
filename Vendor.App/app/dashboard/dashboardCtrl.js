@@ -12,6 +12,36 @@
         $scope.rangeVar;
         $scope.cars = [];
 
+              $scope.brands = [
+                'mercedes',
+                'audi',
+                'volkswagen',
+                'bmw',
+                'opel',
+                'porsche',
+                'fiat',
+                'alfa romeo',
+                'maserati',
+                'citroen',
+                'renault',
+                'peugeot',
+                'land rover',
+                'jeep',
+                'chevrolet',
+                'gmc',
+                'ford',
+                'honda',
+                'toyota',
+                'suzuki',
+                'infiniti',
+                'mazda',
+                'nissan',
+                'hyundai',
+                'kia',
+                'geely',
+                'chery'
+          ];
+
         $scope.print = function(){
           var tr;
          var table =  angular.element('<table class="table table-striped  table-hover dataTables-example"><thead><tr><th>Car</th><th>Plate Number</th><th>Status</th></tr></thead></table>')
