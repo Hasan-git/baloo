@@ -20,14 +20,17 @@ class RentsController extends Controller
   public function get()
   {
     try {
-
-      $rents = Rent::active()->get();
+ 
+      // $rents = Rent::active()->get();
+      $rents = Rent::active()->whereHas('car', function ($query) {
+            // just take the active cars
+            $query->where('isSold', 0);
+        })->get();
 
       if($rents)
         $result = fractal($rents, new RentViewModel);
 
         return ok($result);
-
 
     }catch (\Exception $e){
         return $e->getMessage();

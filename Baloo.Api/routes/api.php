@@ -11,7 +11,7 @@ Route::group(['prefix' => 'users','middleware' => ['auth:api']], function() {
   // Route::get('users/user/{email}', 'UsersController@GetUserByEmail');
  
 
- // append this in middleware beside auth:api --> ,AppRunner::class 
+// append this in middleware beside auth:api --> ,AppRunner::class 
 
 //Route::group(['prefix' => 'names','middleware' => ['auth:api',"role:admin"]], function() {
 Route::group(['prefix' => 'names','middleware' => ['auth:api']], function() {
@@ -86,8 +86,7 @@ Route::group(['prefix' => 'alerts'], function() {
 
 });
 
-//,'middleware' => ['auth:api']
-Route::group(['prefix' => 'reports'], function() {
+Route::group(['prefix' => 'reports','middleware' => ['auth:api']], function() {
 
   Route::get('/soldCars', 'ReportsController@soldCars');
   Route::get('/activeCars', 'ReportsController@activeCars');
