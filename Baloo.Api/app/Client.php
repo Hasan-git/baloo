@@ -46,7 +46,12 @@ class Client extends Model
   //getter
   public function getTotalDueAmountAttribute()
   {
-      return (int) $this->rents()->sum("dueAmount"); // Calculate client all due amounts
+      return (int) $this->rents()->sum("dueAmount"); // Calculate client all due amounts on rents
+  }
+
+  public function getTotalRepairsDueAmountAttribute()
+  {
+      return (int) $this->repairs()->sum("clientDueAmount"); // Calculate client all due amounts on repairs
   }
 
   protected $fillable = ['name','father','mother','birthPlace','dob','sejel','licenseId','address','contactNumber','emergencyContact','nationality','licenseIssueDate','licenseExpiryDate','licenseType'];

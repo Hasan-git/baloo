@@ -20,17 +20,17 @@ class CreateCarsNamesTable extends Migration
             $table->enum('brand', [
                                     'mercedes',
                                     'audi',
-                                    'volkswagen',
+                                    // 'volkswagen',
                                     'bmw',
                                     'opel',
-                                    'porsche',
-                                    'fiat',
-                                    'alfa romeo',
-                                    'maserati',
-                                    'citroen',
+                                    // 'porsche',
+                                    // 'fiat',
+                                    // 'alfa romeo',
+                                    // 'maserati',
+                                    // 'citroen',
                                     'renault',
                                     'peugeot',
-                                    'land rover',
+                                    // 'land rover',
                                     'jeep',
                                     'chevrolet',
                                     'gmc',
@@ -44,6 +44,7 @@ class CreateCarsNamesTable extends Migration
                                     'hyundai',
                                     'kia',
                                     'geely',
+                                    'saipa',
                                     'chery'
                                 ])->nullable();
             $table->timestamps();

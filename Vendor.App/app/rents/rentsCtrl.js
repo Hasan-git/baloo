@@ -85,6 +85,7 @@
       var defer = $q.defer();
       if (!$scope.rents.length) {
             rentsResource.rents.get().$promise.then(function (data) {
+              console.log(data)
               console.log(" Server > ",JSON.parse(angular.toJson(data)).data)
               $scope.rents = JSON.parse(angular.toJson(data)).data;
               defer.resolve($scope.rents);

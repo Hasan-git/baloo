@@ -79,17 +79,17 @@ Route::group(['prefix' => 'spendings','middleware' => ['auth:api']], function() 
 
 });
 
-Route::group(['prefix' => 'alerts','middleware' => ['auth:api']], function() {
+Route::group(['prefix' => 'alerts'], function() {
 
   Route::get('/get', 'AlertsController@get');
   Route::post('/statusChanged', 'AlertsController@updateAlertStatus');
 
 });
 
-Route::group(['prefix' => 'reports','middleware' => ['auth:api']], function() {
+//,'middleware' => ['auth:api']
+Route::group(['prefix' => 'reports'], function() {
 
   Route::get('/soldCars', 'ReportsController@soldCars');
-  Route::get('/cars', 'ReportsController@cars');
-  Route::get('/carsStituations', 'ReportsController@carsSituations');
+  Route::get('/activeCars', 'ReportsController@activeCars');
 
 });

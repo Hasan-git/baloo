@@ -1,0 +1,131 @@
+<div ng-controller="activeCars as vm">
+	<form name="form" id="form" class="p-m" ng-show="vm.search" ng-init="vm.search=false" novalidate>
+	    <div class="row text-left">
+	        <div class="col-sm-3">
+	            <div class="form-group">
+	                <label class="control-label" for="brand">Car Brand</label>
+	                <div class="has-feedback search-box m-r-sm input-group">
+                        <select
+                             chosen
+                             id="brand"
+                             name="brand"
+                             class="chosen-select form-control"
+                             placeholder-text-single="'Choose Brand'"
+                             style="width:130px;"
+                             ng-model="vm._search.brand"
+                              ng-options="s for s in vm.brands"
+                             required>
+                                    <option value=""></option>
+                                </select>
+                        <span class="input-group-btn">
+                             <button class="btn btn-primary" type="button" ng-click="vm._search.brand=''"><i class="fa fa-times"> </i></button>
+                        </span>
+                    </div>
+	            </div>
+	        </div>
+	        <div class="col-sm-3">
+	            <div class="form-group">
+	                <label class="control-label" for="name">Car Name</label>
+	                <input type="text"  placeholder="Car Name.." class="form-control" ng-model="vm._search.name">
+	            </div>
+	        </div>
+	        <div class="col-sm-3">
+	            <div class="form-group">
+	                <label class="control-label" for="client">Client</label>
+	                <input type="text"  placeholder="Client Name.." class="form-control" ng-model="vm._search.client">
+	            </div>
+	        </div>
+	        <div class="col-sm-3">
+	            <div class="form-group">
+	                <label class="control-label" for="car">PlateNumber</label>
+	                <input type="text"  placeholder="Plate Number.." class="form-control" ng-model="vm._search.plateNumber">
+	            </div>
+	        </div>
+	        <div class="col-sm-3">
+	            <div class="form-group ">
+	                <label class="control-label" for="from">From</label>
+	                <div class="controls">
+	                    <div class="input-group col-xs-12">
+	                       <input type="date" placeholder="" class="form-control" ng-model="vm._search.from"   />
+	                    </div>
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="col-sm-3">
+	            <div class="form-group ">
+	                <label class="control-label" for="to">To</label>
+	                <div class="controls">
+	                    <div class="input-group col-xs-12">
+	                       <input  type="date" placeholder="" class="form-control" ng-model="vm._search.to"   />
+	                        <!-- <span class="input-group-addon pointer" ng-click="vm._search.to=''" >x</span> -->
+	                    </div>
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="col-sm-3">
+	            <div class="form-group">
+	                <label class="control-label" for="type">Type</label>
+	                <div class="controls">
+	                    <div class="input-group col-xs-12">
+	                       <select class="form-control" ng-model="vm._search.type">
+	                       	<option value="">All</option>
+	                       	<option value="rent">Rents</option>
+	                       	<option value="repair">Repairs</option>
+	                       </select>
+	                    </div>
+	            	</div>
+	            </div>
+	        </div>
+	        <div class="col-sm-3">
+	                <button class="btn btn-white" ng-click="vm._search={}" style="vertical-align: -31px;">Clear</button>
+	        </div>
+	    </div>
+	</form>
+
+    <table datatable="" dt-options="vm.dtCarsOptions" dt-columns="vm.dtCarsColumns" dt-instance="vm.dtCarsIntanceCallback" class="table table-striped  table-hover dataTables-example cars-table text-capitalize" style="width:100%;">
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th id="days">{{vm.currentDays}}</th>
+                <th id="cost">{{vm.currentCost}}</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="row" style="background-color: #f3f3f4;padding-top: 20px;margin:0px -20px ">
+
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">Period</span>
+                    <h5>Total Net Profit</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{vm.totalCost | currency}}</h1>
+                    <small>Total Net Profit
+                        <i class="fa fa-question-circle" uib-tooltip='الربح الصافي '></i> 
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">Period</span>
+                    <h5>Total Rents Days</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{vm.totalDays | number}}</h1>
+                    <small>Rent Days <i class="fa fa-question-circle" uib-tooltip='محموع ايام التاجير'></i> </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

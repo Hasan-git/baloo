@@ -86,6 +86,12 @@ class Car extends Model
       $this->attributes['officialMechanic'] =  Carbon::parse($value);
   }
 
+    public function setSellingDateAttribute($value)
+  {
+      $this->attributes['sellingDate'] =  Carbon::parse($value);
+  }
+
+
   protected $fillable = ['name_id','type','plateNumber','model','color','chassisNumber','notes','status','officialMechanic','km','purchasingDate','purchasingPrice'];
   protected $guarded = ['id',"created_at",'updated_at','deleted_at'];
 

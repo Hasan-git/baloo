@@ -156,6 +156,8 @@ class CarsController extends Controller
         return response()->json([],404);
 
       $car->isSold = true;
+      $car->sellingDate = $model->input("sellingDate");
+      $car->sellingPrice = $model->input("sellingPrice");
 
       $car->update($model->all());
       $car->delete();

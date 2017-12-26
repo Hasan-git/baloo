@@ -12,20 +12,20 @@
         $scope.rangeVar;
         $scope.cars = [];
 
-              $scope.brands = [
+        $scope.brands = [
                 'mercedes',
                 'audi',
-                'volkswagen',
+                // 'volkswagen',
                 'bmw',
                 'opel',
-                'porsche',
-                'fiat',
-                'alfa romeo',
-                'maserati',
-                'citroen',
+                // 'porsche',
+                // 'fiat',
+                // 'alfa romeo',
+                // 'maserati',
+                // 'citroen',
                 'renault',
                 'peugeot',
-                'land rover',
+                // 'land rover',
                 'jeep',
                 'chevrolet',
                 'gmc',
@@ -39,6 +39,7 @@
                 'hyundai',
                 'kia',
                 'geely',
+                'saipa',
                 'chery'
           ];
 

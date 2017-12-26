@@ -14,6 +14,11 @@
                     method: 'GET',
                     url: __env.BackendUrl + "/reports/soldCars",
                 },
+                activeCars: {
+                    method: 'GET',
+                    isArray: true ,
+                    url: __env.BackendUrl + "/reports/activeCars",
+                },
                 carsStituations: {
                     method: 'POST',
                     url: __env.BackendUrl + "/reports/carsStituations"
