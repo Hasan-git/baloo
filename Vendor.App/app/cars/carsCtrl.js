@@ -132,8 +132,8 @@
             ]);
 
     $scope.dtColumns = [
+         DTColumnBuilder.newColumn('brand').withTitle('Brand'),
          DTColumnBuilder.newColumn('name').withTitle('Name'),
-         DTColumnBuilder.newColumn('type').withTitle('Type'),
          DTColumnBuilder.newColumn('plateNumber').withTitle('Plate Number'),
          DTColumnBuilder.newColumn('model').withTitle('model'),
          DTColumnBuilder.newColumn('color').withTitle('color'),

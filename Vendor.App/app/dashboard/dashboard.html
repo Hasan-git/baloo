@@ -73,6 +73,23 @@
                         <input type="text" class="form-control" placeholder="Search..." ng-model="search" />
                         <i class="glyphicon glyphicon-search form-control-feedback"></i>
                     </div>
+                    <div class="has-feedback search-box m-r-sm input-group">
+                        <select
+                             chosen
+                             id="brand"
+                             name="brand"
+                             class="chosen-select form-control"
+                             placeholder-text-single="'Choose Brand'"
+                             style="width:130px;"
+                             ng-model="brand"
+                              ng-options="s for s in brands"
+                             required>
+                                    <option value=""></option>
+                                </select>
+                        <span class="input-group-btn">
+                             <button class="btn btn-primary" type="button" ng-click="brand=''"><i class="fa fa-times"> </i></button>
+                        </span>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="col-xs-12" ng-show="a && b">
@@ -81,7 +98,7 @@
                         <span > DATE RANGE FILTER ACTIVATED</span>
                     </div>
                 </div>
-              <div class="col-md-3" ng-repeat="car in (filteredCars = (cars | filter:search:strict | filter:status:startsWith | filter: filterRange))">
+              <div class="col-md-3" ng-repeat="car in (filteredCars = (cars | filter:{ brand: brand } | filter:search:strict | filter:status:startsWith | filter: filterRange))">
                     <div class="ibox" >
                         <div class="ibox-content product-box">
 
@@ -90,7 +107,7 @@
                                        <img ng-src="{{car.imageUrl || 'img/default.jpg'}}" class="img-responsive car-img" />
                                 </a>
                             </div>
-                            <div class="product-desc">
+                            <div class="product-desc text-capitalize">
                                 <span class="product-price"
                                  ng-class="{'btn-danger': car.status == 'notavailable' ||  car.status == 'rented',
                                  'btn-warning': car.status == 'reserved '  ,

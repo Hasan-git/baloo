@@ -15,7 +15,7 @@ class CarViewModel extends TransformerAbstract
     public function transform(Model $model)
     {
         // avoid errors if name was deleted from Names Table
-        $name = $model->name ? $model->name->name : "Unnamed";
+        $name = $model->name ? $model->name->brand. " " .$model->name->name : "Unnamed";
 
         if(Storage::has('cars/'.$model->image) && !!$model->image )
             $imageUrl = Storage::url('cars/'.$model->image);
@@ -26,6 +26,7 @@ class CarViewModel extends TransformerAbstract
         return [
             'id' => (int) $model->id,
             'name' => $name,
+            'brand' => $model->name->brand,
             'km' => $model->km,
             'name_id' => (int) $model->name_id,
             'type' => $model->type,

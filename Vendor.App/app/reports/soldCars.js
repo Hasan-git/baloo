@@ -22,6 +22,7 @@
 
         reportsResource.reports.soldCars().$promise.then(function (data) {
           sc.cars = JSON.parse(angular.toJson(data)).data;
+          console.log(sc.cars)
           defer.resolve(JSON.parse(angular.toJson(data)).data);
         });
 
@@ -79,8 +80,8 @@
          DTColumnBuilder.newColumn('rentsDays').withTitle('Days'),
          DTColumnBuilder.newColumn('purchasingPrice').withTitle('Purchased Price ').withClass('none').renderWith(currencyRender),
          DTColumnBuilder.newColumn('sellingPrice').withTitle('Sold Price').withClass('none').renderWith(currencyRender),
-
          DTColumnBuilder.newColumn('carKm').withTitle('Km').withClass('none'),
+         DTColumnBuilder.newColumn('brand').withTitle('').notVisible(),
        ];
 
        function currencyRender(data, type, full, meta) {
@@ -196,7 +197,7 @@
          //      var title = $(this).text();
          //      $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
          //  } );
-      $scope.$watch('[sc._search.purchaseDate,sc._search.soldDate,sc._search.name,sc._search.plateNumber]',function(){
+      $scope.$watch('[sc._search.purchaseDate,sc._search.soldDate,sc._search.name,sc._search.plateNumber,sc._search.brand]',function(){
           setTimeout(function () {
                       sc.dtCarsInstance.dataTable.fnDraw();
             }, 200);
@@ -241,6 +242,12 @@
 
             if (sc._search.soldDate && moment(sc._search.soldDate).isValid() ) {
               if ( moment(aData[3]).isAfter(moment(sc._search.soldDate)) ) {
+                return false;
+              }
+            }
+
+            if (sc._search.brand) {
+              if (aData[13].toLowerCase().indexOf(sc._search.brand.toLowerCase()) <= -1) {
                 return false;
               }
             }

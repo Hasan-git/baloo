@@ -5,7 +5,7 @@ namespace App\Http\Transformers\Report;
 use League\Fractal\TransformerAbstract;
 use App\Car as Model;
 
-
+// For sold cars
 class CarReportViewModel extends TransformerAbstract
 {
 
@@ -13,6 +13,7 @@ class CarReportViewModel extends TransformerAbstract
     {
         $model->inActiveRents;
         $model->repairs;
+        $model->brand = $model->name->brand;
         $model->name = $model->name->name;
         $model->isSold = false;
 
@@ -38,7 +39,7 @@ class CarReportViewModel extends TransformerAbstract
         if( !!$model->sellingPrice){
             $model->isSold = true;
             $model->revenueAfterSelling =
-            ($model->rentsRevenue + $model->sellingPrice ) - ($model->repairsCost + $model->purchasingPrice) ;
+            (($model->rentsRevenue + $model->sellingPrice ) - ($model->repairsCost + $model->purchasingPrice)) ;
         }
 
         $model->totalRevenue = $model->rentsRevenue - $model->repairsCost ;
@@ -46,6 +47,7 @@ class CarReportViewModel extends TransformerAbstract
         return [
             'id' => $model->id,
             'name' => $model->name,
+            'brand' => $model->brand,
             'plateNumber' => $model->plateNumber,
             'purchasingPrice' => $model->purchasingPrice,
             'purchasingDate' => $model->purchasingDate,

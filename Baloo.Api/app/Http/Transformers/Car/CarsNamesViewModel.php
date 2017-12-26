@@ -13,6 +13,8 @@ class CarsNamesViewModel extends TransformerAbstract
     {
         return [
             'id' => $model->id,
+            'fullName' => $model->brand. " ".$model->name,
+            'brand' => $model->brand,
             'name' => $model->name
 
         ];

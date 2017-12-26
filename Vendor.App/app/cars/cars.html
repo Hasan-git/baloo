@@ -34,10 +34,10 @@
                                              chosen
                                              id="name"
                                              name="name"
-                                             class="chosen-select form-control"
+                                             class="chosen-select form-control text-capitalize"
                                              style="width:200px;"
                                              ng-model="car.name_id"
-                                             ng-options="s.id as s.name for s in names "
+                                             ng-options="s.id as s.fullName for s in names"
                                              required>
                                                     <option value=""></option>
                                                 </select>
@@ -263,7 +263,7 @@
                         <label class="control-label" for="sellingDate">Selling Date</label>
                         <div class="controls">
                             <div class="input-group col-xs-12">
-                               <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="sellingDate" name="sellingDate" value="" placeholder="Selling Date..." class="form-control" ng-model="soldCar.sellingDate" data-mask="9999-99-99"/>
+                               <input  type="date" id="sellingDate" name="sellingDate" value="" placeholder="Selling Date..." class="form-control" ng-model="soldCar.sellingDate" />
                                 <span class="input-group-addon pointer" ng-click="soldCar.sellingDate=''" >x</span>
                             </div>
                         </div>

@@ -15,6 +15,38 @@ function MainCtrl($scope, __env, USER_ROLES, $rootScope, logger, auth, config, $
     $scope.startedRents = [];
     $scope.officialMechanic = [];
 
+    $scope.brands = [
+        'mercedes',
+        'audi',
+        // 'volkswagen',
+        'bmw',
+        'opel',
+        // 'porsche',
+        // 'fiat',
+        // 'alfa romeo',
+        // 'maserati',
+        // 'citroen',
+        'renault',
+        'peugeot',
+        // 'land rover',
+        'jeep',
+        'chevrolet',
+        'gmc',
+        'ford',
+        'honda',
+        'toyota',
+        'suzuki',
+        'infiniti',
+        'mazda',
+        'nissan',
+        'hyundai',
+        'kia',
+        'geely',
+        'saipa',
+        'chery'
+      ];
+
+
     //////////////////////////////////////////
 
     var notifyPermission = $rootScope.desktopNotifyPermission;

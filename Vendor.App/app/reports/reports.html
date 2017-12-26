@@ -25,6 +25,29 @@
                             <div id="cntnr" ng-controller="soldCars as sc" >
                             <form name="form" id="form" class="p-m" ng-show="sc.search" ng-init="sc.search=false" novalidate>
                                 <div class="row text-left">
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label" for="car">Car Name</label>
+                                            <div class="has-feedback search-box m-r-sm input-group">
+                                                <select
+                                                     chosen
+                                                     id="brand"
+                                                     name="brand"
+                                                     class="chosen-select form-control"
+                                                     placeholder-text-single="'Choose Brand'"
+                                                     style="width:130px;"
+                                                     ng-model="sc._search.brand"
+                                                      ng-options="s for s in brands"
+                                                     required>
+                                                            <option value=""></option>
+                                                        </select>
+                                                <span class="input-group-btn">
+                                                     <button class="btn btn-primary" type="button" ng-click="sc._search.brand=''"><i class="fa fa-times"> </i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label class="control-label" for="car">Car Name</label>
@@ -42,7 +65,7 @@
                                             <label class="control-label" for="car">Purchase Date</label>
                                             <div class="controls">
                                                 <div class="input-group col-xs-12">
-                                                   <input date-time format="yyyy-MM-dd" min-view="date" type="text" placeholder="Min Purchase Date..." class="form-control" ng-model="sc._search.purchaseDate" data-mask="9999-99-99"  />
+                                                   <input  type="date" placeholder="Min Purchase Date..." class="form-control" ng-model="sc._search.purchaseDate"   />
                                                     <span class="input-group-addon pointer" ng-click="sc._search.purchaseDate=''" >x</span>
                                                 </div>
                                         </div>
@@ -53,11 +76,14 @@
                                             <label class="control-label" for="car">Sold Date</label>
                                             <div class="controls">
                                                 <div class="input-group col-xs-12">
-                                                   <input date-time format="yyyy-MM-dd" min-view="date" type="text" placeholder="Max Sold Date..." class="form-control" ng-model="sc._search.soldDate" data-mask="9999-99-99" />
+                                                   <input type="date" placeholder="Max Sold Date..." class="form-control" ng-model="sc._search.soldDate"  />
                                                     <span class="input-group-addon pointer" ng-click="sc._search.soldDate=''" >x</span>
                                                 </div>
                                         </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                            <button class="btn btn-white" ng-click="sc._search={}" style="vertical-align: -31px;">Clear</button>
                                     </div>
                                 </div>
                             </form>
@@ -91,8 +117,9 @@
                                         </div>
                                         <div class="ibox-content">
                                             <h1 class="no-margins">{{sc.totalNetProfit | currency}}</h1>
-                                            <small>Net Revenue <i class="fa fa-question-circle" uib-tooltip='الربح الصافي : الفارق بين تكاليف الاعطال و سعر شراء السيارات من اصل 
-مجموع الارباح + سعر مبيع السيارت '></i> </small>
+                                            <small>Net Revenue
+                                                <i class="fa fa-question-circle" uib-tooltip='الربح الصافي : الفارق بين تكاليف الاعطال و سعر شراء السيارات من اصل مجموع الارباح + سعر مبيع السيارت '></i> 
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -136,13 +163,13 @@
                             </div>
                         </uib-tab>
 
-                        <!-- Status
+                        <!-- Active cars-->
                         <uib-tab>
                           <uib-tab-heading>
-                            Situations
+                            Active Cars
                           </uib-tab-heading>
-                            Status
-                        </uib-tab>-->
+                            <div ng-include="'app/reports/activeCars.html'"></div>
+                        </uib-tab>
 
                       </uib-tabset>
                 </div>

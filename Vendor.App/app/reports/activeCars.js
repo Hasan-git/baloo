@@ -3,26 +3,57 @@
         .module('app.reports')
         .controller('activeCars', activeCars);
 
-    activeCars.$inject = ["scope", "reportsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile"];
-    function activeCars(scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile) {
+    activeCars.$inject = ["$scope", "reportsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile"];
+    function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile) {
 
-      var sc = this;
+      var vm = this;
 
-      sc.cars = [];
-      sc.dtCarsInstance = {};
+      vm.cars = [];
+      vm.dtCarsInstance = {};
+      vm._search = {};
+      vm.brands = [
+        'mercedes',
+        'audi',
+        // 'volkswagen',
+        'bmw',
+        'opel',
+        // 'porsche',
+        // 'fiat',
+        // 'alfa romeo',
+        // 'maserati',
+        // 'citroen',
+        'renault',
+        'peugeot',
+        // 'land rover',
+        'jeep',
+        'chevrolet',
+        'gmc',
+        'ford',
+        'honda',
+        'toyota',
+        'suzuki',
+        'infiniti',
+        'mazda',
+        'nissan',
+        'hyundai',
+        'kia',
+        'geely',
+        'saipa',
+        'chery'
+      ];
 
-      sc.dtCarsIntanceCallback = function (instance) {
-          sc.dtCarsInstance = instance;
+      vm.dtCarsIntanceCallback = function (instance) {
+          vm.dtCarsInstance = instance;
        };
 
 
-      sc.dtCarsOptions = DTOptionsBuilder
+      vm.dtCarsOptions = DTOptionsBuilder
         .fromFnPromise(function () {
         var defer = $q.defer();
 
-        reportsResource.reports.soldCars().$promise.then(function (data) {
-          sc.cars = JSON.parse(angular.toJson(data)).data;
-          defer.resolve(JSON.parse(angular.toJson(data)).data);
+        reportsResource.reports.activeCars().$promise.then(function (data) {
+          vm.cars = JSON.parse(angular.toJson(data));
+          defer.resolve(JSON.parse(angular.toJson(data)));
         });
 
         return defer.promise;
@@ -55,25 +86,37 @@
 
                         });
                     }
+                },
+                {
+                    text: '<i class="fa fa-search" > </i>&nbsp;Search',
+                    key: '1',
+                    // className: 'btn-sm btn-primary',
+                    action: function (e, dt, node, config) {
+                        vm.search = !vm.search;
+                        vm._search = {};
+                    }
                 }
             ]);
 
-      sc.dtCarsColumns = [
-         DTColumnBuilder.newColumn('name').withTitle('Name'),
-         DTColumnBuilder.newColumn('plateNumber').withTitle('Plate #'),
-         DTColumnBuilder.newColumn('purchasingDate').withTitle('Purchased at'),
-         DTColumnBuilder.newColumn('sellingDate').withTitle('Sold at'),
-         DTColumnBuilder.newColumn('totalRevenue').withTitle('Total Revenue'),
-         DTColumnBuilder.newColumn('rentsRevenue').withTitle('Rents Revenue'),
-         DTColumnBuilder.newColumn('rentsCount').withTitle('Rents count'),
-         DTColumnBuilder.newColumn('repairsCost').withTitle('Repairs cost$'),
-         DTColumnBuilder.newColumn('repairsCount').withTitle('Repairs Count'),
-         DTColumnBuilder.newColumn('rentsDays').withTitle('Days'),
-         DTColumnBuilder.newColumn('purchasingPrice').withTitle('Purchased Price $').withClass('none'),
-         DTColumnBuilder.newColumn('sellingPrice').withTitle('Sold Price $').withClass('none'),
-         DTColumnBuilder.newColumn('revenueAfterSelling').withTitle('Net Revenue').withClass('none'),
-         DTColumnBuilder.newColumn('carKm').withTitle('Km').withClass('none'),
+      vm.dtCarsColumns = [
+         DTColumnBuilder.newColumn('date').withTitle('Date'),
+         DTColumnBuilder.newColumn('carBrand').withTitle('Brand'),
+         DTColumnBuilder.newColumn('carName').withTitle('Name'),
+         DTColumnBuilder.newColumn('plateNumber').withTitle('plate #'),
+         DTColumnBuilder.newColumn('days').withTitle('Days'),
+         DTColumnBuilder.newColumn('cost').withTitle('Cost'),
+         DTColumnBuilder.newColumn('client').withTitle('Client'),
+         DTColumnBuilder.newColumn('type').withTitle('Type'),
+         DTColumnBuilder.newColumn('type').withTitle('Alert').renderWith(alertRender),
+         DTColumnBuilder.newColumn('clientRentsDueAmount').withTitle('Due Amount/Rents').withClass('none'),
+         DTColumnBuilder.newColumn('clientRepairsDueAmount').withTitle('Due Amount/Repairs').withClass('none'),
+         // DTColumnBuilder.newColumn('revenueAfterSelling').withTitle('Net Revenue').withClass('none'),
        ];
+
+      function alertRender(data, type, full, meta) {
+        if(full.clientRentsDueAmount >  0 || full.clientRepairsDueAmount >  0 )
+          return '<i class="fa fa-exclamation-circle text-danger"></i>';
+      }
 
        function footerCallback( row, data, start, end, display ) {
 
@@ -87,120 +130,118 @@
                         i : 0;
             };
 
-            _totalRevenue = api
-                .column( 4,{search:'applied'}) //apply to the filtered arrays
+
+            // Total overall 
+            _totalDays = api
+                .column( 4, {search:'applied'})
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
-            _totalRentsRevenue = api
-                .column( 5, {search:'applied'})
+            _totalCost = api
+                .column( 5,{search:'applied'}) //apply to the filtered arrays
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
-            _totalRentedDays = api
-                .column( 9, {search:'applied'})
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-            _totalNetRevenue = api
-                .column( 12, {search:'applied'})
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
+            vm.totalDays = _totalDays;
+            vm.totalCost = _totalCost;
 
 
-
-
-
-
-
-            // current page total revenue
-            currentTotalRevenue = api
+            // current page total 
+            currentDays= api
                 .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
-            // current page rents revenue
-            currentRentsRevenue = api
+            currentCost = api
                 .column( 5, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
-            // current page rents count
-            currentRentsCount = api
-                .column( 6, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
+                vm.currentDays = currentDays
+                vm.currentCost = currentCost
 
-            // current page repairs cost
-            currentRepairsCost = api
-                .column( 7, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
+                // $('#days').text(currentDays);
+                // $('#cost').text(currentCost);
 
-            // current page repairs count
-            currentRepairsCount = api
-                .column( 8, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-            // current page days
-            currentDays = api
-                .column( 9, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-                $('#totalRevenue').text(currentTotalRevenue)
-                $('#rentsRevenue').text(currentRentsRevenue)
-                $('#rentsCount').text(currentRentsCount)
-                $('#repairsCost').text(currentRepairsCost)
-                $('#repairsCount').text(currentRepairsCount)
-                $('#days').text(currentDays)
-
-            sc.totalRevenue = _totalRevenue;
-            sc.totalNetRevenue = _totalNetRevenue
-            sc.totalRentedDays = _totalRentedDays
-            sc.totalRentsRevenue = _totalRentsRevenue
+            
 
             // console.log(total,pageTotal)
         }
-    function initComplete(settings, json) {
-         // $('.dataTables-example tfoot th').each( function (k) {
-         //      var title = $(this).text();
-         //      $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-         //  } );
 
-      $('.dataTables-example tfoot th').each( function (k,v) {
-              console.log(k,v)
-              // if(k == 4){
-              //   var title = $(this).text();
-              //   $(this).html( '<span type="text" id="totalRevenue" ></span>' );
-              // }
-          } );
+    function initComplete(settings, json) {
+      $scope.$watch('[vm._search.brand,vm._search.name,vm._search.client,vm._search.plateNumber,vm._search.from,vm._search.to,vm._search.type]',function(){
+          setTimeout(function () {
+                      vm.dtCarsInstance.dataTable.fnDraw();
+            }, 200);
+        })
       }
 
     function createdRow(row, data, dataIndex) {
         // Recompiling so we can bind Angular directive to the DT
-        $compile(angular.element(row).contents())(scope);
+        $compile(angular.element(row).contents())($scope);
+
+        //Set default datatable buttons class
+        $.fn.dataTable.Buttons.defaults.dom.button.className = 'btn btn-sm btn-success';
+
+        $.fn.dataTableExt.afnFiltering.push(
+          function(oSettings, aData, iDataIndex) {
+
+            // if (typeof aData._date == 'undefined') {
+            //   aData._date = new Date(aData[0]).getTime();
+            // }
+            if (vm._search.brand) {
+              if (aData[1].toLowerCase().indexOf(vm._search.brand.toLowerCase()) <= -1) {
+                return false;
+              }
+            }
+            if (vm._search.name) {
+              if (aData[2].toLowerCase().indexOf(vm._search.name.toLowerCase()) <= -1) {
+                return false;
+              }
+            }
+
+            if (vm._search.plateNumber) {
+              if (aData[3].toLowerCase().indexOf(vm._search.plateNumber.toLowerCase()) <= -1) {
+                return false;
+              }
+            }
+
+            if (vm._search.client) {
+              if (aData[6].toLowerCase().indexOf(vm._search.client.toLowerCase()) <= -1) {
+                return false;
+              }
+            }
+
+            if (vm._search.type) {
+              if (aData[7].toLowerCase().indexOf(vm._search.type.toLowerCase()) <= -1) {
+                return false;
+              }
+            }
+
+            if (vm._search.from && moment(vm._search.from).isValid() ) {
+              if ( moment(aData[0]).isBefore(moment(vm._search.from)) ) {
+                return false;
+              }
+            }
+
+            if (vm._search.to && moment(vm._search.to).isValid() ) {
+              if ( moment(aData[0]).isAfter(moment(vm._search.to)) ) {
+                return false;
+              }
+            }
+
+            return true;
+          }
+        );
+
         }
 
     };

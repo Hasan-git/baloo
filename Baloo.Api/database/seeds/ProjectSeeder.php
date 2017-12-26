@@ -18,7 +18,8 @@ class ProjectSeeder extends Seeder
       if (!CarsNames::where('name', '=', "Kia Rio")->exists()) {
         $CarName = new CarsNames();
         $CarName->id = 1;
-        $CarName->name = "Kia Rio";
+        $CarName->brand = "kia";
+        $CarName->name = "Rio";
         $CarName->save();
 
         $car = new Car();
@@ -43,7 +44,8 @@ class ProjectSeeder extends Seeder
       if (!CarsNames::where('name', '=', "Kia Picanto")->exists()) {
         $CarName = new CarsNames();
         $CarName->id = 2;
-        $CarName->name = "Kia Picanto";
+        $CarName->brand = "kia";
+        $CarName->name = "Picanto";
         $CarName->save();
 
         $car = new Car();
@@ -66,7 +68,8 @@ class ProjectSeeder extends Seeder
       if (!CarsNames::where('name', '=', "Nissan Sunny")->exists()) {
         $CarName = new CarsNames();
         $CarName->id = 3;
-        $CarName->name = "Nissan Sunny";
+        $CarName->brand = "nissan";
+        $CarName->name = "Sunny";
         $CarName->save();
 
         $car = new Car();
