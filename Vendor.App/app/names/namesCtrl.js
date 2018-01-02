@@ -158,9 +158,13 @@
     $scope.save = function(){
 
         if(!$scope.name.name ){
-            //toaster.pop('error', "Notification", "Please, enter the car name !", 3000);
             notify({ message: "The name field is required", classes:'alert-danger',duration:5000} );
-            //return;
+            return;
+        }
+
+        if(!$scope.name.brand ){
+            notify({ message: "The brand field is required", classes:'alert-danger',duration:5000} );
+            return;
         }
 
         if($scope.name.id){

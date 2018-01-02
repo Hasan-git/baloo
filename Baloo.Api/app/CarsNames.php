@@ -14,7 +14,7 @@ class CarsNames extends Model
     return $this->belongsTo(Car::class);
   }
 
-  protected $fillable = ['name'];
+  protected $fillable = ['name','brand'];
   protected $guarded = ['id',"created_at",'updated_at','deleted_at'];
 
   protected $dates = ['deleted_at'];
