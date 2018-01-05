@@ -50,8 +50,8 @@
           var request= {};
           angular.copy($scope.client,request)
           request.dob = moment(new Date(request.dob)).format('YYYY-MM-DD')
-          request.licenseIssueDate = moment(new Date(request.licenseIssueDate)).format('YYYY-MM-DD')
-          request.licenseExpiryDate = moment(new Date(request.licenseExpiryDate)).format('YYYY-MM-DD')
+          request.licenseIssueDate = !!request.licenseIssueDate ? moment(new Date(request.licenseIssueDate)).format('YYYY-MM-DD') : '';
+          request.licenseExpiryDate = !!request.licenseExpiryDate ? moment(new Date(request.licenseExpiryDate)).format('YYYY-MM-DD') : '';
 
           //FormData Fixes -> issue null is converted to "null"
           angular.forEach(request, function(value, key) {

@@ -42,8 +42,8 @@
     uploader.onBeforeUploadItem = function(item) {
           var request= {};
           angular.copy($scope.repair,request)
-          request.date = moment(new Date(request.date)).format('YYYY-MM-DD')
-          request.completionDate = moment(new Date(request.completionDate)).format('YYYY-MM-DD')
+          request.date = !!request.date ? moment(new Date(request.date)).format('YYYY-MM-DD') : '';
+          request.completionDate = !!request.completionDate ? moment(new Date(request.completionDate)).format('YYYY-MM-DD') : '';
 
           //FormData Fixes -> issue null is converted to "null"
           angular.forEach(request, function(value, key) {
