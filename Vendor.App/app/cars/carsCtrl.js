@@ -43,6 +43,8 @@
           request.officialMechanic = !!request.officialMechanic ? moment(new Date(request.officialMechanic)).format('YYYY-MM-DD') : '' ;
           request.purchasingDate = !!request.purchasingDate ? moment(new Date(request.purchasingDate)).format('YYYY-MM-DD') : '' ;
 
+          delete request.km;
+
           //FormData Fixes -> issue null is converted to "null"
           angular.forEach(request, function(value, key) {
             if( typeof value === 'undefined' || typeof value === 'null')
