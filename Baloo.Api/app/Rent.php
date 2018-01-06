@@ -37,7 +37,7 @@ class Rent extends Model
 
   public function setStatusAttribute()
   {
-      if( Carbon::parse($this->attributes['dateIn'])->lte( Carbon::today() ) ) {
+      if( Carbon::parse($this->attributes['dateIn'])->lte( Carbon::now() ) ) {
         $this->attributes['status'] = 'in';
       }else if(Carbon::parse($this->attributes['dateOut'])->lt( Carbon::tomorrow() ) ) {
         $this->attributes['status'] = 'out';
