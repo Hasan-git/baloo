@@ -373,6 +373,8 @@
       if(!!newValue && !!$scope.rent.total){
         var value  = ( $scope.rent.total - newValue);
         $scope.rent.dueAmount =  parseInt(value);
+      }else if ( !!$scope.rent.total && newValue == 0){
+        $scope.rent.dueAmount =  parseInt($scope.rent.total);
       }
     };
 

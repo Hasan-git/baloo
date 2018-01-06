@@ -46,6 +46,17 @@ class Rent extends Model
       }
   }
 
+   //getter
+  public function getDateInAttribute($value)
+  {
+    return $this->attributes['dateIn'] =  Carbon::parse($value)->tz('Asia/Beirut');
+  }
+    public function getDateOutAttribute($value)
+  {
+    return $this->attributes['dateOut'] =  Carbon::parse($value)->tz('Asia/Beirut');
+  }
+
+
   // Scopes
   public function scopeActive($query)
   {
