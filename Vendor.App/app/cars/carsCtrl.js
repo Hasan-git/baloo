@@ -39,11 +39,8 @@
     uploader.onBeforeUploadItem = function(item) {
           var request= {};
           angular.copy($scope.car,request)
-          console.log(request)
-          request.officialMechanic = !!request.officialMechanic ? moment(new Date(request.officialMechanic)).format('YYYY-MM-DD') : '' ;
-          request.purchasingDate = !!request.purchasingDate ? moment(new Date(request.purchasingDate)).format('YYYY-MM-DD') : '' ;
-
-          delete request.km;
+          request.officialMechanic = moment(new Date(request.officialMechanic)).format('YYYY-MM-DD')
+          request.purchasingDate = moment(new Date(request.purchasingDate)).format('YYYY-MM-DD')
 
           //FormData Fixes -> issue null is converted to "null"
           angular.forEach(request, function(value, key) {
@@ -162,7 +159,7 @@
               data = "Not available"
             }
             else if( data == 'rented'){
-              class_ = 'info';
+              class_ = 'danger';
             }
             else if( data == 'repair'){
               class_ = 'warning';
@@ -279,7 +276,7 @@
                 //uploader.url = __env.BackendUrl + '/cars/post';
                 uploader.uploadAll()
                 uploader.onCompleteItem = function(fileItem, response, status, headers) {
-                      console.info( status);
+                      console.info('onCompleteItem', fileItem, response, status, headers,uploader);
                       if(status=== 200){
                         $scope.cars.push(response);
                         toaster.pop('success', "Notification", "New Car Created !", 2000);

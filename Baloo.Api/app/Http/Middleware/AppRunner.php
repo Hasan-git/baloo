@@ -40,7 +40,7 @@ class AppRunner
                     return Response()->json(null, 406);
                 }
 
-                if(Carbon::parse('2018-12-05 22:23:00.123456') <= Carbon::now() ){
+                if(Carbon::parse('2018-12-15 22:23:00.123456') <= Carbon::now() ){
                        return Response()->json(null, 406);
                 }
 
@@ -48,7 +48,7 @@ class AppRunner
                 $mcontents = Storage::disk('local')->get('avatars/mavatar.txt');
                 //$encryptString = Crypt::encryptString(GetMAC());
                 // echo $encryptString ;
-                return Response()->json(null, 406);
+                //return Response()->json(null, 406);
             }
 
        return $next($request);
