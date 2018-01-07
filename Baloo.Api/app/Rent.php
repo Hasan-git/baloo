@@ -37,7 +37,7 @@ class Rent extends Model
 
   public function setStatusAttribute()
   {
-      if( Carbon::parse($this->attributes['dateIn'])->lte( Carbon::today() ) ) {
+      if( Carbon::parse($this->attributes['dateIn'])->lte( Carbon::now() ) ) {
         $this->attributes['status'] = 'in';
       }else if(Carbon::parse($this->attributes['dateOut'])->lt( Carbon::tomorrow() ) ) {
         $this->attributes['status'] = 'out';
@@ -45,6 +45,17 @@ class Rent extends Model
         $this->attributes['status'] = 'reserved';
       }
   }
+
+   //getter
+  public function getDateInAttribute($value)
+  {
+    return $this->attributes['dateIn'] =  Carbon::parse($value)->tz('Asia/Beirut');
+  }
+    public function getDateOutAttribute($value)
+  {
+    return $this->attributes['dateOut'] =  Carbon::parse($value)->tz('Asia/Beirut');
+  }
+
 
   // Scopes
   public function scopeActive($query)

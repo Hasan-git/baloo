@@ -61,7 +61,7 @@ class CarsController extends Controller
     try{
 
       //'photo' => 'mimes:jpeg,bmp,png'
-      $rules = array('name_id' => 'required','imagefile' => 'mimes:jpeg,jpg,bmp,png');
+      $rules = array('name_id' => 'required','purchasingDate' => 'nullable|date','officialMechanic' => 'nullable|date','imagefile' => 'mimes:jpeg,jpg,bmp,png');
       $validator = Validator::make($model->all(), $rules);
 
       if ($validator->fails())

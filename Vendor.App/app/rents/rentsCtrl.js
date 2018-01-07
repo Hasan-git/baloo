@@ -231,22 +231,24 @@
 
         //compare rent in & out with car current rent if exists
         car = $scope.cars[$scope.cars.getIndexOfObject('id',$scope.rent.car_id)];
-        if(car && car.currentRent && $scope.rent.dateOut && $scope.rent.dateIn){
+        if(car && car.currentRent && $scope.rent.dateOut && $scope.rent.dateIn){        
 
           // In case of update check if rent id  is not the same of current rent if(thisRent != car.currentRent)
-          if(car.currentRent.id == $scope.rent.id)
-            return;
+          if(car.currentRent.id == $scope.rent.id){
+              return 0;
+          }else{
+              var currentRentDateOut = new Date(car.currentRent.dateOut);
+              var currentRentDateIn = new Date(car.currentRent.dateIn);
+              var dateOut  = new Date($scope.rent.dateOut);
+              var dateIn  = new Date($scope.rent.dateIn);
+              var r = moment(currentRentDateOut).isBetween(dateOut, dateIn, null, '[]') || moment(currentRentDateIn).isBetween(dateOut, dateIn, null, '[]')
 
-            var currentRentDateOut = new Date(car.currentRent.dateOut);
-            var currentRentDateIn = new Date(car.currentRent.dateIn);
-            var dateOut  = new Date($scope.rent.dateOut);
-            var dateIn  = new Date($scope.rent.dateIn);
-            var r = moment(currentRentDateOut).isBetween(dateOut, dateIn, null, '[]') || moment(currentRentDateIn).isBetween(dateOut, dateIn, null, '[]')
-
-            if(r){
-                $scope.form[propertyName].$setValidity('carReserved', false)
-                return ;
-              }
+              if(r){
+                  console.log("Alert..")
+                  $scope.form[propertyName].$setValidity('carReserved', false)
+                  return ;
+                }
+            }
           }
 
         // compare rent in & out with car reservations
@@ -373,6 +375,8 @@
       if(!!newValue && !!$scope.rent.total){
         var value  = ( $scope.rent.total - newValue);
         $scope.rent.dueAmount =  parseInt(value);
+      }else if ( !!$scope.rent.total && newValue == 0){
+        $scope.rent.dueAmount =  parseInt($scope.rent.total);
       }
     };
 
@@ -414,7 +418,7 @@
 
     $scope.save = function(form,print){
       if(!form.$valid){
-          toaster.pop('error', "Notification", "Please, re-checking fields  ", 2000);
+          toaster.pop('error', "Notification", "يوجد خطاء في البيانات المدخلة", 4000);
           angular.forEach($scope.form.$error, function (field) {
               angular.forEach(field, function(errorField){
                 console.log(errorField)

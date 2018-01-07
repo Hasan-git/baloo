@@ -5,6 +5,10 @@
   <div class="sejel"> {{_rent.client.sejel}} </div>
   <div class="dob"> {{ _rent.client.dob }} - {{ _rent.client.birthPlace }} </div>
   <div class="license-id"> {{_rent.client.licenseId}} </div>
+  
+  <div class="license-issue"> {{_rent.client.licenseIssueDate}} </div>
+  <div class="license-expire"> {{_rent.client.licenseExpiryDate}} </div>
+  
   <div class="license-type"> {{_rent.client.licenseType}} </div>
   <div class="address"> {{_rent.client.address}}  </div>
   <div class="mobile">  {{_rent.client.contactNumber}} </div>
@@ -22,110 +26,121 @@
   <div class="km-total"> {{_rent.kmTotal}} </div>
   <div class="employee"> {{_rent.employee}} </div>
   <div class="days"> {{_rent.days}} </div>
-  <div class="_client-name"> {{_rent.client.name}} </div>
+  <!-- <div class="_client-name"> {{_rent.client.name}} </div> -->
 </div>
 
 <style type="text/css">
   body{
-  font-size: 14px;
+  font-size: 15px;
+  font-weight:700;
 }
 .container div{
   position: absolute;
 }
 .client-name{
-  top: 4.8cm;
-  left: 12.5cm;
+  top: 3.8cm;
+  left: 14.2cm;
 }
 .nationality{
-  top: 6.7cm;
+  top: 5.2cm;
   left: 17.2cm;
 }
 .mother-name{
-  top: 6.7cm;
+  top: 5.4cm;
   left: 14cm;
 }
 .sejel{
-  top: 6.7cm;
+  top: 5.4cm;
   left: 11.8cm;
 }
 .dob{
-  top: 8.2cm;
-  left: 11cm;
+  top: 6.8cm;
+  left: 15cm;
 }
 .license-id{
-  top: 9.7cm;
+  top: 8.5cm;
   left: 17.2cm;
 }
 .license-type{
-  top: 9.7cm;
-  left: 10.8cm;
+  top: 8.5cm;
+  left: 9.8cm;
+}
+.license-issue{
+  top: 8.5cm;
+  left: 13.7cm;
+  font-size:13px;
+}
+.license-expire{
+  top: 8.5cm;
+  left: 11.3cm;
+  font-size:13px;
 }
 .address{
-  top: 11.4cm;
-  left: 11cm;
+  top: 9.8cm;
+  left: 15cm;
 }
 .mobile{
-  top: 12.3cm;
-  left: 11.5cm;
+  top: 11.0cm;
+  left: 10.5cm;
 }
 .car-name{
-  top: 4.8cm;
+  top: 3.8cm;
   left: 5.7cm;
 }
 .plate-number{
-  top: 4.8cm;
+  top: 3.8cm;
   left: 1cm;
 }
 .color{
-  top: 6.7cm;
+  top: 5.4cm;
   left: 8cm;
 }
 .model{
-  top: 6.7cm;
+  top: 5.4cm;
   left: 5.7cm;
 }
 .chassis{
-  top: 6.7cm;
+  top: 5.7cm;
   left: 1cm;
 }
 .date-out{
-  top: 8.2cm;
+  top: 7.0cm;
   left: 5.7cm;
 }
 .time-out{
-  top: 8.2cm;
+  top: 7.0cm;
   left: 1cm;
 }
 .date-in{
-  top: 9.7cm;
+  top: 8.5cm;
   left: 5.7cm;
 }
 .time-in{
-  top: 9.7cm;
+  top: 8.5cm;
   left: 1cm;
 }
 .km-out{
-  top: 17.2cm;
+  top: 16.2cm;
   left: 7.5cm;
 }
 .km-in{
-  top: 17.2cm;
+  top: 16.2cm;
   left: 4.5cm;
 }
 .km-total{
-  top: 17.2cm;
+  top: 16.2cm;
   left: 1cm;
 }
 .employee{
-  top: 18.4cm;
+  top: 17.2cm;
   left: 6cm;
 }
 .days{
-  top: 20cm;
+  top: 18.8cm;
   left: 7.5cm;
 }
 ._client-name{
-  top: 28.5cm;
+  top: 25.1cm;
   left: 1.5cm;
 }
 
