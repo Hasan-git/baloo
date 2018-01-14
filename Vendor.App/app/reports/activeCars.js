@@ -98,6 +98,8 @@
                 }
             ]);
 
+
+	  
       vm.dtCarsColumns = [
          DTColumnBuilder.newColumn('date').withTitle('Date'),
          DTColumnBuilder.newColumn('carBrand').withTitle('Brand'),
@@ -107,16 +109,20 @@
          DTColumnBuilder.newColumn('cost').withTitle('Cost'),
          DTColumnBuilder.newColumn('client').withTitle('Client'),
          DTColumnBuilder.newColumn('type').withTitle('Type'),
-         DTColumnBuilder.newColumn('type').withTitle('Alert').renderWith(alertRender),
+         DTColumnBuilder.newColumn('id').withTitle('Alert').renderWith(alertRender),
          DTColumnBuilder.newColumn('clientRentsDueAmount').withTitle('Due Amount/Rents').withClass('none'),
          DTColumnBuilder.newColumn('clientRepairsDueAmount').withTitle('Due Amount/Repairs').withClass('none'),
          // DTColumnBuilder.newColumn('revenueAfterSelling').withTitle('Net Revenue').withClass('none'),
        ];
 
-      function alertRender(data, type, full, meta) {
-        if(full.clientRentsDueAmount >  0 || full.clientRepairsDueAmount >  0 )
-          return '<i class="fa fa-exclamation-circle text-danger"></i>';
-      }
+		function alertRender(data, type, full, meta) {	
+			
+			if( parseInt(full.clientRentsDueAmount) >  0 || parseInt(full.clientRepairsDueAmount) >  0 )
+			  return '<i class="fa fa-exclamation-circle text-danger"></i>';
+		  else
+			  return '<i class="fa fa-check text-success"></i>';
+
+		}
 
        function footerCallback( row, data, start, end, display ) {
 
