@@ -491,6 +491,11 @@
                     <strong>License Expiry Date : </strong>
                     <span >{{viewClient.licenseExpiryDate}}</span>
                 </p>
+                <div ng-repeat="image in viewClient.clientImages.data" class="dr-r" >
+                    <span class="s-image" style="">
+                        <img src="{{image.imageUrl}}" style="height:100px;" onclick="window.open(this.src)" />
+                    </span>
+                </div>
             </div>
             <div class="clearfix"></div>
         </div>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Repair;
 use App\Rent;
+use App\Clients_images;
 use Carbon;
 
 class Client extends Model
@@ -20,6 +21,11 @@ class Client extends Model
   public function repairs()
   {
     return $this->hasMany(Repair::class);
+  }
+
+  public function images()
+  {
+    return $this->hasMany(Clients_images::class);
   }
 
   // Test This Later should act as Getter method

@@ -18,6 +18,35 @@
                     <button class="btn btn-success" ng-click="openNewForm()"><i class="fa fa-plus"></i> New Client</button>
                  </div>
 
+                 <div class="ibox float-e-margins" style="margin:0;" ng-show="showImages" id="imagesContainer">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-camera"></i>  Client Images</h5>
+                        <div></div>
+                    </div>
+                    <div class="ibox-content m-b-sm border-bottom text-left">
+                        <div class="col-sm-3">
+                            <input type="file" nv-file-select="" uploader="m_uploader" multiple  /><br/>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <div ng-repeat="image in clientImages" class="dr-r" >
+                            <span class="s-image" style="">
+                                <i class="fa fa-trash trash" ng-click="deleteImage(image.id,$index)"></i>
+                                <img src="{{image.imageUrl}}" style="height:100px;" onclick="window.open(this.src)" />
+                            </span>
+                            </div>
+                        </div>
+
+
+                    <div class="col-xs-12 m-t-xl text-center">
+                        <button class="btn btn-success btn-w-m" ng-click="showImages=false;clientImages={}">Close</button>
+                    </div>
+                    <div class="clearfix"></div>
+                    </div>
+                </div>
+
+
+
                 <div class="ibox float-e-margins" style="margin:0;" ng-show="showForm" id="formContainer">
                     <div class="ibox-title">
                         <h5><i class="fa fa-files-o"></i>  {{ formTitle || "Client"}}</h5>
@@ -248,6 +277,7 @@
     margin: 0px 0 0 0px;
 }
 
+
 </style>
 
 <script type="text/ng-template" id="deleteClient.html">
@@ -344,6 +374,11 @@
                     <strong>License Expiry Date : </strong>
                     <span >{{viewClient.licenseExpiryDate}}</span>
                 </p>
+                <div ng-repeat="image in viewClient.clientImages.data" class="dr-r" >
+                    <span class="s-image" style="">
+                        <img src="{{image.imageUrl}}" style="height:100px;" onclick="window.open(this.src)" />
+                    </span>
+                </div>
             </div>
             <div class="clearfix"></div>
     </div>

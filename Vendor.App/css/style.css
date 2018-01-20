@@ -6362,3 +6362,18 @@ body.fullscreen-ibox-mode {
 .chosen-drop{
   text-transform: capitalize;
 }
+
+.dr-r{
+    display: inline;
+    margin: 5px;
+    cursor: pointer;
+}
+.s-image{
+    position: relative
+}
+.trash{
+    position: absolute;
+    top: 59px;
+    left: 39px;
+    color: #d20505;
+}

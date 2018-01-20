@@ -2,13 +2,18 @@
 
 namespace App\Http\Transformers\client;
 
+use App\Http\Transformers\client\ClientImagesViewModel;
 use League\Fractal\TransformerAbstract;
 use App\Client as Model;
+use App\ClientsImages;
 use Storage;
-
 
 class ClientViewModel extends TransformerAbstract
 {
+
+    protected $defaultIncludes = [
+        'clientImages'
+    ];
 
     public function transform(Model $model)
     {
@@ -37,6 +42,12 @@ class ClientViewModel extends TransformerAbstract
             'image' => $model->image,
             'imageUrl' => $imageUrl,
         ];
+    }
+
+    public function includeclientImages(Model $model)
+    {   
+        if(!!$model->images)
+        return $this->collection($model->images, new ClientImagesViewModel);
     }
 
 }

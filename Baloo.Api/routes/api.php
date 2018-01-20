@@ -34,7 +34,7 @@ Route::group(['prefix' => 'cars','middleware' => ['auth:api',AppRunner::class]],
   Route::post('/delete/{id}', 'CarsController@delete');
 
 });
-
+// 
 Route::group(['prefix' => 'clients','middleware' => ['auth:api',AppRunner::class]], function() {
 
   Route::get('/get', 'ClientsController@get');
@@ -42,6 +42,9 @@ Route::group(['prefix' => 'clients','middleware' => ['auth:api',AppRunner::class
   Route::post('/post', 'ClientsController@post');
   Route::post('/update', 'ClientsController@update');
   Route::post('/delete/{id}', 'ClientsController@delete');
+  Route::get('/getClientImages/{id}', 'ClientsController@getClientImages');
+  Route::post('/addImage', 'ClientsController@addImage');
+  Route::post('/deleteImage/{id}', 'ClientsController@deleteImage');
 
 });
 

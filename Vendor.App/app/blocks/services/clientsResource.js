@@ -32,6 +32,20 @@
                         id: '@id'
                     }
                 },
+                getClientImages: {
+                    method: 'get',
+                    url: __env.BackendUrl + "/clients/getClientImages/:id",
+                    params: {
+                        id: '@id'
+                    }
+                },
+                deleteClientImage: {
+                    method: 'POST',
+                    url: __env.BackendUrl + "/clients/deleteImage/:id",
+                    params: {
+                        id: '@id'
+                    }
+                },
             })
         }
     };

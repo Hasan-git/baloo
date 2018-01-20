@@ -23,6 +23,42 @@
 
     }
 
+    // Multiple Upload outside the main form
+      var m_uploader = $scope.m_uploader = new FileUploader({
+            url: __env.BackendUrl + '/clients/addImage',
+            queueLimit: 20,
+            alias :"imagefile",
+            autoUpload :true,
+            headers: {
+                'Authorization': 'Bearer ' + session.getAccessToken() // Inject Tokens
+            }
+        });
+          m_uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                if('|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1){
+                  return true;
+                }else{
+                  notify({ message: "Only images are allowed", classes:'alert-danger',duration:4000} )
+                  return false
+                }
+            }
+        });
+
+       m_uploader.onBeforeUploadItem = function(item) {
+            item.formData = [{client_id:$scope.clientIDImages}] ;
+        };
+        m_uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            if(status=== 200){
+              $scope.clientImages.push(response);
+              //toaster.pop('success', "Notification", "Uploaded", 2000);
+            }else{
+              toaster.pop('error', "Notification", "Unable to upload file", 4000);
+            }
+          }
+
+    //Single upload in main form
     var uploader = $scope.uploader = new FileUploader({
             url: __env.BackendUrl + '/clients/post',
             queueLimit: 1,
@@ -155,15 +191,33 @@
                    '<span class="caret"></span>'+
                   '</button>'+
                   '<ul class="dropdown-menu">'+
+                    '<li class="dropdown-item" ><a href="" ng-click="openImages('+ full.id +')" >Images</a></li>'+
                     '<li class="dropdown-item" ><a href="" ng-click="openEditForm('+ full.id +')" >Edit</a></li>'+
                    ' <li class="dropdown-item" ><a href="" ng-click="deleteModal('+ full.id +')">Delete</a></li>'+
                   '</ul>'+
                 '</div>';
         }
 
-        $scope.dtIntanceCallback = function (instance) {
-          $scope.dtInstance = instance;
-         };
+      $scope.dtIntanceCallback = function (instance) {
+        $scope.dtInstance = instance;
+       };
+
+     $scope.openImages = function(id){
+
+        $scope.clientImages = {};
+        $scope.clientIDImages = id;
+        clientsResource.clients.getClientImages({id:id}).$promise.then(function (data) { 
+          var response = JSON.parse(angular.toJson(data)).data
+          $scope.clientImages = response;
+          $scope.showImages = true;
+        })
+      }
+
+     $scope.deleteImage = function(id,$index){
+        clientsResource.clients.deleteClientImage({id:id}).$promise.then(function (data) { 
+          $scope.clientImages.splice($index,1)
+        })
+      }
 
     $scope.openNewForm = function(){
       $scope.cancelForm($scope.form)
@@ -238,6 +292,7 @@
                 toaster.pop('success', "Notification", "Car Updated !", 2000);
                 $scope.dtInstance.reloadData()
                 $scope.cancelForm(form);
+                $scope.openImages(response.id)
              },
              function(err){
                     toaster.pop('error', "Notification", "Unable to Update !", 2000);
@@ -273,6 +328,8 @@
                 toaster.pop('success', "Notification", "New Client Created !", 2000);
                 $scope.dtInstance.reloadData()
                 $scope.cancelForm(form);
+                $scope.openImages(response.id)
+                
            },
            function(err){
               if(err.data.errors)
