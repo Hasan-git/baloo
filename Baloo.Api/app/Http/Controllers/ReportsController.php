@@ -64,6 +64,7 @@ class ReportsController extends Controller
               'plateNumber'=>$car->plateNumber,
               'cost'=> ($record->total ? $record->total : 0),
               'days'=> ( $record->days ? $record->days : 0),
+              'clientId'=> ( $record->client->id),
               'client'=> ( $record->client->name ? $record->client->name : ""),
               'clientRentsDueAmount'=> ($record->client->getTotalDueAmountAttribute()  ),
               'clientRepairsDueAmount'=> ($record->client->getTotalRepairsDueAmountAttribute()  ),
