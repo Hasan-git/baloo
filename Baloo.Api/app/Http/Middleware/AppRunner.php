@@ -32,7 +32,8 @@ class AppRunner
                     $mcontents = Storage::disk('local')->get('avatars/mavatar.txt');
 
                     $decrypted = Crypt::decryptString($mcontents);
-                    if(GetMAC() != $decrypted)
+
+                    if(GetMAC() != $decrypted || !$decrypted)
                        return Response()->json(null, 406);
 
                 }else{

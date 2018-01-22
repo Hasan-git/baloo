@@ -6362,3 +6362,47 @@ body.fullscreen-ibox-mode {
 .chosen-drop{
   text-transform: capitalize;
 }
+
+.dr-r{
+    display: inline;
+    margin: 5px;
+    cursor: pointer;
+}
+.s-image{
+    position: relative
+}
+.trash{
+    position: absolute;
+    top: 59px;
+    left: 39px;
+    color: #d20505;
+}
+
+ .rent-cards{
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        padding: 5px 15px;
+        margin: 15px 15px;
+        font-weight: 700;
+        font-size: 16px;
+    }
+    p{
+        margin-bottom: 5px;
+    }
+    .form-cards .contact-box{
+        padding: 5px;
+        min-height: 138px;
+    }
+    .viewRent .boxed{
+        background-color: #fcfbfb;
+        padding-bottom: 6px;
+        padding-top: 5px!important;
+        border-left: 1px solid #e7eaec;
+        border-right: 1px solid #e7eaec;
+        border-top: none;
+        border-bottom: none;
+    }
+    .viewRent .contact-box{
+        margin-bottom:0;
+
+    }

@@ -3,13 +3,14 @@
         .module('app.reports')
         .controller('activeCars', activeCars);
 
-    activeCars.$inject = ["$scope", "reportsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile"];
-    function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile) {
+    activeCars.$inject = ["$scope", "reportsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile", "$uibModal","rentsResource"];
+    function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile,$uibModal,rentsResource) {
 
       var vm = this;
 
       vm.cars = [];
       vm.dtCarsInstance = {};
+      $scope.viewRent= {};
       vm._search = {};
       vm.brands = [
         'mercedes',
@@ -42,10 +43,27 @@
         'chery'
       ];
 
+
+      $scope.rentModal = function (id) {
+
+        rentsResource.rents.getById({id:id}).$promise.then(function (data) {
+          var rent = JSON.parse(angular.toJson(data));
+        rent.dateOut = new Date(rent.dateOut);
+        rent.dateIn = new Date(rent.dateIn);
+
+        angular.copy(rent,$scope.viewRent);
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'rentModal.html',
+            scope: $scope,
+            size: 'lg',
+        });
+        })
+      }
+
       vm.dtCarsIntanceCallback = function (instance) {
           vm.dtCarsInstance = instance;
        };
-
 
       vm.dtCarsOptions = DTOptionsBuilder
         .fromFnPromise(function () {
@@ -53,6 +71,7 @@
 
         reportsResource.reports.activeCars().$promise.then(function (data) {
           vm.cars = JSON.parse(angular.toJson(data));
+          console.log(vm.cars)
           defer.resolve(JSON.parse(angular.toJson(data)));
         });
 
@@ -98,6 +117,8 @@
                 }
             ]);
 
+
+	  
       vm.dtCarsColumns = [
          DTColumnBuilder.newColumn('date').withTitle('Date'),
          DTColumnBuilder.newColumn('carBrand').withTitle('Brand'),
@@ -106,17 +127,27 @@
          DTColumnBuilder.newColumn('days').withTitle('Days'),
          DTColumnBuilder.newColumn('cost').withTitle('Cost'),
          DTColumnBuilder.newColumn('client').withTitle('Client'),
-         DTColumnBuilder.newColumn('type').withTitle('Type'),
-         DTColumnBuilder.newColumn('type').withTitle('Alert').renderWith(alertRender),
+         DTColumnBuilder.newColumn('type').renderWith(typeRender),
+         DTColumnBuilder.newColumn('id').withTitle('Alert').renderWith(alertRender),
          DTColumnBuilder.newColumn('clientRentsDueAmount').withTitle('Due Amount/Rents').withClass('none'),
          DTColumnBuilder.newColumn('clientRepairsDueAmount').withTitle('Due Amount/Repairs').withClass('none'),
          // DTColumnBuilder.newColumn('revenueAfterSelling').withTitle('Net Revenue').withClass('none'),
        ];
 
-      function alertRender(data, type, full, meta) {
-        if(full.clientRentsDueAmount >  0 || full.clientRepairsDueAmount >  0 )
-          return '<i class="fa fa-exclamation-circle text-danger"></i>';
-      }
+		function alertRender(data, type, full, meta) {	
+			
+			if( parseInt(full.clientRentsDueAmount) >  0 || parseInt(full.clientRepairsDueAmount) >  0 )
+			  return '<i class="fa fa-exclamation-circle text-danger"></i>';
+		  else
+			  return '<i class="fa fa-check text-success"></i>';
+		}
+
+    function typeRender(data, type, full, meta) {  
+      if(data== "rent")
+        return '<span class="pointer" ng-click="rentModal('+full.id+')"> Rent </span>';
+      else
+        return '<span> Repair </span>';
+    }
 
        function footerCallback( row, data, start, end, display ) {
 
@@ -167,13 +198,6 @@
 
                 vm.currentDays = currentDays
                 vm.currentCost = currentCost
-
-                // $('#days').text(currentDays);
-                // $('#cost').text(currentCost);
-
-            
-
-            // console.log(total,pageTotal)
         }
 
     function initComplete(settings, json) {
