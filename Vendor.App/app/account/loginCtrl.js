@@ -5,7 +5,9 @@
     Login.$inject = ["$scope", "$log", "$state", "logger", "auth", "Idle", "toaster"];
     function Login($scope, $log, $state, logger, auth, Idle, toaster) {
 
-        $scope.credentials = {};
+        $scope.credentials = {
+			userName:"admin@email.com"
+		};
         $scope.currentDate = new Date();
 
         $scope.login = function () {

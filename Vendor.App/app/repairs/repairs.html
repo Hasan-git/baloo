@@ -34,19 +34,19 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="problem">Problem</label>
+                                        <label class="control-label" for="problem">Problem المشكلة</label>
                                         <input type="text" id="problem" name="problem" value="" placeholder="Problem..." class="form-control" ng-model="repair.problem" enter>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="garage">Garage</label>
+                                        <label class="control-label" for="garage">Garage كاراج</label>
                                         <input type="text" id="garage" name="garage" value="" placeholder="Garage..." class="form-control" ng-model="repair.garage" enter>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="cost">Cost</label>
+                                        <label class="control-label" for="cost">Cost التكلفة</label>
                                         <input type="number" id="cost" name="cost" value="" placeholder="Cost..." class="form-control" ng-model="repair.cost" enter>
                                     </div>
                                 </div>
@@ -54,21 +54,21 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="date">Date</label>
+                                        <label class="control-label" for="date">Date التاريخ</label>
                                         <input type="date" id="date" name="date" class="form-control" ng-model="repair.date" enter>
                                         <!-- <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="date" name="date" value="" placeholder="Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.date" enter> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="completionDate">Finish Date</label>
+                                        <label class="control-label" for="completionDate">Finish Date تاريخ الإنتهاء</label>
                                         <input type="date" id="completionDate" name="completionDate" class="form-control" ng-model="repair.completionDate" enter>
                                         <!-- <input date-time format="yyyy-MM-dd" min-view="date" type="text" id="completionDate" name="completionDate" value="" placeholder="Finish Date..." data-mask="9999-99-99" class="form-control" ng-model="repair.completionDate" enter> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="company">Company</label>
+                                        <label class="control-label" for="company">Company الشركة</label>
                                         <input type="text" id="company" name="company" value="" placeholder="Company..." class="form-control" ng-model="repair.company" enter>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="clientTotalCost">Client Total Cost</label>
+                                        <label class="control-label" for="clientTotalCost">Client Total Cost المبلغ المتوجب على الزبون</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                                <input type="number" min="0" id="clientTotalCost" name="clientTotalCost" value="" placeholder="Total Cost On Client.." class="form-control" ng-model="repair.clientTotalCost" enter>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="clientPayment">Client Payment</label>
+                                        <label class="control-label" for="clientPayment">Client Payment دفعة الزبون</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                                <input type="number" min="0" id="clientPayment" name="clientPayment" value="" placeholder="Client Paid.." class="form-control" ng-model="repair.clientPayment" ng-blur="blurClientPayment(repair.clientPayment)" enter>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="clientDueAmount">Client Due Amount</label>
+                                        <label class="control-label" for="clientDueAmount">Client Due Amount المتبقي على الزبون</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                                <input type="number" min="0" id="clientDueAmount" name="clientDueAmount" value="" placeholder="Client Due Amount.." class="form-control" ng-model="repair.clientDueAmount" enter/>
@@ -111,7 +111,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="control-label" for="client_id">Client</label>
+                                        <label class="control-label" for="client_id">Client الزبون</label>
                                         <select
                                                  chosen
                                                  id="client_id"
@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group" >
-                                        <label class="">Is Finished?</label>
+                                        <label class="">Is Finished? منتهية؟</label>
                                         <div style="width:150px">
                                             <div toggle-switch class="switch-success switch-bg switch-mini m-b-sm btn-block" html="true" knob-label="Finished" on-label='YES' off-label='NO' ng-model="repair.isFinished"></div>
                                         </div>

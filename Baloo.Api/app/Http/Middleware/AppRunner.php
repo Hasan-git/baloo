@@ -28,25 +28,20 @@ class AppRunner
         }
 
             try {
-                if(Storage::disk('local')->exists('avatars/mavatar.txt')){
-                    $mcontents = Storage::disk('local')->get('avatars/mavatar.txt');
+                    // SET
+                    $mcontents = "";
 
                     $decrypted = Crypt::decryptString($mcontents);
 
                     if(GetMAC() != $decrypted || !$decrypted)
                        return Response()->json(null, 406);
 
-                }else{
-                    // take action and stop server
-                    return Response()->json(null, 406);
-                }
-
-                if(Carbon::parse('2018-12-15 22:23:00.123456') <= Carbon::now() ){
+                if(Carbon::parse('2018-01-30 22:23:00.123456') <= Carbon::now() ){
                        return Response()->json(null, 406);
                 }
 
             } catch (DecryptException $e) {
-                $mcontents = Storage::disk('local')->get('avatars/mavatar.txt');
+                //$mcontents = Storage::disk('local')->get('avatars/mavatar.txt');
                 //$encryptString = Crypt::encryptString(GetMAC());
                 // echo $encryptString ;
                 //return Response()->json(null, 406);

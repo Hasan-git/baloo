@@ -57,31 +57,31 @@
                             <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
-                                            <label class="control-label" for="name">Name</label>
+                                            <label class="control-label" for="name">Name الإسم</label>
                                             <input type="text" id="name" name="name" value="" placeholder="Client name.." required class="form-control" ng-model="client.name" >
                                             <span ng-show="form.name.$dirty && form.name.$invalid"
                                                       class="color-red">
-                                                <span class="message" ng-show="form.name.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.name.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.mother.$invalid && form.mother.$dirty}">
-                                            <label class="control-label" for="mother">Mother Name</label>
+                                            <label class="control-label" for="mother">Mother Name إسم الأم</label>
                                             <input type="text" id="mother" name="mother" value="" placeholder="Mother Name.." class="form-control" ng-model="client.mother" required />
                                             <span ng-show="form.mother.$dirty && form.mother.$invalid"
                                                       class="color-red">
-                                                <span class="message" ng-show="form.mother.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.mother.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.father.$invalid && form.father.$dirty}">
-                                            <label class="control-label" for="father">Father Name</label>
+                                            <label class="control-label" for="father">Father Name إسم الأب</label>
                                             <input type="text" id="father" name="father" value="" placeholder="Father Name.." class="form-control" ng-model="client.father" required />
                                             <span ng-show="form.father.$dirty && form.father.$invalid"
                                                       class="color-red">
-                                                <span class="message" ng-show="form.father.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.father.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
@@ -89,17 +89,17 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.birthPlace.$invalid && form.birthPlace.$dirty}">
-                                            <label class="control-label" for="birthPlace">Birth Place</label>
+                                            <label class="control-label" for="birthPlace">Birth Place محل الولادة</label>
                                             <input type="text" id="birthPlace" name="birthPlace" value="" placeholder="Birth Place.." class="form-control" ng-model="client.birthPlace" />
                                             <span ng-show="form.birthPlace.$dirty && form.birthPlace.$invalid"
                                                       class="color-red">
-                                                <span class="message" ng-show="form.father.$birthPlace.required">This field is required.</span>
+                                                <span class="message" ng-show="form.father.$birthPlace.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="dob">Birth Date</label>
+                                        <label class="control-label" for="dob">Birth Date تاريخ الولادة</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                                <!-- <input date-time format="yyyy-MM-dd" min-view="date" type="date" id="dob" name="dob" value="" placeholder="Date..." class="form-control" ng-model="client.dob"  /> -->
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="nationality">Nationality</label>
+                                        <label class="control-label" for="nationality">Nationality الجنسية</label>
                                         <input type="text" id="nationality" name="nationality" class="form-control" placeholder="Nationality.." ng-model="client.nationality">
                                     </div>
                                 </div>
@@ -119,24 +119,24 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="sejel">ID Record</label>
+                                        <label class="control-label" for="sejel">ID Record رقم الهوية</label>
                                         <input type="text" id="sejel" name="sejel" class="form-control" placeholder="ID Record.." ng-model="client.sejel">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="licenseId">License ID</label>
+                                        <label class="control-label" for="licenseId">License ID رقم الرخصة</label>
                                         <input type="text" id="licenseId" name="licenseId" value="" placeholder="License ID.." class="form-control" ng-model="client.licenseId">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="licenseType">License Type</label>
+                                        <label class="control-label" for="licenseType">License Type نوع الرخصة</label>
                                         <select id="licenseType" name="licenseType" value="" placeholder="License Type.." class="form-control" ng-model="client.licenseType">
                                             <option value=""> -- Choose Option -- </option>
-                                            <option value="public">Public</option>
-                                            <option value="private">Private</option>
-                                            <option value="international">International</option>
+                                            <option value="public">Public عمومي</option>
+                                            <option value="private">Private خاص</option>
+                                            <option value="international">International دولي</option>
                                         </select>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="licenseIssueDate">License Issue Date</label>
+                                        <label class="control-label" for="licenseIssueDate">License Issue Date تاريخ الرخصة</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                             <input type="date" id="licenseIssueDate" name="licenseIssueDate"class="form-control" ng-model="client.licenseIssueDate">
@@ -156,7 +156,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="licenseExpiryDate">License Expiry Date</label>
+                                        <label class="control-label" for="licenseExpiryDate">License Expiry Date تاريخ إنتهاء الرخصة</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                                 <input type="date" id="licenseExpiryDate" name="licenseExpiryDate" class="form-control" ng-model="client.licenseExpiryDate">
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="address">Address</label>
+                                        <label class="control-label" for="address">Address العنوان</label>
                                         <textarea class="form-control" name="address" rows="1" id="address" ng-model="client.address" placeholder="Address..">
                                         </textarea>
                                     </div>
@@ -179,13 +179,13 @@
                             <div class="row">
                                <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="contactNumber">Contact Number</label>
+                                        <label class="control-label" for="contactNumber">Contact Number رقم الهاتف</label>
                                         <input type="text" id="contactNumber" name="contactNumber" value="" placeholder="Contact Number." class="form-control" ng-model="client.contactNumber">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="emergencyContact">Emergency Contact Number</label>
+                                        <label class="control-label" for="emergencyContact">Emergency Contact Number رقم طوارئ</label>
                                         <input type="text" id="emergencyContact" name="emergencyContact" value="" placeholder="Emergency Contact Number.." class="form-control" ng-model="client.emergencyContact">
                                     </div>
                                 </div>
@@ -286,6 +286,7 @@
     </div>
     <div class="modal-body">
         <div>Are you sure to delete this Client ?</div>
+		<div>ها أنت متأكد من الحذف؟</div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="yes()">Yes</button>

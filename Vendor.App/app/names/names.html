@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
-                                        <label class="control-label" for="brand">Brand</label>
+                                        <label class="control-label" for="brand">Brand الماركة</label>
                                         <select
                                          chosen
                                          id="brand"
@@ -42,13 +42,13 @@
                                             </select>
                                         <span ng-show="form.brand.$dirty && form.brand.$invalid"
                                                   class="color-red">
-                                            <span class="message" ng-show="form.brand.$error.required">This field is required.</span>
+                                            <span class="message" ng-show="form.brand.$error.required">خانة إجبارية.</span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="status">Car Name</label>
+                                        <label class="control-label" for="status">Car Name الإسم</label>
                                         <input type="text" id="name" name="name" value="" placeholder="Car Name..." class="form-control" ng-model="name.name">
                                     </div>
                                 </div>

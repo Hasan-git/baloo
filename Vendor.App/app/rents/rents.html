@@ -123,7 +123,7 @@
                                 <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group" ng-class="{'has-error':form.car_id.$invalid && form.car_id.$dirty}">
-                                                <label class="control-label" for="name">Car</label>
+                                                <label class="control-label" for="name">Car السيارة</label>
                                                 <select
 
                                                  chosen
@@ -138,13 +138,13 @@
                                                     </select>
                                                 <span ng-show="form.car_id.$dirty && form.car_id.$invalid"
                                                           class="color-red">
-                                                    <span class="message" ng-show="form.car_id.$error.required">This field is required.</span>
+                                                    <span class="message" ng-show="form.car_id.$error.required">خانة إجبارية.</span>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group" >
-                                                <label class="control-label" for="client_id">Client</label>
+                                                <label class="control-label" for="client_id">Client الزبون</label>
                                                 <select
                                                  chosen
                                                   ng-change="alert('as')"
@@ -180,36 +180,36 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.dateOut.$invalid && form.dateOut.$dirty}" >
-                                            <label class="control-label" for="dateOut">Date Out</label>
+                                            <label class="control-label" for="dateOut">Date Out تاريخ التأجير</label>
                                             <input date-time timezone="UTC" format="yyyy-MM-dd hh:mm  a" min-view="minutes" type="text" id="dateOut" name="dateOut" value="" placeholder="Date Out..." data-mask="9999-99-99 99:99 aa" class="form-control" ng-model="rent.dateOut" required enter/>
 
                                             <span ng-show="form.dateOut.$dirty && form.dateOut.$invalid"
                                                           class="color-red">
-                                                <span class="message" ng-show="form.dateOut.$error.required">This field is required.</span>
-                                                <span class="message" ng-show="form.dateOut.$error.carReserved">Car reserved or rented in this date.</span>
+                                                <span class="message" ng-show="form.dateOut.$error.required">خانة إجبارية.</span>
+                                                <span class="message" ng-show="form.dateOut.$error.carReserved">السيارة محجوزة في هذا التاريخ</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.days.$invalid && form.days.$dirty}">
-                                            <label class="control-label" for="days">Days</label>
+                                            <label class="control-label" for="days">Days الأيام</label>
                                             <input type="number" min="0" id="days" name="days" placeholder="Number Of Rent Days..." class="form-control" ng-model="rent.days" ng-blur="blurDays(rent.days)" required enter/>
 
                                             <span ng-show="form.days.$dirty && form.days.$invalid"
                                                           class="color-red">
-                                                <span class="message" ng-show="form.days.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.days.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.dateIn.$invalid && form.dateIn.$dirty}">
-                                            <label class="control-label" for="dateIn">Date In</label>
+                                            <label class="control-label" for="dateIn">Date In تاريخ العودة</label>
                                             <input date-time timezone="UTC" format="yyyy-MM-dd hh:mm a" min-view="minutes" type="text" id="dateIn" name="dateIn" value="" placeholder="Date In..." data-mask="9999-99-99 99:99 aa" class="form-control" ng-model="rent.dateIn" required enter date-after="{{rent.dateOut}}" />
                                             <span ng-show="form.dateIn.$dirty && form.dateIn.$invalid"
                                                           class="color-red">
-                                                <span class="message" ng-show="form.dateIn.$error.required">This field is required.</span>
-                                                <span class="message" ng-show="form.dateIn.$error.dateAfter">Date must be after date Out.</span>
-                                                <span class="message" ng-show="form.dateIn.$error.carReserved">Car reserved or rented in this date.</span>
+                                                <span class="message" ng-show="form.dateIn.$error.required">خانة إجبارية.</span>
+                                                <span class="message" ng-show="form.dateIn.$error.dateAfter">التاريخ يجب أن يكون بعد تاريخ التأجير</span>
+                                                <span class="message" ng-show="form.dateIn.$error.carReserved">السيارة محجوزة في هذا التاريخ</span>
                                             </span>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                 <div class="row m-b-sm" style="background-color: #f2f2f2;padding-top: 10px;">
                                     <div class="col-sm-3">
                                         <div class="form-group input-group" ng-class="{'has-error':form.costPerDay.$invalid && form.costPerDay.$dirty}" style="display: block;">
-                                            <label class="control-label" for="costPerDay">Cost Per Day</label>
+                                            <label class="control-label" for="costPerDay">Cost Per Day تكلفة اليوم</label>
                                             <span style="display: inline-table;">
                                                 <input type="number" min="0" id="costPerDay" name="costPerDay" placeholder="Cost Per Day..." class="form-control"  ng-model="rent.costPerDay" ng-blur="blurDailyCost(rent.costPerDay)" required enter/>
                                                 <span class="input-group-addon">
@@ -226,13 +226,13 @@
                                             </span>
                                             <span ng-show="form.costPerDay.$dirty && form.costPerDay.$invalid"
                                                           class="color-red">
-                                                <span class="message" ng-show="form.costPerDay.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.costPerDay.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group input-group" ng-class="{'has-error':form.total.$invalid && form.total.$dirty}" style="display: block;">
-                                            <label class="control-label" for="total">Total</label>
+                                            <label class="control-label" for="total">Total المجموع</label>
                                             <span style="display: inline-table;">
                                                 <input type="number" min="0" id="total" name="total" placeholder="Total Rent Payment..." class="form-control" ng-model="rent.total" ng-blur="blurTotal(rent.total)" required enter/>
                                                 <span class="input-group-addon">
@@ -241,13 +241,13 @@
                                             </span>
                                             <span ng-show="form.total.$dirty && form.total.$invalid"
                                                           class="color-red">
-                                                <span class="message" ng-show="form.total.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.total.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group input-group" style="display: block;">
-                                            <label class="control-label" for="cash">Cash</label>
+                                            <label class="control-label" for="cash">Cash نقدي</label>
                                             <span style="display: inline-table;">
                                                 <input type="number" min="0" id="cash" name="cash" placeholder="Cash..." class="form-control" ng-model="rent.cash" ng-blur="blurCash(rent.cash)" enter/>
                                                 <span class="input-group-addon">
@@ -258,7 +258,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group input-group" style="display: block;">
-                                            <label class="control-label" for="due">Due Amount</label>
+                                            <label class="control-label" for="due">Due Amount الباقي</label>
                                             <span style="display: inline-table;">
                                                 <input type="number" min="0" id="due" name="due" placeholder="Due Amount..." class="form-control" ng-model="rent.dueAmount" enter/>
                                                 <span class="input-group-addon">
@@ -271,19 +271,19 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="deposit">Deposit</label>
+                                            <label class="control-label" for="deposit">Deposit تأمين</label>
                                             <input type="number" id="deposit" min="0" name="deposit" placeholder="Deposit Payment..." class="form-control" ng-model="rent.deposit" enter/>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="employee">Employee</label>
+                                            <label class="control-label" for="employee">Employee الموظف</label>
                                             <input type="text" id="employee" name="employee" placeholder="Employee..." class="form-control" ng-model="rent.employee" enter  />
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="notes">Note</label>
+                                            <label class="control-label" for="notes">Note ملاحظات</label>
                                             <textarea  rows="1" id="note" name="note" placeholder="Note..." class="form-control" ng-model="rent.note" enter>
 
                                             </textarea>
@@ -293,24 +293,24 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="kmOut">Km Out</label>
+                                            <label class="control-label" for="kmOut">Km Out كلم</label>
                                             <input type="number" min="0" id="kmOut" name="kmOut" placeholder="Km On Giving..." class="form-control" ng-model="rent.kmOut" enter  />
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group"
                                          ng-class="{'has-error':form.kmIn.$invalid && form.kmIn.$dirty}">
-                                            <label class="control-label" for="kmIn">Km In</label>
+                                            <label class="control-label" for="kmIn">Km In كلم عند العودة</label>
                                             <input type="number" min="0" id="kmIn" name="kmIn" placeholder="Km On Deliver..." class="form-control" ng-model="rent.kmIn" ng-blur="blurKmIn(rent.kmIn)" enter int-greater="{{rent.kmOut}}"/>
                                             <span ng-show="form.kmIn.$dirty && form.kmIn.$invalid"
                                                           class="color-red">
-                                                <span class="message" ng-show="form.kmIn.$error.intGreater">Km In must be greater than Km out.</span>
+                                                <span class="message" ng-show="form.kmIn.$error.intGreater">كلم العودة يجب أن يكون أكبر من كلم الخروج</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="kmTotal">Km Total</label>
+                                            <label class="control-label" for="kmTotal">Km Total عدد الكلم</label>
                                             <input type="number" min="0" id="kmTotal" name="kmTotal" placeholder="Km Total..." class="form-control" ng-model="rent.kmTotal" enter />
                                         </div>
                                     </div>
@@ -318,13 +318,13 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="secondDriverName">Second Driver Name</label>
+                                            <label class="control-label" for="secondDriverName">Second Driver Name سائق إضافي</label>
                                             <input type="text" id="secondDriverName" name="secondDriverName" placeholder="Second Driver Name.." class="form-control" ng-model="rent.secondDriverName" enter  />
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="control-label" for="secondDriverLicenseId">Second Drive License ID</label>
+                                            <label class="control-label" for="secondDriverLicenseId">Second Drive License ID رقم رخصة السائق الإضافي</label>
                                             <input type="text" id="secondDriverLicenseId" name="secondDriverLicenseId" placeholder="Second Drive License ID.." class="form-control" ng-model="rent.secondDriverLicenseId" enter  />
                                         </div>
                                     </div>
@@ -404,6 +404,10 @@
             Please, check the car repairs situation.<br/>
             Therefore, this contract should be assigned in distant date to avoid conflicts.<br/>
             Are you sure you want assign this car with this contract ?
+         </div>
+		 <div>
+            السيارة صيانة غير منتهية الرجاء تفقدها<br/>
+            هل أنت متأكد من الإستمرار؟
          </div>
     </div>
     <div class="modal-footer">

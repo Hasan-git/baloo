@@ -28,7 +28,7 @@
                             <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
-                                            <label class="control-label" for="name">Car name</label>
+                                            <label class="control-label" for="name">Car name إسم اليارة</label>
                                             <!-- <input type="text" id="name" name="name" value="" placeholder="Car name.." required class="form-control" ng-model="car.name" > -->
                                             <select
                                              chosen
@@ -43,27 +43,27 @@
                                                 </select>
                                             <span ng-show="form.name.$dirty && form.name.$invalid"
                                                       class="color-red">
-                                                <span class="message" ng-show="form.name.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.name.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.model.$invalid && form.model.$dirty}">
-                                            <label class="control-label" for="model">Model</label>
+                                            <label class="control-label" for="model">Model موديل</label>
                                             <input type="text" id="model" name="model" value="" placeholder="Model.." class="form-control" ng-model="car.model" required>
                                             <span ng-show="form.model.$dirty && form.model.$invalid"
                                                       class="color-red">
-                                                <span class="message" ng-show="form.model.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.model.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group" ng-class="{'has-error':form.plateNumber.$invalid && form.plateNumber.$dirty}">
-                                            <label class="control-label" for="plateNumber">Plate Number</label>
+                                            <label class="control-label" for="plateNumber">Plate Number رقم اللوحة</label>
                                             <input type="text" id="plateNumber" name="plateNumber" value="" placeholder="Plate Number.." class="form-control" ng-model="car.plateNumber">
                                             <span ng-show="form.plateNumber.$dirty && form.plateNumber.$invalid"
                                                       class="color-red">
-                                                <span class="message" ng-show="form.plateNumber.$error.required">This field is required.</span>
+                                                <span class="message" ng-show="form.plateNumber.$error.required">خانة إجبارية.</span>
                                             </span>
                                         </div>
                                     </div>
@@ -71,30 +71,30 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="amount">Type</label>
+                                        <label class="control-label" for="amount">Type النوع</label>
                                         <!-- <input type="text" id="type" name="type" class="form-control" placeholder="Type" ng-model="car.type"> -->
                                         <select type="text" id="type" name="type" class="form-control" placeholder="Type" ng-model="car.type">
-                                            <option value="sport" >Sport</option>
-                                            <option value="commerce">Commerce</option>
-                                            <option value="wedding">Wedding</option>
-                                            <option value="range">Range</option>
+                                            <option value="sport" >Sport رياضية</option>
+                                            <option value="commerce">Commerce إقتصادية</option>
+                                            <option value="wedding">Wedding أعراس</option>
+                                            <option value="range">Range رانج</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="chassisNumber">Chassis Number</label>
+                                        <label class="control-label" for="chassisNumber">Chassis Number رقم شيسي</label>
                                         <input type="text" id="chassisNumber" name="chassisNumber" value="" placeholder="Chassis Number.." class="form-control" ng-model="car.chassisNumber">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="status">Current status</label>
+                                        <label class="control-label" for="status">Current status الوضع الحالي</label>
                                         <!-- <input type="text" id="status" name="status" class="form-control" placeholder="status" ng-model="car.status"> -->
                                         <select type="text" id="status" name="status" class="form-control" placeholder="Type" ng-model="car.status">
-                                            <option value="available" selected="selected">Available</option>
-                                            <option value="notavailable">Not Available</option>
-                                            <option value="reserved">Reserved</option>
+                                            <option value="available" selected="selected">Available متوفرة</option>
+                                            <option value="notavailable">Not Available غير متوفرة</option>
+                                            <option value="reserved">Reserved محجوزة</option>
                                         </select>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="officialMechanic">Official Mechanic</label>
+                                        <label class="control-label" for="officialMechanic">Official Mechanic تاريخ الميكانيك</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                             <input type="date" id="officialMechanic" name="officialMechanic" class="form-control" ng-model="car.officialMechanic" />
@@ -114,13 +114,13 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="color">Color</label>
+                                        <label class="control-label" for="color">Color اللون</label>
                                         <input type="text" id="color" name="color" value="" placeholder="Color.." class="form-control" ng-model="car.color">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="notes">Notes</label>
+                                        <label class="control-label" for="notes">Notes ملاحظات</label>
                                         <textarea id="notes" name="notes" value="" placeholder="Notes.." rows="1" class="form-control" ng-model="car.notes">
                                         </textarea>
                                     </div>
@@ -130,7 +130,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="purchasingDate">Purchasing Date</label>
+                                        <label class="control-label" for="purchasingDate">Purchasing Date تاريخ الشراء</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                              <input type="date" id="purchasingDate" name="purchasingDate" class="form-control" ng-model="car.purchasingDate" />
@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="purchasingPrice">Purchasing Price</label>
+                                        <label class="control-label" for="purchasingPrice">Purchasing Price سعر الشراء</label>
                                         <div class="controls">
                                             <div class="input-group col-xs-12">
                                                <input type="number" id="purchasingPrice" min="0" name="purchasingPrice" value="" placeholder="Purchasing Price..." class="form-control" ng-model="car.purchasingPrice" >
@@ -242,6 +242,7 @@
     </div>
     <div class="modal-body">
         <div>Are you sure to delete this Car Name ?</div>
+        <div>هل أنت متكد من الحذف؟</div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="yes()">Yes</button>
@@ -260,7 +261,7 @@
              <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="control-label" for="sellingDate">Selling Date</label>
+                        <label class="control-label" for="sellingDate">Selling Date تاريخ البيع</label>
                         <div class="controls">
                             <div class="input-group col-xs-12">
                                <input  type="date" id="sellingDate" name="sellingDate" value="" placeholder="Selling Date..." class="form-control" ng-model="soldCar.sellingDate" />
@@ -271,7 +272,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="control-label" for="sellingPrice">Selling Price</label>
+                        <label class="control-label" for="sellingPrice">Selling Price سعر البيع</label>
                         <div class="controls">
                             <div class="input-group col-xs-12">
                                <input type="number" min="0" id="sellingPrice" name="sellingPrice" value="" placeholder="Selling Price..." class="form-control" ng-model="soldCar.sellingPrice" />
