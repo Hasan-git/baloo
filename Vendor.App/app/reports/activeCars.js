@@ -3,14 +3,15 @@
         .module('app.reports')
         .controller('activeCars', activeCars);
 
-    activeCars.$inject = ["$scope", "reportsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile", "$uibModal","rentsResource"];
-    function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile,$uibModal,rentsResource) {
+    activeCars.$inject = ["$scope", "reportsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile", "$uibModal","rentsResource", "repairsResource"];
+    function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile,$uibModal,rentsResource, repairsResource) {
 
       var vm = this;
 
       vm.cars = [];
       vm.dtCarsInstance = {};
       $scope.viewRent= {};
+      $scope.viewRepair= {};
       vm._search = {};
       vm.brands = [
         'mercedes',
@@ -55,6 +56,24 @@
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'rentModal.html',
+            scope: $scope,
+            size: 'lg',
+        });
+        })
+      }
+
+      $scope.repairModal = function (id) {
+
+        repairsResource.repairs.getRepair({id:id}).$promise.then(function (data) {
+          var repair = JSON.parse(angular.toJson(data));
+          console.log(repair)
+        repair.completionDate = new Date(repair.completionDate);
+        repair.date = new Date(repair.date);
+
+        angular.copy(repair,$scope.viewRepair);
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'repairModal.html',
             scope: $scope,
             size: 'lg',
         });
@@ -146,7 +165,7 @@
       if(data== "rent")
         return '<span class="pointer" ng-click="rentModal('+full.id+')"> Rent </span>';
       else
-        return '<span> Repair </span>';
+        return '<span class="pointer" ng-click="repairModal('+full.id+')"> Repair </span>';
     }
 
        function footerCallback( row, data, start, end, display ) {

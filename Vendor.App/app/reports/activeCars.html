@@ -334,15 +334,212 @@
                     </div>
                  </div>
             </div>
-            <div class="row m-b-md" ng-show="viewRent.note">
+            <div class="row m-b-md" >
                 <div class="col-sm-3">
                     <div class="col-xs-12 boxed">
                         <label class="control-label">Note</label>
                         <div>
-                            {{viewRent.note}}
+                            {{viewRent.notes}}
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</script>
+
+<!-- Rent Modal View-->
+<script type="text/ng-template" id="repairModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Rent !</h3>
+    </div>
+    <div class="modal-body">
+        <div class="viewRent">
+            <div class="row m-b-md">
+                <div class="col-sm-4" ng-show="!!viewRepair">
+                    <div class="contact-box text-capitalize" style="padding: 5px;min-height: 107px;" >
+                        <div class="col-sm-4 p-xxs ">
+                            <div class="text-center">
+                                <img alt="image" class="img-rounded m-t-xs img-responsive pointer" ng-src="{{viewRepair.imageUrl || 'img/default.jpg' }}" onclick="window.open(this.src)"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="font-size: 11px;font-family: serif;">
+                            <h3><strong class=" pointer" >{{viewRepair.car.name}}</strong></h3>
+
+                            <p class="text-capitalize" ng-show="viewRepair.car.plateNumber">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <span >{{viewRepair.car.plateNumber}}</span>
+                            </p>
+                            <p class="text-capitalize">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i> {{viewRepair.car.type}}
+                                <span ng-show="viewRepair.car.model">/ {{viewRepair.car.model}}</span>
+                                <span ng-show="viewRepair.car.color">/ {{viewRepair.car.color}}</span>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4" ng-show="!!viewRepair.client">
+                    <div class="contact-box text-capitalize" style="padding: 5px;min-height: 107px;" >
+                        <div class="col-sm-4 p-xxs ">
+                            <div class="text-center">
+                                <img alt="image" class="m-t-xs img-rounded img-responsive pointer" ng-src="{{viewRepair.client.imageUrl || 'img/user-default.jpg' }}" onclick="window.open(this.src)" />
+
+                                <div class="m-t-xxs" style="font-size:11px;">{{viewRepair.client.dob | date :  "mediumDate"}}</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="font-size: 11px;font-family: serif;">
+                            <h3><strong class=" pointer" >{{viewRepair.client.name}}</strong></h3>
+
+                            <p class="" ng-show="viewRepair.client.father">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Father : </strong>
+                                <span >{{viewRepair.client.father}}</span>
+                            </p>
+
+                            <p class="" ng-show="viewRepair.client.contactNumber">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Contact : </strong>
+                                <span >{{viewRepair.client.contactNumber}}</span>
+                            </p>
+                            <p class="" ng-show="viewRepair.client.totalDueAmount" >
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Due Amount : </strong>
+                                <span ng-class="{'badge-danger badge':viewRepair.client.totalDueAmount}">
+                                {{viewRepair.client.totalDueAmount}}
+                                    <i class="fa fa-dollar"></i></span>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4" ng-show="!!viewRepair.secondaryClient">
+                    <div class="contact-box text-capitalize" style="padding: 5px;min-height: 107px;" >
+                        <div class="col-sm-4 p-xxs ">
+                            <div class="text-center">
+                                <img alt="image" class="m-t-xs img-rounded img-responsive pointer" ng-src="{{viewRepair.secondaryClient.imageUrl || 'img/user-default.jpg' }}" onclick="window.open(this.src)" />
+
+                                <div class="m-t-xxs" style="font-size:11px;">{{viewRepair.secondaryClient.dob | date :  "mediumDate"}}</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8" style="font-size: 11px;font-family: serif;">
+                            <h3><strong class=" pointer" >{{viewRepair.secondaryClient.name}}</strong></h3>
+
+                            <p class="" ng-show="viewRepair.secondaryClient.father">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Father : </strong>
+                                <span >{{viewRepair.secondaryClient.father}}</span>
+                            </p>
+
+                            <p class="" ng-show="viewRepair.secondaryClient.contactNumber">
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Contact : </strong>
+                                <span >{{viewRepair.secondaryClient.contactNumber}}</span>
+                            </p>
+                            <p class="" ng-show="viewRepair.secondaryClient.totalDueAmount" >
+                            <i class="glyphicon glyphicon-chevron-right text-info" style="font-size:9px;"></i>
+                                <strong>Due Amount : </strong>
+                                <span ng-class="{'badge-danger badge':viewRepair.secondaryClient.totalDueAmount}">
+                                {{viewRepair.secondaryClient.totalDueAmount}}
+                                    <i class="fa fa-dollar"></i></span>
+                            </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-b-md">
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Date</label>
+                        <div>{{viewRepair.date | date: 'MMM d, y - h a' }}</div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">problem</label>
+                        <div>{{viewRepair.problem}}</div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Finish Date</label>
+                        <div>{{viewRepair.completionDate | date: 'MMM d, y - h a'}}</div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">cost</label>
+                        <div>
+                            <span ng-show="viewRepair.cost"><i class="fa fa-dollar"></i> </span>
+                            {{viewRepair.cost}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-b-md"> 
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <div>
+                           <img alt="image" class="m-t-xs img-rounded img-responsive pointer" ng-src="{{viewRepair.imageUrl || 'img/user-default.jpg' }}" onclick="window.open(this.src)" style="height: 45px;"/>
+                        </div>
+                    </div>
+                </div>               
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Company</label>
+                        <div>
+                            {{viewRepair.company}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Garage</label>
+                        <div>
+                            {{viewRepair.garage}}
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">isFinished</label>
+                        <div>
+                            {{viewRepair.isFinished ? 'Yes' : "NO"}}
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="row m-b-md">
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Client Payment</label>
+                        <div>
+                            <span ng-show="viewRepair.clientPayment"><i class="fa fa-dollar"></i> </span>
+                            {{viewRepair.clientPayment}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Client Total Cost</label>
+                        <div>
+                            <span ng-show="viewRepair.clientTotalCost"><i class="fa fa-dollar"></i> </span>
+                            {{viewRepair.clientTotalCost}}
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-sm-3">
+                    <div class="col-xs-12 boxed">
+                        <label class="control-label">Client Due Amount</label>
+                        <div>
+                            <span ng-show="viewRepair.clientDueAmount"><i class="fa fa-dollar"></i> </span>
+                            {{viewRepair.clientDueAmount}}
+                        </div>
+                    </div>
+                 </div>                 
             </div>
         </div>
     </div>
