@@ -29,35 +29,35 @@
 
 
             <li ng-class="{active: $state.includes('abstract.dashboard') || $state.includes('abstract.repairs') }" ui-sref="abstract.dashboard" ng-if="auth.getUserRoles().diff(types.dashboard).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-sitemap"></i> <span class="nav-label">dashboard</span></a>
+                <a ui-sref="widgets"><i class="fa fa-sitemap"></i> <span class="nav-label">dashboard - الرئيسية</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.rents')}" ui-sref="abstract.rents" ng-if="auth.getUserRoles().diff(types.rents).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-files-o"></i> <span class="nav-label">Rents</span></a>
+                <a ui-sref="widgets"><i class="fa fa-files-o"></i> <span class="nav-label">Rents - تأجير</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.cars')}" ui-sref="abstract.cars" ng-if="auth.getUserRoles().diff(types.cars).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-car"></i> <span class="nav-label">Cars</span></a>
+                <a ui-sref="widgets"><i class="fa fa-car"></i> <span class="nav-label">Cars - السيارات</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.clients')}" ui-sref="abstract.clients" ng-if="auth.getUserRoles().diff(types.clients).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-users"></i> <span class="nav-label">Clients</span></a>
+                <a ui-sref="widgets"><i class="fa fa-users"></i> <span class="nav-label">Clients - الزبائن</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.names')}" ui-sref="abstract.names" ng-if="auth.getUserRoles().diff(types.names).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-list-alt"></i> <span class="nav-label">Names</span></a>
+                <a ui-sref="widgets"><i class="fa fa-list-alt"></i> <span class="nav-label">Names - أسماء السيارات</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.spendings')}" ui-sref="abstract.spendings" ng-if="auth.getUserRoles().diff(types.spendings).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-money"></i> <span class="nav-label">Spendings</span></a>
+                <a ui-sref="widgets"><i class="fa fa-money"></i> <span class="nav-label">Spendings - المصاريف</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.reports')}" ui-sref="abstract.reports" ng-if="auth.getUserRoles().diff(types.reports).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-pie-chart"></i> <span class="nav-label">Reports</span></a>
+                <a ui-sref="widgets"><i class="fa fa-pie-chart"></i> <span class="nav-label">Reports - التقارير</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.alerts')}" ui-sref="abstract.alerts" ng-if="auth.getUserRoles().diff(types.alerts).length > 0">
-                <a ui-sref="widgets"><i class="fa fa-bell"></i> <span class="nav-label">Alerts</span></a>
+                <a ui-sref="widgets"><i class="fa fa-bell"></i> <span class="nav-label">Alerts - تحذيرات</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('abstract.settings')}" ui-sref="abstract.settings" ng-if="auth.getUserRoles().diff(types.settings).length > 0">

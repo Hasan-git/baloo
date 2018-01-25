@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
             $user2 = new User();
             $user2->name = "employee";
             $user2->email = 'employee@email.com';
-            $user2->password = Hash::make('Pass@123');
+            $user2->password = Hash::make('pass@123');
             $user2->save();
 
             $roleId = Role::where('name',"employee")->first();

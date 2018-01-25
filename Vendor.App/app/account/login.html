@@ -8,7 +8,7 @@
             <p>Contact your admin to create an account.</p>
             <form class="m-t" role="form" name="loginForm" autocomplete="off" ng-submit="login()">
                 <div class="form-group" ng-class="{'has-error':loginForm.usernameInpt.$invalid && loginForm.usernameInpt.$dirty }">
-                    <input type="text" name="usernameInpt"  class="form-control" placeholder="Username" ng-model="credentials.userName"   required autofocus/>
+                    <input type="text" name="usernameInpt" value="admin@email.com"  class="form-control" placeholder="Username" ng-model="credentials.userName"   required autofocus/>
                     <span ng-show="loginForm.usernameInpt.$dirty && loginForm.usernameInpt.$invalid" class="color-red">
                          <span class="message" ng-show="loginForm.usernameInpt.$error.required">Username is required.</span>
                     </span>

@@ -20,7 +20,7 @@
                       <!-- Cars -->
                         <uib-tab >
                           <uib-tab-heading>
-                            Sold Cars
+                            Sold Cars السيارات المباعة
                           </uib-tab-heading>
                             <div id="cntnr" ng-controller="soldCars as sc" >
                             <form name="form" id="form" class="p-m" ng-show="sc.search" ng-init="sc.search=false" novalidate>
@@ -28,7 +28,7 @@
 
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class="control-label" for="car">Car Name</label>
+                                            <label class="control-label" for="car">Car Name إسم السيارة</label>
                                             <div class="has-feedback search-box m-r-sm input-group">
                                                 <select
                                                      chosen
@@ -50,19 +50,19 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class="control-label" for="car">Car Name</label>
+                                            <label class="control-label" for="car">Car Name اسم السيارة</label>
                                             <input type="text"  placeholder="Car Name.." class="form-control" ng-model="sc._search.name">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class="control-label" for="car">PlateNumber</label>
+                                            <label class="control-label" for="car">PlateNumber رقم اللوحة</label>
                                             <input type="text"  placeholder="Plate Number.." class="form-control" ng-model="sc._search.plateNumber">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class="control-label" for="car">Purchase Date</label>
+                                            <label class="control-label" for="car">Purchase Date تاريخ الشراء</label>
                                             <div class="controls">
                                                 <div class="input-group col-xs-12">
                                                    <input  type="date" placeholder="Min Purchase Date..." class="form-control" ng-model="sc._search.purchaseDate"   />
@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label class="control-label" for="car">Sold Date</label>
+                                            <label class="control-label" for="car">Sold Date تاريخ البيع</label>
                                             <div class="controls">
                                                 <div class="input-group col-xs-12">
                                                    <input type="date" placeholder="Max Sold Date..." class="form-control" ng-model="sc._search.soldDate"  />
@@ -113,7 +113,7 @@
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-title">
                                             <span class="label label-success pull-right">Period</span>
-                                            <h5>Total Net Profit</h5>
+                                            <h5>Total Net Profit الربح الصافي</h5>
                                         </div>
                                         <div class="ibox-content">
                                             <h1 class="no-margins">{{sc.totalNetProfit | currency}}</h1>
@@ -127,7 +127,7 @@
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-title">
                                             <span class="label label-success pull-right">Period</span>
-                                            <h5>Total Rents Revenue</h5>
+                                            <h5>Total Rents Revenue مجموع الارباح</h5>
                                         </div>
                                         <div class="ibox-content">
                                             <h1 class="no-margins">{{sc.totalRentsRevenue | currency}}</h1>
@@ -139,7 +139,7 @@
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-title">
                                             <span class="label label-success pull-right">Period</span>
-                                            <h5>Total Rented Days</h5>
+                                            <h5>Total Rented Days عدد الأيام</h5>
                                         </div>
                                         <div class="ibox-content">
                                             <h1 class="no-margins">{{sc.totalRentedDays}}</h1>
@@ -151,7 +151,7 @@
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-title">
                                             <span class="label label-success pull-right">Period</span>
-                                            <h5>Total Repairs Cost</h5>
+                                            <h5>Total Repairs Cost مجموع تكاليف الصيانة</h5>
                                         </div>
                                         <div class="ibox-content">
                                             <h1 class="no-margins">{{sc.totalRepairsCost | currency}}</h1>

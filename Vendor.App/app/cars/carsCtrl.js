@@ -1,4 +1,4 @@
-﻿
+
     angular
         .module('app.cars')
         .controller('cars', cars);
