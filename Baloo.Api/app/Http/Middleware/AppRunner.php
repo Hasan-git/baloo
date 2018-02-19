@@ -34,10 +34,10 @@ class AppRunner
                     $decrypted = Crypt::decryptString($mcontents);
 
                     if(GetMAC() != $decrypted || !$decrypted)
-                       return Response()->json(null, 406);
+                      // return Response()->json(null, 406);
 
                 if(Carbon::parse('2018-01-30 22:23:00.123456') <= Carbon::now() ){
-                       return Response()->json(null, 406);
+                       //return Response()->json(null, 406);
                 }
 
             } catch (DecryptException $e) {

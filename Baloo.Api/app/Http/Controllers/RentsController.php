@@ -130,11 +130,13 @@ class RentsController extends Controller
       if(!$rent)
         return response()->json([],404);
 
+      $rent->update($model->all());
+
       $car = $rent->car;
-      $car->setStatusAttribute();
+      $car->status = $car->setStatusAttribute();
       $car->update();
 
-      $rent->update($model->all());
+     // $rent->update($model->all());
 
       $result = fractal($rent, new RentViewModel);
 

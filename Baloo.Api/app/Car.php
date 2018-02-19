@@ -45,6 +45,7 @@ class Car extends Model
     $rents = $this->CurrentRent;
     $reserved = $this->Reservations;
 
+
     if($repairs){
       return $this->attributes['status'] = 'repair';
 
