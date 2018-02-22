@@ -45,9 +45,9 @@ class ReportsController extends Controller
               'plateNumber'=>$car->plateNumber,
               'cost'=> ($record->cost ? ($record->cost * -1) : 0),
               'days'=> ( $record->days ? $record->days : 0),
-              'client'=> ( $record->client->name ? $record->client->name : ""),
-              'clientRentsDueAmount'=> ($record->client->getTotalDueAmountAttribute()  ),
-              'clientRepairsDueAmount'=> ($record->client->getTotalRepairsDueAmountAttribute()  ),
+              'client'=> ( $record->client && $record->client->name ? $record->client->name : ""),
+              'clientRentsDueAmount'=> ( $record->client && $record->client->getTotalDueAmountAttribute()  ),
+              'clientRepairsDueAmount'=> ( $record->client && $record->client->getTotalRepairsDueAmountAttribute()  ),
               "type"=>'repair'
               )
            );
@@ -66,8 +66,8 @@ class ReportsController extends Controller
               'days'=> ( $record->days ? $record->days : 0),
               'clientId'=> ( $record->client->id),
               'client'=> ( $record->client->name ? $record->client->name : ""),
-              'clientRentsDueAmount'=> ($record->client->getTotalDueAmountAttribute()  ),
-              'clientRepairsDueAmount'=> ($record->client->getTotalRepairsDueAmountAttribute()  ),
+              'clientRentsDueAmount'=> ($record->client &&  $record->client->getTotalDueAmountAttribute()  ),
+              'clientRepairsDueAmount'=> ($record->client &&  $record->client->getTotalRepairsDueAmountAttribute()  ),
               "type"=>'rent'
               )
            );

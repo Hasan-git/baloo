@@ -98,11 +98,11 @@
                         <span > DATE RANGE FILTER ACTIVATED</span>
                     </div>
                 </div>
-              <div class="col-md-3" ng-repeat="car in (filteredCars = (cars | filter:{ brand: brand } | filter:search:strict | filter:status:startsWith | filter: filterRange))">
-                    <div class="ibox" >
+              <div class="col-md-3" ng-repeat="car in (filteredCars = (cars | filter:{ brand: brand } | orderBy :  ['-model','status'] | filter:search:strict | filter:status:startsWith | filter: filterRange))">
+                    <div class="ibox" style="min-height: 355px;">
                         <div class="ibox-content product-box">
 
-                            <div class="product-imitation links" id="links" ng-click="gallery($event)" >
+                            <div class="product-imitation links" id="links" ng-click="gallery($event)" style="min-height: 158px;">
                                 <a  href="{{car.imageUrl}}" data-gallery="" title="{{car.name}}" >
                                        <img ng-src="{{car.imageUrl || 'img/default.jpg'}}" class="img-responsive car-img" />
                                 </a>
@@ -143,10 +143,11 @@
                                 </div>
 
                                 <hr style="margin-bottom: 5px;" />
-                                <div class="m-t text-righ">
+                                <div class="m-t">
 
                                     <button class="btn btn-xs btn-warning" ui-sref="abstract.repairs({car_id:car.id})"><i class="fa fa-wrench"></i>  &nbsp;Repair </button>
-                                    <!-- <button class="btn btn-xs btn-primary pull-right" ui-sref="abstract.carRents"> <i class="fa fa-file-text-o"></i> &nbsp;Rent </button> -->
+                                    <button ng-show="car.currentRent" class="btn btn-xs btn-white" ui-sref="abstract.rents({action:'received',id: car.currentRent.id})"> <i class="fa fa-file-text-o"></i> &nbsp;Received  </button>
+                                    <button class="btn btn-xs btn-primary pull-right" ui-sref="abstract.rents({action:'new',id : car.id})"> <i class="fa fa-file-text-o"></i> &nbsp;Rent </button>
                                 </div>
                             </div>
                         </div>

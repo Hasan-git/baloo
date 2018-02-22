@@ -86,7 +86,11 @@
             })
 
             .state('abstract.rents', {
-                url: "/rents",
+                url: "/rents/:action/:id",
+                params:{
+                    action: { value: null, squash: true },
+                    id: { value: null, squash: true },
+                },
                 templateUrl: "app/rents/rents.html",
                 controller: rents,
                 data: {
@@ -94,6 +98,14 @@
                     requiresLogin: true,
                     roles: [USER_ROLES.admin],
                 },
+                resolve:{
+                    resolvedParams : function($stateParams){
+                        if($stateParams.id && $stateParams.action)
+                            return { id : $stateParams.id , action : $stateParams.action }
+                        else
+                            return {}
+                    }
+                }
             })
 
 

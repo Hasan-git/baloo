@@ -3,8 +3,8 @@
         .module('app.rents')
         .controller('rents', rents);
 
-    rents.$inject = ["$scope","rentsResource","carsResource","clientsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile","toaster","$uibModal","notify","__env", "session", "$templateRequest", "$timeout"];
-    function rents($scope, rentsResource, carsResource, clientsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile, toaster, $uibModal, notify, __env, session, $templateRequest, $timeout) {
+    rents.$inject = ["$scope","rentsResource","carsResource","clientsResource", "DTOptionsBuilder", "DTColumnBuilder", "$q","$compile","toaster","$uibModal","notify","__env", "session", "$templateRequest", "$timeout",'resolvedParams'];
+    function rents($scope, rentsResource, carsResource, clientsResource, DTOptionsBuilder, DTColumnBuilder, $q, $compile, toaster, $uibModal, notify, __env, session, $templateRequest, $timeout,resolvedParams) {
 
       $scope.rents = [];
       $scope.dtInstance = {};
@@ -20,6 +20,35 @@
       $scope.secondClientCard = {};
       $scope.basUrl = __env.baseUrl;
       $scope._rent = {};
+
+      var onPageLoad = function(){
+        // Open edit rent form
+        if(resolvedParams.id && resolvedParams.action == 'received'){
+          $scope.rents.map(function(rent, key){
+              if(rent.id == resolvedParams.id){
+                angular.copy(rent, $scope.rent)
+                $scope.formTitle = "Editing Rent";
+                $scope.showForm = true;
+              }
+          });
+        }
+
+        //open new rent form
+        if(resolvedParams.id && resolvedParams.action ==  'new'){
+          $scope.cars.map(function(car, key){
+              if(car.id == resolvedParams.id){
+                console.log(car)
+                $scope.rent = {};
+                var _car = {};
+                angular.copy(car, _car)
+                $scope.rent.car = _car;
+                $scope.rent.car_id = _car.id
+                $scope.formTitle = "Creating New Rent";
+                $scope.showForm = true;
+              }
+          });
+        }
+    }
 
       $scope.label = "directive";
 
@@ -70,13 +99,13 @@
        }
 
       //return all cars
-      getCars().then(function(data){
+      var cars = getCars().then(function(data){
         $scope.cars = data;
         console.log("Cars > ",$scope.cars);
        })
 
       //return all clients
-      getClients().then(function(data){
+     var clients =  getClients().then(function(data){
         $scope.clients = data;
         console.log("Clients > ",$scope.clients);
        })
@@ -85,7 +114,7 @@
       var defer = $q.defer();
       if (!$scope.rents.length) {
             rentsResource.rents.get().$promise.then(function (data) {
-              console.log(data)
+              //console.log(data)
               console.log(" Server > ",JSON.parse(angular.toJson(data)).data)
               $scope.rents = JSON.parse(angular.toJson(data)).data;
               defer.resolve($scope.rents);
@@ -98,12 +127,15 @@
       return defer.promise;
      }
 
-
     $scope.dtOptions = DTOptionsBuilder
         .fromFnPromise(function () {
         var defer = $q.defer();
 
         $scope.getData().then(function (data) {
+          $q.all([cars,clients]).then(function(a) {
+              console.log("all promises loaded..");
+              onPageLoad()
+          });
             defer.resolve(JSON.parse(angular.toJson(data)));
         })
 
@@ -244,7 +276,7 @@
               var r = moment(currentRentDateOut).isBetween(dateOut, dateIn, null, '[]') || moment(currentRentDateIn).isBetween(dateOut, dateIn, null, '[]')
 
               if(r){
-                  console.log("Alert..")
+                  //console.log("Alert..")
                   $scope.form[propertyName].$setValidity('carReserved', false)
                   return ;
                 }
@@ -303,7 +335,12 @@
         angular.copy(car, $scope.carCard);
 
         if(!!car && car.repairs.length){
-          $scope.inRepairModal();
+          car.repairs.map(function(repair,k){
+            if(!repair.isFinished){
+              $scope.inRepairModal();
+              return;
+            }
+          })
         }
       }
 
