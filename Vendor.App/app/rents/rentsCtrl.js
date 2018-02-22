@@ -29,6 +29,8 @@
                 angular.copy(rent, $scope.rent)
                 $scope.formTitle = "Editing Rent";
                 $scope.showForm = true;
+                resolvedParams.action = ''
+                resolvedParams.id = ''
               }
           });
         }
@@ -45,6 +47,8 @@
                 $scope.rent.car_id = _car.id
                 $scope.formTitle = "Creating New Rent";
                 $scope.showForm = true;
+                resolvedParams.action = ''
+                resolvedParams.id = ''
               }
           });
         }
