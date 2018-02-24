@@ -64,7 +64,8 @@ function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, 
 
             $scope.deleteRent = function(id) {
 
-                rentsResource.rents.delete({id: id}).$promise.then(function(data) {
+                if (confirm("Do you want to delete this RENT ?")) {
+                    rentsResource.rents.delete({id: id}).$promise.then(function(data) {
                         vm.cars.splice(vm.cars.getIndexOfObject('id', id), 1)
                         vm.dtCarsInstance.reloadData()
                         modalInstance.close();
@@ -73,6 +74,8 @@ function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, 
                     function(err) {
                         toaster.pop('error', "Notification", "Unable to delete record !", 2000);
                     });
+                } else {
+                }
             }
 
         })
@@ -99,15 +102,20 @@ function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, 
 
             $scope.deleteRepair = function(id) {
 
-                repairsResource.repairs.delete({id: id}).$promise.then(function(data) {
-                        vm.cars.splice(vm.cars.getIndexOfObject('id', id), 1)
-                        vm.dtCarsInstance.reloadData()
-                        modalInstance.close();
-                        toaster.pop('success', "Notification", "Deleted ", 2000);
-                    },
-                    function(err) {
-                        toaster.pop('error', "Notification", "Unable to delete record !", 2000);
+                if (confirm("Do you want to delete this REPAIR ?")) {
+                    repairsResource.repairs.delete({id: id}).$promise.then(function(data) {
+                            vm.cars.splice(vm.cars.getIndexOfObject('id', id), 1)
+                            vm.dtCarsInstance.reloadData()
+                            modalInstance.close();
+                            toaster.pop('success', "Notification", "Deleted ", 2000);
+                        },
+                        function(err) {
+                            toaster.pop('error', "Notification", "Unable to delete record !", 2000);
                     });
+                }
+                else{
+
+                }
             }
 
         })

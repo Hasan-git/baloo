@@ -27,6 +27,8 @@
           $scope.rents.map(function(rent, key){
               if(rent.id == resolvedParams.id){
                 angular.copy(rent, $scope.rent)
+                $scope.rent.dateOut = new Date($scope.rent.dateOut)
+                $scope.rent.dateIn = new Date($scope.rent.dateIn)
                 $scope.formTitle = "Editing Rent";
                 $scope.showForm = true;
                 resolvedParams.action = ''
