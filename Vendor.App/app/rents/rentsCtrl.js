@@ -371,7 +371,7 @@
 
     $scope.$watch('[rent.dateIn,rent.dateOut]', function (newValue,oldValue) {
       if(!!$scope.rent.dateIn && !!$scope.rent.dateOut){
-        var diff = moment(new Date($scope.rent.dateIn)).diff(moment(new Date($scope.rent.dateOut)), 'days')
+        var diff = moment(new Date($scope.rent.dateIn).toString('dd-mm-yyyy'),'dd-mm-yyyy').diff(moment(new Date($scope.rent.dateOut).toString('dd-mm-yyyy'),'dd-mm-yyyy'), 'days')
         if(diff>0)
           $scope.rent.days =  parseInt(diff)
       }
