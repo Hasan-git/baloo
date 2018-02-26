@@ -98,7 +98,7 @@
                         <span > DATE RANGE FILTER ACTIVATED</span>
                     </div>
                 </div>
-              <div class="col-md-3" ng-repeat="car in (filteredCars = (cars | filter:{ brand: brand } | orderBy :  ['-model','status'] | filter:search:strict | filter:status:startsWith | filter: filterRange))">
+              <div class="col-md-3" ng-repeat="car in (filteredCars = (cars | filter:{ brand: brand } | orderBy :  ['-model','status'] | filter:search:strict  | filter:statusFn | filter: filterRange))">
                     <div class="ibox" style="min-height: 355px;">
                         <div class="ibox-content product-box">
 

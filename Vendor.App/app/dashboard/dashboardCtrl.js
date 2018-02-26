@@ -11,6 +11,7 @@
         $scope.b;
         $scope.rangeVar;
         $scope.cars = [];
+        $scope.status ='';
 
         $scope.brands = [
                 'mercedes',
@@ -76,6 +77,21 @@
          function(err){
                 toaster.pop('error', "Notification", "Unable to load cars !", 3000);
          });
+
+      $scope.statusFn = function(a,b,c){
+        if($scope.status != ''){
+          var lowerStr = ($scope.status).toLowerCase();
+
+          if($scope.status === 'available')
+          return lowerStr.indexOf(a.status) === 0 || 'reserved'.indexOf(a.status) === 0 ? true : false;
+
+          return lowerStr.indexOf(a.status) === 0 ? true : false;
+          
+        }else{
+          return true
+        }
+
+      }
 
     $scope.startsWith = function (actual, expected) {
         var lowerStr = (actual + "").toLowerCase();
