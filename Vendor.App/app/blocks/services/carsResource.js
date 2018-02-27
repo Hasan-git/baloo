@@ -36,6 +36,10 @@
                         id: '@id'
                     }
                 },
+                refreshCarsStatus: {
+                    method: 'POST',
+                    url: __env.BackendUrl + "/cars/refreshCarsStatus"
+                },
             })
         }
     };

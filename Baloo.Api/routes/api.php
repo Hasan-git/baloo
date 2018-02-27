@@ -29,6 +29,7 @@ Route::group(['prefix' => 'cars','middleware' => ['auth:api',AppRunner::class]],
   Route::get('/get', 'CarsController@get');
   Route::get('/get/{id}', 'CarsController@getById');
   Route::post('/post', 'CarsController@post');
+  Route::post('/refreshCarsStatus', 'CarsController@refreshCarsStatus');
   Route::post('/carSold', 'CarsController@carSold');
   Route::post('/update', 'CarsController@update');
   Route::post('/delete/{id}', 'CarsController@delete');

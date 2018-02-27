@@ -170,6 +170,30 @@ class CarsController extends Controller
     }
   }
 
+  // Get all cars and Recheck each car status
+  public function refreshCarsStatus()
+  {
+    // try
+    // {
+       $cars = Car::all();
+
+       if(!$cars)
+        return response()->json([],200);
+
+      foreach ($cars as $key => $car) {
+        $car_ = Car::find($car->id);
+        $car_->status = $car_->setStatusAttribute();
+        $car_->update();
+      }
+
+      return ok();
+
+    // }catch(\Exception $e)
+    // {
+    //   return $e->getMessage();
+    // }
+  }
+
   /* api/cars/delete/1 */
   public function delete($id)
   {

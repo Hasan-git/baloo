@@ -45,8 +45,8 @@
           ];
 
         $scope.print = function(){
-          var tr;
-         var table =  angular.element('<table class="table table-striped  table-hover dataTables-example"><thead><tr><th>Car</th><th>Plate Number</th><th>Status</th></tr></thead></table>')
+        var tr;
+        var table =  angular.element('<table class="table table-striped  table-hover dataTables-example"><thead><tr><th>Car</th><th>Plate Number</th><th>Status</th></tr></thead></table>')
         for (var i = 0; i < $scope.filteredCars.length; i++) {
             tr = $('<tr/>');
             tr.append("<td>" + $scope.filteredCars[i].name + "</td>");
@@ -57,26 +57,28 @@
           $(table).print();
         }
 
-      carsResource.cars.get().$promise.then(function (data) {
-                var response = JSON.parse(angular.toJson(data)).data;
+      carsResource.cars.refreshCarsStatus().$promise.then(function(){
+        carsResource.cars.get().$promise.then(function (data) {
+                  var response = JSON.parse(angular.toJson(data)).data;
 
-                console.log(response);
-                response.map(function(car,key){
-                  if(car.closestReserve){
-                    response[key].closestReserve.dateOut = new Date(car.closestReserve.dateOut)
-                    response[key].closestReserve.dateIn = new Date(car.closestReserve.dateIn)
-                  }
-                  if(car.currentRent){
-                    response[key].currentRent.dateOut = new Date(car.currentRent.dateOut)
-                    response[key].currentRent.dateIn = new Date(car.currentRent.dateIn)
-                  }
-                })
-                $scope.cars = response;
+                  console.log(response);
+                  response.map(function(car,key){
+                    if(car.closestReserve){
+                      response[key].closestReserve.dateOut = new Date(car.closestReserve.dateOut)
+                      response[key].closestReserve.dateIn = new Date(car.closestReserve.dateIn)
+                    }
+                    if(car.currentRent){
+                      response[key].currentRent.dateOut = new Date(car.currentRent.dateOut)
+                      response[key].currentRent.dateIn = new Date(car.currentRent.dateIn)
+                    }
+                  })
+                  $scope.cars = response;
 
-         },
-         function(err){
-                toaster.pop('error', "Notification", "Unable to load cars !", 3000);
-         });
+           },
+           function(err){
+                  toaster.pop('error', "Notification", "Unable to load cars !", 3000);
+           });
+      });
 
       $scope.statusFn = function(a,b,c){
         if($scope.status != ''){
