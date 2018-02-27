@@ -28,6 +28,7 @@ class RentViewModel extends TransformerAbstract
             'dateOut' => (string)$model->dateOut,
             'dateIn' => (string)$model->dateIn,
             'days' => (int) $model->days,
+            'receivedDate' =>  (string)$model->receivedDate,
             'costPerDay' => (int) $model->costPerDay,
             'total' => (int) $model->total,
             'cash' =>  (int) $model->cash,
@@ -43,6 +44,7 @@ class RentViewModel extends TransformerAbstract
             'status' => $model->status,
             'car_id' => (int) $model->car_id,
             'client_id' => (int) $model->client_id,
+            
             //'secondary_client_id' => (int) $model->secondary_client_id
         ];
     }

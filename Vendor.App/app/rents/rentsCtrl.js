@@ -29,6 +29,8 @@
                 angular.copy(rent, $scope.rent)
                 $scope.rent.dateOut = new Date($scope.rent.dateOut)
                 $scope.rent.dateIn = new Date($scope.rent.dateIn)
+                $scope.rent.receivedDate = !$scope.rent.receivedDate ? '' :  new Date($scope.rent.receivedDate);
+
                 $scope.formTitle = "Editing Rent";
                 $scope.showForm = true;
                 resolvedParams.action = ''
@@ -446,6 +448,7 @@
         });
         $scope.rent.dateOut = new Date($scope.rent.dateOut)
         $scope.rent.dateIn = new Date($scope.rent.dateIn)
+        $scope.rent.receivedDate = !$scope.rent.receivedDate ? '' :  new Date($scope.rent.receivedDate) ;
         $scope.showForm = true;
         $scope.formTitle = "Editing Rent";
         $scope.scrollTo('#form');

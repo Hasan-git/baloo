@@ -9,6 +9,7 @@ use Spatie\Fractalistic\Fractal;
 use Illuminate\Http\Request;
 use Storage;
 use App\Rent;
+use App\Car;
 use Carbon;
 // use App\Http\Transformers\serializer;
 
@@ -93,7 +94,7 @@ class RentsController extends Controller
 
       $result = fractal($rent, new RentViewModel);
 
-      return ok($result);
+      return ok($result,$rent);
 
     }
     catch (\Exception $e) {
@@ -159,7 +160,13 @@ class RentsController extends Controller
         if(!$rent)
           return response()->json([],404);
 
+        $car_id = $rent->car_id;
+
         $rent->delete();
+
+        $car = car::find($car_id);
+        $car->status = $car->setStatusAttribute();
+        $car->update();
 
       return ok();
 

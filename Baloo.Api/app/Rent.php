@@ -34,6 +34,13 @@ class Rent extends Model
   {
       $this->attributes['dateOut'] =  Carbon::parse($value);
   }
+  public function setReceivedDateAttribute($value)
+  {
+    if($value)
+        $this->attributes['receivedDate'] =  Carbon::parse($value);
+    else
+      $this->attributes['receivedDate'] = null;
+  }
 
   public function setStatusAttribute()
   {
@@ -51,10 +58,14 @@ class Rent extends Model
   {
     return $this->attributes['dateIn'] =  Carbon::parse($value)->tz('Asia/Beirut');
   }
-    public function getDateOutAttribute($value)
+  public function getDateOutAttribute($value)
   {
     return $this->attributes['dateOut'] =  Carbon::parse($value)->tz('Asia/Beirut');
   }
+  // public function getReceivedDateAttribute($value)
+  // {
+  //   return $this->attributes['receivedDate'] =  Carbon::parse($value)->tz('Asia/Beirut');
+  // }
 
 
   // Scopes
@@ -63,7 +74,7 @@ class Rent extends Model
       return $query->where('status','!=','in')->orWhere('dueAmount','!=',0);
   }
 
-  protected $fillable = ['dateOut','dateIn','days','costPerDay','total','cash','dueAmount','deposit','notes','kmOut','kmIn','kmTotal','employee','status','car_id','client_id','secondDriverName','secondDriverLicenseId'];
+  protected $fillable = ['dateOut','dateIn','days','costPerDay','total','cash','dueAmount','deposit','notes','kmOut','kmIn','kmTotal','employee','status','car_id','client_id','secondDriverName','secondDriverLicenseId','receivedDate'];
   protected $guarded = ['id','created_at','updated_at','deleted_at'];
 
   protected $dates = ['deleted_at'];
