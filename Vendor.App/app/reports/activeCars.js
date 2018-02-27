@@ -62,6 +62,10 @@ function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, 
                 size: 'lg',
             });
 
+            $scope.dismiss = function() {
+                modalInstance.close();
+            }
+
             $scope.deleteRent = function(id) {
 
                 if (confirm("Do you want to delete this RENT ?")) {
@@ -99,6 +103,9 @@ function activeCars($scope, reportsResource, DTOptionsBuilder, DTColumnBuilder, 
                 size: 'lg',
             });
 
+            $scope.dismiss = function() {
+                modalInstance.close();
+            }
 
             $scope.deleteRepair = function(id) {
 
