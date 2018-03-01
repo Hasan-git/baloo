@@ -63,17 +63,17 @@ class Car extends Model
   // Getter
   public function getClosestReserveAttribute()
   {
-    return $this->rents()->where('dateOut', '>', Carbon::now())->orderBy('dateOut', 'asc')->first();
+    return $this->rents()->where([['dateOut', '>', Carbon::now()->tz('Asia/Beirut')],['status','=','reserved']])->orderBy('dateOut', 'asc')->first();
   }
 
   public function getReservationsAttribute()
   {
-    return $this->rents()->where('dateOut', '>', Carbon::now())->orderBy('dateOut', 'asc')->get();
+    return $this->rents()->where([['dateOut', '>', Carbon::now()->tz('Asia/Beirut')],['status','=','reserved']])->orderBy('dateOut', 'asc')->get();
   }
 
   public function getCurrentRentAttribute()
   {
-    return $this->rents()->where([ ['status', 'out'], ['dateIn', '>=', Carbon::now() ] , ['dateOut', '<=', Carbon::now() ]])->first() ;
+    return $this->rents()->where([ ['status', 'out'], ['dateIn', '>=', Carbon::now()->tz('Asia/Beirut') ] , ['dateOut', '<=', Carbon::now()->tz('Asia/Beirut') ]])->first() ;
   }
 
   //Setters

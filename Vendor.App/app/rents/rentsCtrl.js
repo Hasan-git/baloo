@@ -484,7 +484,7 @@
                 }else{
                   $scope.rents[$scope.rents.getIndexOfObject('id',$scope.rent.id)] =response
                 }
-                toaster.pop('success', "Notification", "Car Updated !", 2000);
+                toaster.pop('success', "Notification", "Updated !", 2000);
                 $scope.dtInstance.reloadData()
                 $scope.cancelForm(form);
                 //update all cars to avoid reservations conflicts

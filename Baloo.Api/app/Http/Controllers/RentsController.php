@@ -84,7 +84,7 @@ class RentsController extends Controller
           return response()->json(['errors' => $validator->getMessageBag()->toArray()], 400);
 
       $rent = new Rent($model->all());
-      $rent->setStatusAttribute();
+      $rent->setStatusAttribute_($model->input('dateOut'),$model->input('dateIn'));
       $rent->save();
 
       $car = $rent->car;
@@ -105,7 +105,7 @@ class RentsController extends Controller
   /* api/rents/update */
   public function update( Request $model)
   {
-    try{
+    // try{
 
       $rules = array('id'=>'required',
                       'car_id' => 'bail|required|exists:cars,id',
@@ -126,27 +126,40 @@ class RentsController extends Controller
           return response()->json(['errors' => $validator->getMessageBag()->toArray()], 400);
 
       $rent = Rent::find($model->id);
-      $rent->setStatusAttribute();
+
+      $model_ = $model->all();
 
       if(!$rent)
         return response()->json([],404);
 
-      $rent->update($model->all());
+      // if($model->receivedDate)
+      // {
+      //   $rent->status = "in";
+      // }else
+      // {
+      //   $rent->setStatusAttribute_();
+      //   $rent->status = "in";
+      // }
+      if($model->input('receivedDate')){
+        $model_['status'] = "in";
+      }else{
+        $model_['status']  = $rent->setStatusAttribute_($model->input('dateOut'),$model->input('dateIn'));
+      }
+
+      $rent->update($model_);
 
       $car = $rent->car;
       $car->status = $car->setStatusAttribute();
       $car->update();
 
-     // $rent->update($model->all());
-
       $result = fractal($rent, new RentViewModel);
 
       return ok($result);
 
-    }
-    catch (\Exception $e) {
-        return $e->getMessage();
-    }
+    // }
+    // catch (\Exception $e) {
+    //     return $e->getMessage();
+    // }
   }
 
   /* api/rents/delete/1 */

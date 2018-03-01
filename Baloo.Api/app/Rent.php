@@ -42,14 +42,18 @@ class Rent extends Model
       $this->attributes['receivedDate'] = null;
   }
 
-  public function setStatusAttribute()
+  public function setStatusAttribute_($out,$in)
   {
-      if( Carbon::parse($this->attributes['dateIn'])->lte( Carbon::now() ) ) {
+      if( Carbon::parse($in)->lte( Carbon::now() ) ) {
         $this->attributes['status'] = 'in';
-      }else if(Carbon::parse($this->attributes['dateOut'])->lt( Carbon::tomorrow() ) ) {
+        return  'in';
+
+      }else if(Carbon::parse($out)->lt( Carbon::tomorrow() ) ) {
         $this->attributes['status'] = 'out';
-      }else if ( Carbon::parse($this->attributes['dateOut'])->gt( Carbon::today() ) ) {
+        return  'out';
+      }else if ( Carbon::parse($out)->gt( Carbon::today() ) ) {
         $this->attributes['status'] = 'reserved';
+        return  'reserved';
       }
   }
 

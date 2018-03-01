@@ -154,6 +154,7 @@
                                                  style="width:200px;"
                                                  ng-model="rent.client_id"
                                                  ng-options="s.id as s.name+ ' /' + (s.mother || '') for s in clients "
+                                                 required
                                                  enter>
                                                         <option value=""></option>
                                                 </select>
@@ -328,7 +329,7 @@
                                             <input type="text" id="secondDriverLicenseId" name="secondDriverLicenseId" placeholder="Second Drive License ID.." class="form-control" ng-model="rent.secondDriverLicenseId" enter  />
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" ng-if="formTitle == 'Editing Rent'">
                                     <label class="control-label" for="secondDriverLicenseId">Received Date</label>
                                         <input date-time timezone="UTC" format="yyyy-MM-dd hh:mm  a" min-view="minutes" type="text" id="receivedDate" name="receivedDate" value="" placeholder="Received Date..." data-mask="9999-99-99 99:99 aa" class="form-control" ng-model="rent.receivedDate"  />
                                         {{picker1.date}}
